@@ -15,7 +15,9 @@ power systems and internal combustion engines.
 | File | Audience | Purpose |
 |---|---|---|
 | `lab/viscosity-lab.html` | students | Interactive laboratory: three instruments, fluid library comparison, unit conversion, temperature analysis, notebook and export |
-| `handouts/viscosity-lab-handout.html` | students | Printable handout, print to PDF from any browser |
+| `handouts/viscosity-lab-handout.html` | students | Handout, web version, prints to US Letter from any browser |
+| `handouts/latex/viscosity-lab-handout.pdf` | students | The same handout typeset for print: A4, eight pages, page numbers |
+| `handouts/latex/viscosity-lab-handout.tex` | maintainers | LaTeX source for the A4 handout |
 | `handouts/viscosity-lab-answers.html` | instructors | Answer sheet with live calculation from the bench master values |
 | `handouts/viscosity-lab-grader.html` | instructors | Measurement audit against tolerances, every answer computed twice |
 | `tests/` | maintainers | Verification and headless DOM suites |
