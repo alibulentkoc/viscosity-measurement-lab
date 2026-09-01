@@ -270,6 +270,43 @@ shows only version DOIs, one per release. The concept DOI is not a release and n
 appears there. Find it on the record itself, in the Versions card, under "Cite all
 versions?".
 
+## Making the live simulator visible on the Zenodo record
+
+By default a Zenodo record created from GitHub points only back at the repository. A reader
+lands on an archive of source files with nothing telling them the activity actually runs at
+a URL. Two things fix that, and the first works on the record you already have.
+
+### Edit the published record, no new release needed
+
+Files on a published record are frozen. **Metadata is not.** You can correct the title,
+description, keywords or related links at any time, and the DOI does not change.
+
+1. Open the record at https://doi.org/10.5281/zenodo.22218165
+2. Click **Edit** (top right; you must be signed in as the owner)
+3. In **Related works**, click **Add another** and enter:
+   - Relation: **Is identical to**
+   - Identifier: `https://alibulentkoc.github.io/viscosity-measurement-lab/lab/viscosity-lab.html`
+   - Resource type: **Software**
+4. In the **Description**, paste a line at the very top so it is the first thing anyone
+   reads:
+
+   > **Run it in your browser:**
+   > https://alibulentkoc.github.io/viscosity-measurement-lab/lab/viscosity-lab.html
+
+5. Click **Save**, then **Publish** the edit.
+
+The change is live in seconds and the DOI is untouched.
+
+### And so future releases carry it automatically
+
+`.zenodo.json` in this repository now contains the same two things: the live URL at the head
+of the description, and a `related_identifiers` block pointing at the deployment. Every
+release from now on will carry them without any manual editing.
+
+`isIdenticalTo` is the correct relation here. The GitHub Pages deployment and the Zenodo
+archive are the same resource in two instances, one served and one preserved, which is
+exactly what that relation is defined for.
+
 ## Phase 10 — Every release after the first
 
 The order never changes:
