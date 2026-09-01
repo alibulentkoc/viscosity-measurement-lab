@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/Code-MIT-green.svg)](LICENSE)
 [![Content: CC BY 4.0](https://img.shields.io/badge/Content-CC%20BY%204.0-blue.svg)](LICENSE-CONTENT.md)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22218165.svg)](https://doi.org/10.5281/zenodo.22218165)
 
 Interactive falling ball, Saybolt and rotary viscometers, with a student handout,
 an instructor answer sheet and a grading tool, for undergraduate courses in fluid
@@ -236,6 +237,14 @@ archives only what has actually been pushed.
 
 ## Citation
 
-See `CITATION.cff`. Laboratory materials are licensed CC BY 4.0; source is MIT.
-"# viscosity-measurement-lab" 
-"# viscosity-measurement-lab" 
+Koc, A. B. *Viscosity Measurement Laboratory: Interactive Falling Ball, Saybolt, and Rotary
+Viscometers with Laboratory Materials*. Department of Agricultural Sciences, Agricultural
+Mechanization and Business Program, Clemson University.
+DOI: [10.5281/zenodo.22218165](https://doi.org/10.5281/zenodo.22218165)
+
+That is the **concept DOI**: it always resolves to the newest release, so it stays correct
+after future versions and is the one to print on handouts and quote in papers. To cite this
+exact release instead, use the version DOI [10.5281/zenodo.22218166](https://doi.org/10.5281/zenodo.22218166).
+
+Machine-readable metadata is in `CITATION.cff`. Laboratory materials are licensed CC BY 4.0;
+source is MIT.

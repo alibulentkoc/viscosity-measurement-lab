@@ -248,6 +248,28 @@ that.
 
 ---
 
+## Current DOIs
+
+Assigned at the v1.0.0 release on 1 September 2026:
+
+| DOI | What it points at | Use it for |
+|---|---|---|
+| `10.5281/zenodo.22218165` | all versions, always resolving to the newest | **papers, handouts, the README badge** |
+| `10.5281/zenodo.22218166` | release v1.0.0 specifically, forever | reproducing a result against that exact version |
+
+The concept DOI is already written into `README.md`, `CITATION.cff`, `index.html`, the
+simulator and all three handouts. It does not change when you release a new version, so
+none of those files need touching again for DOI reasons.
+
+`.zenodo.json` deliberately contains no `related_identifiers` entry for the concept DOI.
+Zenodo maintains the concept-to-version relation itself, and declaring it by hand would
+duplicate a link the platform already owns.
+
+The Zenodo settings page at zenodo.org/account/settings/github lists **releases**, so it
+shows only version DOIs, one per release. The concept DOI is not a release and never
+appears there. Find it on the record itself, in the Versions card, under "Cite all
+versions?".
+
 ## Phase 10 — Every release after the first
 
 The order never changes:
