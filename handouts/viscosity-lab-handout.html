@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viscosity Measurement: Falling Ball, Saybolt, and Rotary Viscometers</title>
+<style>
+/* Typeset to resemble a LaTeX article: serif body at a comfortable measure,
+   justified text, numbered sections, numbered display equations, and horizontal
+   rules rather than boxes for tables. Prints to US Letter without adjustment. */
+:root{
+  --ink:#111418; --ink2:#3d444b; --ink3:#767d84;
+  --rule:#b9bcc0; --rule2:#dcdee1;
+  --blank:#1a3f7a;            /* the colour of anything the student writes in */
+  --note:#f4f2ec;
+  --serif:"Latin Modern Roman","Computer Modern Serif","Iowan Old Style",
+          "Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e7e2;color:var(--ink);
+     font-family:var(--serif);font-size:11.2pt;line-height:1.46}
+.page{max-width:7.0in;margin:0 auto;background:#fff;padding:0.75in 0.85in 1in;
+      box-shadow:0 0 0 1px #d5d2cc}
+
+/* ---- title block ---- */
+.titleblock{text-align:center;margin-bottom:26px}
+.titleblock h1{font-size:17.5pt;font-weight:600;margin:0 0 6px;line-height:1.28}
+.titleblock .sub{font-size:11.5pt;color:var(--ink2);font-style:italic;margin-bottom:3px}
+.titleblock .course{font-size:10pt;color:var(--ink3);font-family:var(--sans);
+     letter-spacing:.04em;margin-top:8px}
+.idline{display:flex;gap:34px;margin:22px 0 6px;font-size:10.5pt}
+.idline > div{flex:1 1 auto;display:flex;align-items:baseline;gap:8px}
+.idline .fill{flex:1 1 auto;border-bottom:.6pt solid var(--ink);min-height:1.05em}
+hr.rule{border:none;border-top:1.1pt solid var(--ink);margin:14px 0 0}
+
+/* ---- sections ---- */
+h2{font-size:12.5pt;font-weight:600;margin:22px 0 7px}
+h3{font-size:11.4pt;font-weight:600;margin:16px 0 5px;font-style:italic}
+h2 .n,h3 .n{margin-right:.5em}
+p{margin:0 0 8px;text-align:justify;hyphens:auto}
+ul,ol{margin:0 0 9px;padding-left:1.35em}
+li{margin-bottom:3px}
+
+/* ---- display equations, numbered on the right ---- */
+.eq{display:flex;align-items:center;margin:11px 0;gap:12px}
+.eq .body{flex:1 1 auto;text-align:center;font-size:12.5pt}
+.eq .tag{flex:0 0 auto;font-size:10.5pt;color:var(--ink2)}
+.frac{display:inline-block;vertical-align:-0.62em;text-align:center;margin:0 .18em}
+.frac .t{display:block;border-bottom:.7pt solid var(--ink);padding:0 .35em}
+.frac .b{display:block;padding:0 .35em}
+i.v{font-style:italic}
+.where{margin:2px 0 10px 1.6em;font-size:10.4pt;color:var(--ink2)}
+.where div{margin-bottom:2px}
+
+/* ---- fill-in blanks ---- */
+.b{display:inline-block;border-bottom:.6pt solid var(--blank);min-width:62px;
+   height:1.05em;margin:0 3px;vertical-align:-2px}
+.b.w{min-width:104px} .b.n{min-width:44px} .b.xw{min-width:170px}
+.line{margin:5px 0;font-size:10.8pt}
+
+/* ---- data tables, LaTeX booktabs style ---- */
+table{border-collapse:collapse;width:100%;margin:10px 0 12px;font-size:10.4pt}
+caption{caption-side:top;text-align:left;font-size:10.2pt;color:var(--ink2);
+        padding-bottom:5px;font-style:italic}
+th{border-top:1.1pt solid var(--ink);border-bottom:.6pt solid var(--ink);
+   padding:5px 6px;text-align:center;font-weight:600;font-family:var(--sans);font-size:9.5pt}
+td{border-bottom:.4pt solid var(--rule2);padding:6px;text-align:center;height:1.9em}
+tr:last-child td{border-bottom:1.1pt solid var(--ink)}
+th:first-child,td:first-child{text-align:left}
+td.fill{border-bottom:.4pt solid var(--rule2);background:#fbfcfe}
+
+/* ---- notes ---- */
+.note{background:var(--note);border-left:2.5pt solid var(--ink3);padding:8px 11px;
+      margin:11px 0;font-size:10.4pt}
+.note .h{font-family:var(--sans);font-size:8.8pt;letter-spacing:.09em;
+      text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+.caution{background:#fbf3ec;border-left-color:#a8642a}
+.caution .h{color:#a8642a}
+
+/* ---- questions ---- */
+ol.q{padding-left:1.6em}
+ol.q li{margin-bottom:13px;text-align:justify}
+.answer{display:block;border-bottom:.5pt solid var(--rule);height:1.5em;margin-top:5px}
+.answer + .answer{margin-top:0}
+
+/* ---- graph paper ---- */
+.grid{width:100%;height:3.6in;border:.8pt solid var(--ink);
+   background-image:linear-gradient(#e3e6ea .5px,transparent .5px),
+                    linear-gradient(90deg,#e3e6ea .5px,transparent .5px),
+                    linear-gradient(#c3c8ce .7px,transparent .7px),
+                    linear-gradient(90deg,#c3c8ce .7px,transparent .7px);
+   background-size:0.1in 0.1in,0.1in 0.1in,0.5in 0.5in,0.5in 0.5in;margin:8px 0 4px}
+.axislbl{display:flex;justify-content:space-between;font-size:9.5pt;color:var(--ink2)}
+
+footer.cite{margin-top:26px;padding-top:10px;border-top:.6pt solid var(--rule);
+   font-size:9.6pt;color:var(--ink2)}
+footer.cite .h{font-family:var(--sans);font-size:8.8pt;letter-spacing:.09em;
+   text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
+a{color:#1a3f7a}
+code{font-family:var(--mono);font-size:9.6pt}
+
+@media print{
+  body{background:#fff}
+  .page{box-shadow:none;max-width:none;padding:0.55in 0.65in}
+  h2{break-after:avoid} table,.note,.grid{break-inside:avoid}
+  .pagebreak{break-before:page}
+  a{color:var(--ink);text-decoration:none}
+}
+@page{size:letter;margin:0.7in}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="titleblock">
+  <h1>Viscosity Measurement:<br>Falling Ball, Saybolt, and Rotary Viscometers</h1>
+  <div class="sub">Student Handout &mdash; Fluid Power Systems and Internal Combustion Engines</div>
+  <div class="course">AGRICULTURAL MECHANIZATION AND BUSINESS &middot; CLEMSON UNIVERSITY</div>
+</div>
+
+<div class="idline">
+  <div><span>Name</span><span class="fill"></span></div>
+  <div><span>Date</span><span class="fill"></span></div>
+</div>
+<div class="idline">
+  <div><span>Group</span><span class="fill"></span></div>
+  <div><span>Bench</span><span class="fill"></span></div>
+</div>
+<hr class="rule">
+
+<h2><span class="n">1</span>Objectives</h2>
+<ul>
+  <li>To become familiar with viscosity measurement methods.</li>
+  <li>To measure viscosity of hydraulic fluids with falling ball viscometer, Saybolt
+      viscometer and rotary viscometer.</li>
+  <li>To convert one set of viscosity units to another set of units.</li>
+  <li>To analyze the effect of temperature on viscosity of hydraulic fluid.</li>
+</ul>
+
+<h2><span class="n">2</span>Core Principle</h2>
+<p>Viscosity is a measure of a fluid's resistance to flow. None of the three instruments on
+this bench measures that resistance directly. Each one measures something else &mdash; how fast a
+sphere sinks, how long a fixed volume takes to drain, how hard a rotor must be driven &mdash; and
+then infers viscosity from a model. The model is where the physics lives, and the model can
+fail while the instrument still gives you a perfectly repeatable number.</p>
+
+<p>Two quantities carry the name viscosity and they are not interchangeable. <i class="v">Dynamic</i>
+(or absolute) viscosity <i class="v">&mu;</i> measures resistance to shear and is reported in
+Pa&middot;s or centipoise. <i class="v">Kinematic</i> viscosity <i class="v">&nu;</i> is dynamic
+viscosity divided by density and is reported in m&sup2;/s or centistokes. Density is the only
+bridge between them. An ISO hydraulic grade such as ISO 46 refers to kinematic viscosity in
+centistokes at 40 &deg;C; a Stokes' law result is dynamic viscosity in Pa&middot;s. Quoting one
+where the other is expected is the most common error in this laboratory.</p>
+
+<div class="note">
+  <div class="h">What you should be able to say at the end</div>
+  Which of your three measurements you trust most, and why. That answer depends on the
+  Reynolds number you compute in Section 5.6, not on which instrument looked most expensive.
+</div>
+
+<h2><span class="n">3</span>Safety</h2>
+<ul>
+  <li>Fluids heated to 50 &ndash; 60 &deg;C will burn skin. Use gloves and tongs on the Saybolt
+      cup and the rotary beaker.</li>
+  <li>Wipe every spill at once. Oil on a hard floor is a fall hazard.</li>
+  <li>Do not heat any fluid above the temperature stated in the procedure.</li>
+  <li>Recover the steel sphere with the magnet. Never invert the falling ball tube.</li>
+  <li>Used fluid goes in the marked waste container, never down the sink.</li>
+  <li>Report a cracked tube or a leaking cup to the instructor before proceeding.</li>
+</ul>
+
+<h2><span class="n">4</span>Constants and Conversions</h2>
+<p>Record these once and use them throughout.</p>
+<div class="line">
+  <i class="v">g</i> = 9.81 m/s&sup2; &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+  1 in = 2.54 cm &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+  1 m = 100 cm &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+  1000 g = 1 kg &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+  1 m&sup3; = 1000 L = 10<sup>6</sup> cm&sup3;
+</div>
+<div class="line">
+  1 poise = 0.1 Pa&middot;s = 100 cP &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+  1 cP = 0.001 Pa&middot;s &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+  1 Pa&middot;s = 1000 cP = 1000 mPa&middot;s &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+  cSt = cP / <i class="v">&rho;</i> [g/cm&sup3;]
+</div>
+
+<div class="pagebreak"></div>
+
+<h2><span class="n">5</span>Part I &mdash; Falling Ball Viscometer</h2>
+<p>One of the oldest ways of measuring the viscosity of a fluid is to measure how fast a sphere
+falls through it. A sphere released in a viscous fluid accelerates for a short distance and then
+settles at a constant <i class="v">terminal velocity</i>, where the drag force exactly balances
+the sphere's weight less its buoyancy. If the sphere falls quickly the fluid has low viscosity
+and little resistance to flow; if it falls slowly the fluid has high viscosity. Stokes' law
+relates that settling velocity to viscosity, rearranged below to solve for viscosity.</p>
+
+<div class="eq"><div class="body">
+  <i class="v">&mu;</i> =
+  <span class="frac"><span class="t">2 &Delta;<i class="v">&rho;</i> <i class="v">g r</i>&sup2;</span>
+  <span class="b">9 <i class="v">v</i></span></span>
+</div><div class="tag">(1)</div></div>
+<div class="where">
+  <div><i class="v">&mu;</i> &nbsp; absolute (dynamic) viscosity, Pa&middot;s</div>
+  <div>&Delta;<i class="v">&rho;</i> &nbsp; density of sphere minus density of fluid, kg/m&sup3;</div>
+  <div><i class="v">g</i> &nbsp; acceleration due to gravity, 9.81 m/s&sup2;</div>
+  <div><i class="v">r</i> &nbsp; radius of sphere, m</div>
+  <div><i class="v">v</i> &nbsp; velocity of sphere, m/s</div>
+</div>
+
+<div class="note caution">
+  <div class="h">Release the sphere above the START mark</div>
+  Equation (1) applies only to a sphere already at terminal velocity. If you release the sphere
+  at the START mark it is still accelerating as it crosses it, your timed velocity is too low,
+  and your viscosity comes out too high. Release it at the top of the tube and let it settle
+  before it reaches the mark.
+</div>
+
+<h3><span class="n">5.1</span>Steel sphere</h3>
+<p>Measure the diameter of the sphere with a micrometer and its mass on the balance. Compute the
+volume from Equation (2) and the density from Equation (3).</p>
+
+<div class="eq"><div class="body">
+  <i class="v">V</i> = <span class="frac"><span class="t">4</span><span class="b">3</span></span>
+  <i class="v">&pi; r</i>&sup3;
+</div><div class="tag">(2)</div></div>
+<div class="eq"><div class="body">
+  <i class="v">&rho;</i> = <span class="frac"><span class="t"><i class="v">m</i></span>
+  <span class="b"><i class="v">V</i></span></span>
+</div><div class="tag">(3)</div></div>
+
+<div class="line">Mass of sphere: <span class="b"></span> g = <span class="b"></span> kg</div>
+<div class="line">Diameter <i class="v">D</i>: <span class="b"></span> in =
+  <span class="b"></span> cm = <span class="b"></span> m &nbsp;&nbsp;
+  Radius <i class="v">r</i>: <span class="b"></span> m</div>
+<div class="line">Volume <i class="v">V</i>: <span class="b w"></span> m&sup3; &nbsp;&nbsp;
+  Density of sphere <i class="v">&rho;</i><sub>s</sub>: <span class="b w"></span> kg/m&sup3;</div>
+
+<h3><span class="n">5.2</span>Fluid density</h3>
+<p>Fill a beaker with 50 mL of each fluid and weigh it. Record the temperature with a
+thermometer. Divide the measured mass in grams by the volume in millilitres to obtain the
+density, then carry it through to kg/m&sup3;.</p>
+
+<table>
+  <caption>Table 1. Fluid identification and density.</caption>
+  <thead><tr>
+    <th style="width:22%">Quantity</th><th>Fluid 1</th><th>Fluid 2</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>Fluid name</td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>Temperature, &deg;C</td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>Beaker volume, mL</td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>Fluid mass, g</td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><i class="v">&rho;</i>, g/mL</td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><i class="v">&rho;</i>, g/L</td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><i class="v">&rho;</i>, kg/m&sup3;</td><td class="fill"></td><td class="fill"></td></tr>
+  </tbody>
+</table>
+
+<h3><span class="n">5.3</span>Fall time and velocity</h3>
+<p>Measure the distance between the two marked points on the viscometer. Hold the sphere with the
+magnet, release it from the top of the tube, and time its travel between the two marks. Repeat
+four times and average. Four trials are taken because a single stopwatch reading carries a
+reaction-time error of roughly a tenth of a second, which on a two-second fall is a five percent
+error on its own.</p>
+
+<div class="line">Distance between marks <i class="v">L</i>: <span class="b"></span> m</div>
+
+<table>
+  <caption>Table 2. Fall times over the measured distance.</caption>
+  <thead><tr>
+    <th style="width:22%">Fluid</th><th><i>t</i><sub>1</sub>, s</th><th><i>t</i><sub>2</sub>, s</th>
+    <th><i>t</i><sub>3</sub>, s</th><th><i>t</i><sub>4</sub>, s</th>
+    <th><i>t</i><sub>avg</sub>, s</th><th><i>v</i>, m/s</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>1.</td><td class="fill"></td><td class="fill"></td><td class="fill"></td>
+        <td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>2.</td><td class="fill"></td><td class="fill"></td><td class="fill"></td>
+        <td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+  </tbody>
+</table>
+
+<div class="eq"><div class="body">
+  <i class="v">t</i><sub>avg</sub> =
+  <span class="frac"><span class="t"><i class="v">t</i><sub>1</sub> + <i class="v">t</i><sub>2</sub>
+  + <i class="v">t</i><sub>3</sub> + <i class="v">t</i><sub>4</sub></span><span class="b">4</span></span>
+  <span style="display:inline-block;width:2.4em"></span>
+  <i class="v">v</i> = <span class="frac"><span class="t"><i class="v">L</i></span>
+  <span class="b"><i class="v">t</i><sub>avg</sub></span></span>
+</div><div class="tag">(4)</div></div>
+
+<h3><span class="n">5.4</span>Viscosity and unit conversion</h3>
+<p>Compute &Delta;<i class="v">&rho;</i>, then apply Equation (1). Convert the result to
+centipoise and to centistokes. Show the substituted numbers, not only the answer.</p>
+
+<div class="line">Fluid 1: &nbsp; &Delta;<i class="v">&rho;</i> = <span class="b"></span> &minus;
+  <span class="b"></span> = <span class="b"></span> kg/m&sup3;</div>
+<div class="line">&nbsp;&nbsp;&nbsp;&nbsp; <i class="v">&mu;</i> = <span class="b w"></span> Pa&middot;s
+  = <span class="b w"></span> cP = <span class="b w"></span> cSt</div>
+<div class="line">Fluid 2: &nbsp; &Delta;<i class="v">&rho;</i> = <span class="b"></span> &minus;
+  <span class="b"></span> = <span class="b"></span> kg/m&sup3;</div>
+<div class="line">&nbsp;&nbsp;&nbsp;&nbsp; <i class="v">&mu;</i> = <span class="b w"></span> Pa&middot;s
+  = <span class="b w"></span> cP = <span class="b w"></span> cSt</div>
+
+<h3><span class="n">5.5</span>Uncertainty in the fall time</h3>
+<p>Report the spread of your four readings, not only their average. The range divided by the
+average, expressed as a percentage, is a defensible first estimate of the uncertainty in your
+velocity, and therefore in your viscosity, since <i class="v">&mu;</i> is inversely proportional
+to <i class="v">v</i>.</p>
+<div class="line">Fluid 1: range = <span class="b"></span> s &nbsp; range / <i class="v">t</i><sub>avg</sub>
+  = <span class="b n"></span> % &nbsp;&rarr;&nbsp; <i class="v">&mu;</i> = <span class="b"></span>
+  &plusmn; <span class="b"></span> Pa&middot;s</div>
+<div class="line">Fluid 2: range = <span class="b"></span> s &nbsp; range / <i class="v">t</i><sub>avg</sub>
+  = <span class="b n"></span> % &nbsp;&rarr;&nbsp; <i class="v">&mu;</i> = <span class="b"></span>
+  &plusmn; <span class="b"></span> Pa&middot;s</div>
+
+<h3><span class="n">5.6</span>Is Stokes' law valid for your measurement?</h3>
+<p>Equation (1) is derived for <i class="v">creeping flow</i>, meaning the viscous forces on the
+sphere overwhelm the inertial ones. The Reynolds number measures that ratio, and Stokes' law
+requires it to be much less than one.</p>
+
+<div class="eq"><div class="body">
+  <i class="v">Re</i> = <span class="frac">
+  <span class="t"><i class="v">&rho;</i><sub>f</sub> <i class="v">v</i> (2<i class="v">r</i>)</span>
+  <span class="b"><i class="v">&mu;</i></span></span>
+</div><div class="tag">(5)</div></div>
+
+<div class="line">Fluid 1: <i class="v">Re</i> = <span class="b"></span> &nbsp;&nbsp;
+  Circle one: &nbsp; valid (<i>Re</i> &lt; 1) &nbsp;&middot;&nbsp; marginal (1 &ndash; 10)
+  &nbsp;&middot;&nbsp; invalid (<i>Re</i> &ge; 10)</div>
+<div class="line">Fluid 2: <i class="v">Re</i> = <span class="b"></span> &nbsp;&nbsp;
+  Circle one: &nbsp; valid (<i>Re</i> &lt; 1) &nbsp;&middot;&nbsp; marginal (1 &ndash; 10)
+  &nbsp;&middot;&nbsp; invalid (<i>Re</i> &ge; 10)</div>
+
+<div class="note">
+  <div class="h">Do not discard a number because the model failed</div>
+  If your Reynolds number is above one, report the viscosity you calculated <em>and</em> state
+  that Stokes' law does not strictly apply to it. A result reported with its limitation is
+  worth more than a result quietly deleted. Question 5 asks you to say which direction the
+  error runs.
+</div>
+
+<div class="pagebreak"></div>
+
+<h2><span class="n">6</span>Part II &mdash; Saybolt Viscometer</h2>
+<p>The Saybolt viscometer measures fluid flow through a capillary of very small diameter. Before
+filling the vessel, secure the rubber stopper at the base. The container must be filled just to
+overflowing for accurate and consistent results, because the height of fluid above the orifice
+sets the driving pressure. Position the beaker underneath and begin timing at the instant the
+stopper is removed. Record the time in Saybolt Universal Seconds required for 60 mL to collect
+in the beaker.</p>
+
+<p>Heat 60 mL of each fluid to 50 &deg;C, pour it into the viscometer, and record the collection
+time.</p>
+
+<table>
+  <caption>Table 3. Saybolt measurements and conversions.</caption>
+  <thead><tr>
+    <th style="width:26%">Quantity</th><th>Fluid 1</th><th>Fluid 2</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>Fluid name</td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>Temperature, &deg;C</td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>Collection time, SUS</td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>Equation used, (6) or (7)</td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><i class="v">&nu;</i>, cSt</td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><i class="v">&rho;</i>, g/cm&sup3;</td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><i class="v">&mu;</i>, cP</td><td class="fill"></td><td class="fill"></td></tr>
+  </tbody>
+</table>
+
+<p>Convert the collection time to kinematic viscosity with the expression appropriate to your
+reading, then to dynamic viscosity using the density you measured in Table 1.</p>
+
+<div class="eq"><div class="body">
+  For 32 &lt; SUS &lt; 100: &nbsp;&nbsp; cSt = 0.226 &times; SUS &minus;
+  <span class="frac"><span class="t">195</span><span class="b">SUS</span></span>
+</div><div class="tag">(6)</div></div>
+<div class="eq"><div class="body">
+  For SUS &gt; 100: &nbsp;&nbsp; cSt = 0.220 &times; SUS &minus;
+  <span class="frac"><span class="t">135</span><span class="b">SUS</span></span>
+</div><div class="tag">(7)</div></div>
+<div class="eq"><div class="body">
+  cP = cSt &times; <i class="v">&rho;</i> [g/cm&sup3;]
+</div><div class="tag">(8)</div></div>
+
+<div class="note">
+  <div class="h">The two expressions meet</div>
+  Both Equation (6) and Equation (7) return 20.65 cSt at SUS = 100, so the pair is continuous
+  and the choice of branch at the boundary does not matter. Below 32 s neither applies; if your
+  reading is that short, the fluid is too thin for this instrument and you should say so rather
+  than force a number out of Equation (6).
+</div>
+
+<h2><span class="n">7</span>Part III &mdash; Rotary Viscometer</h2>
+<p>A rotary viscometer measures the absolute viscosity of a fluid directly. A rotor immersed in
+the sample is driven at a set speed, and the torque required to maintain that speed is
+proportional to the fluid's viscosity. Sensors inside the instrument measure that torque and the
+viscosity is displayed on the screen. The measurement is easier to perform and generally more
+accurate than the other two methods, which is what makes it a useful reference against your
+falling-ball result.</p>
+
+<p>Identify the components of the instrument and become familiar with the values shown on the
+display. Fill a beaker with 500 mL of fluid and heat it to 60 &deg;C. Record the temperature and
+the displayed viscosity in mPa&middot;s at 5 &deg;C intervals as the sample cools, and convert
+each reading to Pa&middot;s using Equation (9).</p>
+
+<div class="eq"><div class="body">
+  <i class="v">&mu;</i> [Pa&middot;s] =
+  <span class="frac"><span class="t"><i class="v">&mu;</i> [mPa&middot;s]</span>
+  <span class="b">1000</span></span>
+  <span style="display:inline-block;width:2em"></span>(1 Pa&middot;s = 1000 mPa&middot;s)
+</div><div class="tag">(9)</div></div>
+
+<h3><span class="n">7.1</span>What the instrument computes</h3>
+<p>The display gives you a viscosity directly, but it is worth knowing what stands behind that
+number, because it explains why the spindle and the speed must be recorded. Treat the rotor as a
+cylinder of radius <i class="v">R</i><sub>i</sub> turning at angular velocity <i class="v">&omega;</i>
+inside a stationary beaker of inner radius <i class="v">R</i><sub>o</sub>, immersed to a depth
+<i class="v">H</i>. The instrument holds the speed constant and measures the torque
+<i class="v">M</i> required to maintain it.</p>
+
+<div class="eq"><div class="body">
+  <i class="v">&omega;</i> = <span class="frac"><span class="t">2<i class="v">&pi;N</i></span>
+  <span class="b">60</span></span>
+  <span style="display:inline-block;width:2.2em"></span>
+  <i class="v">&gamma;</i>&#775; = <span class="frac">
+    <span class="t">2<i class="v">&omega;R</i><sub>o</sub>&sup2;</span>
+    <span class="b"><i class="v">R</i><sub>o</sub>&sup2; &minus; <i class="v">R</i><sub>i</sub>&sup2;</span></span>
+</div><div class="tag">(10)</div></div>
+
+<div class="eq"><div class="body">
+  <i class="v">&tau;</i> = <span class="frac"><span class="t"><i class="v">M</i></span>
+  <span class="b">2<i class="v">&pi;R</i><sub>i</sub>&sup2;<i class="v">H</i></span></span>
+  <span style="display:inline-block;width:2.2em"></span>
+  <i class="v">&mu;</i> = <span class="frac"><span class="t"><i class="v">&tau;</i></span>
+  <span class="b"><i class="v">&gamma;</i>&#775;</span></span>
+</div><div class="tag">(11)</div></div>
+
+<p>Combining the two gives the viscosity in terms of the measured torque alone:</p>
+
+<div class="eq"><div class="body">
+  <i class="v">&mu;</i> = <span class="frac">
+    <span class="t"><i class="v">M</i> (<i class="v">R</i><sub>o</sub>&sup2; &minus; <i class="v">R</i><sub>i</sub>&sup2;)</span>
+    <span class="b">4<i class="v">&pi;&omega;HR</i><sub>i</sub>&sup2;<i class="v">R</i><sub>o</sub>&sup2;</span></span>
+</div><div class="tag">(12)</div></div>
+<div class="where">
+  <div><i class="v">N</i> &nbsp; rotation speed, rev/min &nbsp;&nbsp;
+       <i class="v">&omega;</i> &nbsp; angular velocity, rad/s</div>
+  <div><i class="v">R</i><sub>i</sub> &nbsp; rotor radius, m &nbsp;&nbsp;
+       <i class="v">R</i><sub>o</sub> &nbsp; beaker inner radius, m</div>
+  <div><i class="v">H</i> &nbsp; immersed height of the rotor, m &nbsp;&nbsp;
+       <i class="v">M</i> &nbsp; torque on the rotor, N&middot;m</div>
+  <div><i class="v">&gamma;</i>&#775; &nbsp; shear rate, s<sup>&minus;1</sup> &nbsp;&nbsp;
+       <i class="v">&tau;</i> &nbsp; shear stress, Pa</div>
+</div>
+
+<p>Every quantity in Equation (12) except <i class="v">M</i> and <i class="v">N</i> is fixed once
+the spindle and beaker are chosen, so the whole expression collapses to
+<i class="v">&mu;</i> = <i class="v">KM</i>/<i class="v">N</i>, where <i class="v">K</i> is a pure
+geometric constant. That constant is the spindle factor printed in the instrument's tables, and
+it is the reason a reading is meaningless unless the spindle and the speed are recorded
+alongside it.</p>
+
+<div class="note">
+  <div class="h">Assumptions behind Equation (12)</div>
+  The fluid is Newtonian, the flow is laminar, the rotor is fully immersed and turning coaxially
+  in the beaker, and the torque contributed by the top and bottom faces of the rotor is
+  neglected. Equation (12) is exact for a long cylinder in a close-fitting beaker and becomes an
+  approximation as the gap widens.
+</div>
+
+<div class="line">Compute for one of your readings: &nbsp;
+  <i class="v">&omega;</i> = <span class="b"></span> rad/s &nbsp;&nbsp;
+  <i class="v">&gamma;</i>&#775; = <span class="b"></span> s<sup>&minus;1</sup> &nbsp;&nbsp;
+  <i class="v">M</i> = <span class="b"></span> N&middot;m</div>
+
+<p>Record the rotor and the speed before you take any reading. The torque the instrument
+senses depends on the rotor diameter, its immersed height, the clearance to the beaker wall and
+the rotation speed, so a viscosity value taken on this bench is only reproducible by someone
+else if all of them are written down. A reading quoted without its spindle and speed is not a
+measurement, it is a number.</p>
+
+<div class="line">Rotor diameter <i class="v">D</i>: <span class="b"></span> mm &nbsp;&nbsp;
+  Immersed height <i class="v">H</i>: <span class="b"></span> mm &nbsp;&nbsp;
+  Speed: <span class="b"></span> rev/min</div>
+<div class="line">Beaker inner diameter: <span class="b"></span> mm &nbsp;&nbsp;
+  Fluid depth: <span class="b"></span> mm &nbsp;&nbsp;
+  Annular gap (<i class="v">B</i> &minus; <i class="v">D</i>)/2: <span class="b"></span> mm</div>
+
+<table>
+  <caption>Table 4. Rotary viscometer readings. Fluid type: <span class="b xw"></span></caption>
+  <thead><tr>
+    <th style="width:14%">Trial</th><th>Set temp., &deg;C</th><th>Measured temp., &deg;C</th>
+    <th>Viscosity, mPa&middot;s</th><th>Viscosity, Pa&middot;s</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>1</td><td>20</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>2</td><td>25</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>3</td><td>30</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>4</td><td>35</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>5</td><td>40</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>6</td><td>45</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>7</td><td>50</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>8</td><td>55</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>9</td><td>60</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+  </tbody>
+</table>
+
+<h3><span class="n">7.2</span>Temperature plot</h3>
+<p>Plot temperature on the horizontal axis and viscosity on the vertical axis. Sketch the curve
+here during the laboratory period, then produce the same plot in a spreadsheet and submit it
+with your report. Label both axes with units.</p>
+<div class="grid"></div>
+<div class="axislbl"><span>20 &deg;C</span><span>Temperature</span><span>60 &deg;C</span></div>
+
+<div class="pagebreak"></div>
+
+<h2><span class="n">8</span>Analysis Questions</h2>
+<ol class="q">
+  <li>Which of your two fluids has the greater resistance to flow? Cite the specific measured
+      quantity that establishes this, not the calculated viscosity alone.
+      <span class="answer"></span><span class="answer"></span></li>
+
+  <li>Your falling-ball result is a dynamic viscosity and your Saybolt result begins as a
+      kinematic viscosity. Explain why the Saybolt method yields kinematic viscosity directly,
+      given that the fluid is driven through the orifice by its own weight.
+      <span class="answer"></span><span class="answer"></span><span class="answer"></span></li>
+
+  <li>Compare the viscosity you obtained for the same fluid by the falling-ball method and by
+      the rotary viscometer at the same temperature. Express the disagreement as a percentage
+      of the rotary value.
+      <span class="answer"></span><span class="answer"></span></li>
+
+  <li>List two experimental causes of the disagreement in Question 3 that are independent of
+      the validity of Stokes' law.
+      <span class="answer"></span><span class="answer"></span><span class="answer"></span></li>
+
+  <li>Using your Reynolds numbers from Section 5.6, state whether Stokes' law was applicable to
+      each fluid. For any fluid where it was not, state the <em>direction</em> of the resulting
+      error: at Reynolds numbers above one, drag on the sphere is larger than Equation (1)
+      assumes, so does your computed viscosity read high or low? Justify from Equation (1).
+      <span class="answer"></span><span class="answer"></span><span class="answer"></span></li>
+
+  <li>Propose one change to the falling-ball apparatus that would bring the Reynolds number
+      into the valid range, and estimate the factor by which it would reduce
+      <i class="v">Re</i>. Note that <i class="v">v</i> is proportional to
+      <i class="v">r</i>&sup2;, so <i class="v">Re</i> is proportional to
+      <i class="v">r</i>&sup3;.
+      <span class="answer"></span><span class="answer"></span></li>
+
+  <li>Describe the shape of your temperature-viscosity curve. Is a straight line an adequate
+      description of it across the whole range? What does your answer imply about quoting a
+      single viscosity value for a hydraulic fluid without stating a temperature?
+      <span class="answer"></span><span class="answer"></span><span class="answer"></span></li>
+
+  <li>A hydraulic system designed around a fluid at 40 &deg;C is started on a winter morning at
+      5 &deg;C. Using the trend in your data, argue whether the pump inlet or the actuator is the
+      more likely place for trouble, and say what physically goes wrong there.
+      <span class="answer"></span><span class="answer"></span><span class="answer"></span></li>
+
+  <li>An engine oil is labelled 15W-40 and a hydraulic fluid is labelled ISO 46. State which
+      viscosity family each grading system refers to and at what temperature, and explain why
+      the two labels cannot be compared directly.
+      <span class="answer"></span><span class="answer"></span><span class="answer"></span></li>
+
+  <li>Of your three measurements of the same fluid, which do you trust most? Defend the choice
+      using your uncertainty estimate from Section 5.5 and your Reynolds numbers from Section
+      5.6, not the reputation of the instrument.
+      <span class="answer"></span><span class="answer"></span><span class="answer"></span></li>
+</ol>
+
+<h2><span class="n">9</span>Interactive Simulator</h2>
+<p>An interactive version of all three instruments is available in the browser. It runs the same
+equations printed in this handout, animates the sphere falling at the velocity your own timings
+imply, drains the Saybolt cup over your own SUS reading, and plots your rotary data as you
+enter it. It computes the Reynolds number live and labels the Stokes regime, so you can see
+directly how sphere size moves a measurement in and out of validity. Use it to check your
+arithmetic and to explore fluids the bench does not stock. It does not replace the bench
+measurements.</p>
+<p style="text-align:left"><a href="https://alibulentkoc.github.io/viscosity-measurement-lab/lab/viscosity-lab.html">https://alibulentkoc.github.io/viscosity-measurement-lab/lab/viscosity-lab.html</a></p>
+
+<footer class="cite">
+  <div class="h">Cite this activity as</div>
+  Koc, A. B. <i>Viscosity Measurement Laboratory: Falling Ball, Saybolt, and Rotary
+  Viscometers &mdash; Student Handout and Interactive Simulator</i>. Department of Agricultural
+  Sciences, Agricultural Mechanization and Business Program, Clemson University.
+  ORCID <code>0000-0003-3633-1699</code>.
+  <div style="margin-top:6px">Laboratory materials licensed CC BY 4.0; simulator source
+  licensed MIT.</div>
+</footer>
+
+</div>
+</body>
+</html>

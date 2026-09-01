@@ -1,0 +1,26 @@
+{
+  "title": "Viscosity Measurement Laboratory: Interactive Falling Ball, Saybolt, and Rotary Viscometers with Laboratory Materials",
+  "description": "<p>A browser-based, offline-capable laboratory covering three methods of viscosity measurement. The falling ball station animates the sphere at the velocity the student's own timings imply; the Saybolt station drains over the student's own efflux time; the rotary station plots the student's temperature sweep and fits it.</p><p>The Reynolds number is computed live at every point and the validity of Stokes' law is labelled rather than hidden. With the 12.70 mm sphere used at the bench, no fluid in the library reaches the strict creeping-flow limit, which makes the activity a direct demonstration that a model can return a repeatable number well outside the conditions it was derived for.</p><p>The package includes a printable student handout, an instructor answer sheet that recomputes every answer from the bench master measurements, and a grading tool that audits a group's reported readings against tolerances and computes every answer twice, once from the master values and once from what the group wrote down, so that measurement error and arithmetic error can be graded apart.</p><p>Every file is self-contained: no CDN, no build step, no server, no network access.</p>",
+  "license": "MIT",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Koc, A. Bulent",
+      "orcid": "0000-0003-3633-1699",
+      "affiliation": "Department of Agricultural Sciences, Agricultural Mechanization and Business Program, Clemson University"
+    }
+  ],
+  "keywords": [
+    "fluid power",
+    "viscosity",
+    "Stokes law",
+    "Reynolds number",
+    "Saybolt viscometer",
+    "rotary viscometer",
+    "engineering education",
+    "laboratory instruction",
+    "interactive simulation",
+    "measurement uncertainty"
+  ],
+  "access_right": "open"
+}

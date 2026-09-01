@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viscosity Measurement Laboratory &mdash; Instructor Answer Sheet</title>
+<style>
+/* Live answer key. Enter the master measurements for the bench once and every
+   answer in the handout recomputes, so the key is correct for the actual jack
+   of fluids and sphere in use rather than for one frozen dataset. */
+:root{
+  --ink:#111418; --ink2:#3d444b; --ink3:#767d84;
+  --rule:#c3c6ca; --rule2:#e0e2e5;
+  --in:#1a3f7a; --in-bg:#eef3fa;
+  --out:#15571c; --out-bg:#eef5ee;
+  --warn:#9a5510; --warn-bg:#fbf3e9;
+  --bad:#94201b; --bad-bg:#fbeeed;
+  --serif:"Latin Modern Roman","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e7e2;color:var(--ink);font-family:var(--serif);font-size:11pt;line-height:1.45}
+.page{max-width:7.6in;margin:0 auto;background:#fff;padding:.6in .8in 1in;box-shadow:0 0 0 1px #d5d2cc}
+.titleblock{text-align:center;margin-bottom:8px}
+.titleblock h1{font-size:16.5pt;font-weight:600;margin:0 0 5px}
+.titleblock .sub{font-size:11pt;font-style:italic;color:var(--ink2)}
+.titleblock .tag{font-family:var(--sans);font-size:9pt;letter-spacing:.1em;text-transform:uppercase;
+   color:#94201b;margin-top:7px}
+hr.rule{border:none;border-top:1.1pt solid var(--ink);margin:12px 0 0}
+h2{font-size:12.4pt;font-weight:600;margin:20px 0 6px}
+h3{font-size:11.2pt;font-weight:600;font-style:italic;margin:14px 0 5px}
+h2 .n,h3 .n{margin-right:.5em}
+p{margin:0 0 8px;text-align:justify}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 4px}
+.btn{font-family:var(--sans);font-size:12px;background:#fff;border:1px solid var(--rule);
+   border-radius:3px;padding:5px 11px;cursor:pointer}
+.btn:hover{background:#f3f1ec}
+.btn.primary{background:#15571c;border-color:#15571c;color:#fff}
+.btn.danger{border-color:#c6a3a1;color:var(--bad)}
+.grid{display:grid;grid-template-columns:1fr auto auto;gap:5px 10px;align-items:center;
+   font-size:10.6pt;margin:8px 0}
+.grid label{color:var(--ink2)}
+.grid input{width:92px;padding:3px 6px;border:1px solid var(--rule);border-radius:3px;
+   text-align:right;font-family:var(--mono);font-size:10.4pt;background:var(--in-bg);
+   color:var(--in);font-weight:600}
+.grid input.txt{text-align:left;width:150px}
+.grid .u{font-family:var(--mono);font-size:9.6pt;color:var(--ink3);min-width:48px}
+.grid .full{grid-column:1/-1;font-size:9.8pt;color:var(--ink3);font-style:italic}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+table{border-collapse:collapse;width:100%;margin:9px 0 10px;font-size:10.2pt}
+th{border-top:1.1pt solid var(--ink);border-bottom:.6pt solid var(--ink);padding:5px;
+   font-family:var(--sans);font-size:9pt;font-weight:600}
+td{border-bottom:.4pt solid var(--rule2);padding:4px 5px;text-align:center}
+tr:last-child td{border-bottom:1.1pt solid var(--ink)}
+th:first-child,td:first-child{text-align:left}
+td.out{font-family:var(--mono);color:var(--out);font-weight:600}
+td.na{font-family:var(--mono);color:var(--ink3)}
+table input{width:80px;padding:2px 5px;border:1px solid var(--rule);border-radius:3px;
+   text-align:right;font-family:var(--mono);font-size:10pt;background:var(--in-bg);color:var(--in);font-weight:600}
+.ans{background:var(--out-bg);border-left:2.5pt solid var(--out);padding:8px 11px;margin:8px 0;
+   font-size:10.5pt}
+.ans .h{font-family:var(--sans);font-size:8.6pt;letter-spacing:.09em;text-transform:uppercase;
+   color:var(--out);margin-bottom:4px}
+.ans.warn{background:var(--warn-bg);border-left-color:var(--warn)}
+.ans.warn .h{color:var(--warn)}
+.ans.bad{background:var(--bad-bg);border-left-color:var(--bad)}
+.ans.bad .h{color:var(--bad)}
+.ans.note{background:#f4f2ec;border-left-color:var(--ink3)}
+.ans.note .h{color:var(--ink3)}
+.work{font-family:var(--mono);font-size:9.6pt;white-space:pre-wrap;color:var(--ink2);
+   background:#f7f6f1;border-left:2pt solid var(--rule);padding:7px 9px;margin:6px 0;overflow-x:auto}
+.val{font-family:var(--mono);color:var(--out);font-weight:600}
+ol.q{padding-left:1.5em} ol.q li{margin-bottom:12px;text-align:justify}
+ol.q li b{font-style:normal}
+.pts{font-family:var(--sans);font-size:8.6pt;color:var(--ink3);letter-spacing:.06em}
+footer{margin-top:24px;padding-top:9px;border-top:.6pt solid var(--rule);font-size:9.5pt;color:var(--ink2)}
+code{font-family:var(--mono);font-size:9.5pt}
+@media print{
+  body{background:#fff} .page{box-shadow:none;max-width:none;padding:.5in .6in}
+  .toolbar{display:none} h2{break-after:avoid} table,.ans,.work{break-inside:avoid}
+  input{border:none;background:none;color:var(--in)}
+  .pagebreak{break-before:page}
+}
+@page{size:letter;margin:.65in}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="titleblock">
+  <h1>Viscosity Measurement: Falling Ball, Saybolt, and Rotary Viscometers</h1>
+  <div class="sub">Instructor Answer Sheet &mdash; live calculation</div>
+  <div class="tag">Not for distribution to students</div>
+</div>
+<hr class="rule">
+
+<p style="margin-top:10px">Enter the master measurements taken from the bench below. Every
+answer on this sheet recomputes as you type, so the key is correct for the sphere and the
+fluids actually in use, not for a frozen dataset. Values shown in <span class="val">green</span>
+are computed; blue fields are yours. Print this page for a paper key.</p>
+
+<div class="toolbar">
+  <button class="btn primary" id="btn-save">Save master values</button>
+  <button class="btn" id="btn-load">Load</button>
+  <button class="btn danger" id="btn-reset">Clear</button>
+  <button class="btn" id="btn-print">Print</button>
+  <span id="flag" style="font-family:var(--sans);font-size:11px;color:var(--ink3)"></span>
+</div>
+
+<h2><span class="n">A</span>Master Measurements</h2>
+
+<div class="cols">
+  <div>
+    <h3>Sphere and tube</h3>
+    <div class="grid">
+      <label for="m_sph">Sphere mass</label><input id="m_sph" type="number" step="0.01" value="8.3"><span class="u">g</span>
+      <label for="d_sph">Sphere diameter</label><input id="d_sph" type="number" step="0.01" value="12.70"><span class="u">mm</span>
+      <label for="L">Distance between marks</label><input id="L" type="number" step="0.001" value="0.89"><span class="u">m</span>
+      <label for="Dt">Tube inner diameter</label><input id="Dt" type="number" step="0.1" placeholder="optional"><span class="u">mm</span>
+      <div class="full">The tube bore is optional. Entered, it adds the wall correction in
+        Section A.4, which is not part of the student procedure.</div>
+    </div>
+  </div>
+  <div>
+    <h3>Rotary reference</h3>
+    <div class="grid">
+      <label for="rv_name">Fluid on the rotary bench</label><input id="rv_name" class="txt" type="text" placeholder="15W-40"><span class="u"></span>
+      <label for="rv_rho">Its density</label><input id="rv_rho" type="number" step="1" placeholder="kg/m3"><span class="u">kg/m&sup3;</span>
+      <div class="full">Needed only to convert the rotary readings to centistokes.</div>
+    </div>
+  </div>
+</div>
+
+<h3>Fluids</h3>
+<table id="fluid-in">
+  <thead><tr><th style="width:28%">Quantity</th><th>Fluid 1</th><th>Fluid 2</th></tr></thead>
+  <tbody></tbody>
+</table>
+
+<h2 class="pagebreak"><span class="n">B</span>Answer Key &mdash; Part I, Falling Ball</h2>
+
+<h3><span class="n">5.1</span>Steel sphere</h3>
+<div id="k-sphere"></div>
+
+<h3><span class="n">5.2</span>Fluid density</h3>
+<div id="k-density"></div>
+
+<h3><span class="n">5.3</span>Fall time and velocity</h3>
+<div id="k-velocity"></div>
+
+<h3><span class="n">5.4</span>Viscosity and unit conversion</h3>
+<div id="k-visc"></div>
+
+<h3><span class="n">5.5</span>Uncertainty</h3>
+<div id="k-unc"></div>
+
+<h3><span class="n">5.6</span>Reynolds number and validity</h3>
+<div id="k-re"></div>
+
+<h2><span class="n">C</span>Answer Key &mdash; Part II, Saybolt</h2>
+<div id="k-saybolt"></div>
+
+<h2><span class="n">D</span>Answer Key &mdash; Part III, Rotary</h2>
+<table id="rv-table">
+  <thead><tr><th style="width:12%">Trial</th><th>Temp, &deg;C</th><th>mPa&middot;s</th>
+    <th>Pa&middot;s</th><th>cP</th><th>cSt</th></tr></thead>
+  <tbody></tbody>
+</table>
+<div id="k-rotary"></div>
+
+<h2 class="pagebreak"><span class="n">E</span>Analysis Questions &mdash; Model Answers</h2>
+<ol class="q" id="k-questions"></ol>
+
+<h2><span class="n">F</span>Suggested Weighting</h2>
+<table>
+  <thead><tr><th style="width:60%">Component</th><th>Points</th></tr></thead>
+  <tbody>
+    <tr><td>Measurement technique and completeness of Tables 1 to 4</td><td>25</td></tr>
+    <tr><td>Correct arithmetic, carried through units, in Sections 5.1 to 5.4</td><td>20</td></tr>
+    <tr><td>Uncertainty estimate, Section 5.5</td><td>10</td></tr>
+    <tr><td>Reynolds number and honest validity statement, Section 5.6</td><td>15</td></tr>
+    <tr><td>Saybolt branch selection and conversion, Part II</td><td>10</td></tr>
+    <tr><td>Temperature plot, labelled and with correct units</td><td>10</td></tr>
+    <tr><td>Analysis questions, especially 5, 7 and 10</td><td>10</td></tr>
+  </tbody>
+</table>
+
+<footer>
+  Koc, A. B. <i>Viscosity Measurement Laboratory &mdash; Instructor Answer Sheet</i>.
+  Agricultural Mechanization and Business Program, Clemson University.
+  ORCID <code>0000-0003-3633-1699</code>.
+</footer>
+</div>
+
+<script>
+/* ===== PHYSICS-START =====================================================
+   Identical to the block in viscosity-lab.html. Kept duplicated rather than
+   shared so each file stays openable on its own from a memory stick.
+   ====================================================================== */
+var PHYS = (function(){
+  var G = 9.81;
+  function sphereVolume(r){ return (4/3)*Math.PI*Math.pow(r,3); }
+  function density(m,V){ return V>0 ? m/V : NaN; }
+  function average(l){ var v=l.filter(function(x){return typeof x==="number"&&isFinite(x);});
+    return v.length ? v.reduce(function(a,b){return a+b;},0)/v.length : NaN; }
+  function velocity(L,t){ return t>0 ? L/t : NaN; }
+  function muStokes(dRho,r,v){ return v>0 ? 2*dRho*G*r*r/(9*v) : NaN; }
+  function vStokes(dRho,r,mu){ return mu>0 ? 2*dRho*G*r*r/(9*mu) : NaN; }
+  function reynolds(rho,v,r,mu){ return mu>0 ? rho*v*2*r/mu : NaN; }
+  function wallFactor(b){ return (b>0&&b<1) ? 1-2.104*b+2.09*Math.pow(b,3) : NaN; }
+  function velocityCorrected(v,b){ var K=wallFactor(b); return K>0 ? v/K : NaN; }
+  function stokesClass(Re){
+    if(!isFinite(Re)) return {label:"--", tone:"note"};
+    if(Re<0.1) return {label:"VALID", tone:"ok"};
+    if(Re<1.0) return {label:"valid", tone:"ok"};
+    if(Re<10)  return {label:"MARGINAL", tone:"warn"};
+    return {label:"INVALID", tone:"bad"};
+  }
+  function PasToCp(mu){ return mu*1000; }
+  function cpToPas(cp){ return cp/1000; }
+  function cpToCst(cp,rg){ return rg>0 ? cp/rg : NaN; }
+  function cstToCp(cst,rg){ return rg>0 ? cst*rg : NaN; }
+  function kgm3_to_gcm3(r){ return r/1000; }
+  var SUS_MIN=32, CST_AT_100=0.220*100-135/100;
+  function sayboltToCst(s){ if(!(s>0)) return NaN;
+    return s<=100 ? 0.226*s-195/s : 0.220*s-135/s; }
+  function sayboltBranch(s){ if(!(s>0)) return "none";
+    if(s<SUS_MIN) return "below"; return s<=100 ? "low" : "high"; }
+  function linfit(xs,ys){ var n=xs.length; if(n<2) return null;
+    var sx=0,sy=0,sxx=0,sxy=0,syy=0;
+    for(var i=0;i<n;i++){sx+=xs[i];sy+=ys[i];sxx+=xs[i]*xs[i];sxy+=xs[i]*ys[i];syy+=ys[i]*ys[i];}
+    var den=n*sxx-sx*sx; if(den===0) return null;
+    var m=(n*sxy-sx*sy)/den, b=(sy-m*sx)/n, num=n*sxy-sx*sy;
+    var r2d=(n*sxx-sx*sx)*(n*syy-sy*sy);
+    return {m:m,b:b,r2:r2d>0?num*num/r2d:NaN}; }
+  return {G:G,sphereVolume:sphereVolume,density:density,average:average,velocity:velocity,
+    muStokes:muStokes,vStokes:vStokes,reynolds:reynolds,wallFactor:wallFactor,
+    velocityCorrected:velocityCorrected,stokesClass:stokesClass,PasToCp:PasToCp,cpToPas:cpToPas,
+    cpToCst:cpToCst,cstToCp:cstToCp,kgm3_to_gcm3:kgm3_to_gcm3,sayboltToCst:sayboltToCst,
+    sayboltBranch:sayboltBranch,SUS_MIN:SUS_MIN,CST_AT_100:CST_AT_100,linfit:linfit};
+})();
+/* ===== PHYSICS-END ==================================================== */
+
+function $(id){ return document.getElementById(id); }
+function num(v){ var x=parseFloat(v); return isFinite(x)?x:NaN; }
+function fmt(x,d){ if(x===null||x===undefined||!isFinite(x)) return "--";
+  d=(d===undefined)?3:d;
+  if(x!==0 && (Math.abs(x)<1e-4||Math.abs(x)>=1e6)) return x.toExponential(3);
+  return x.toFixed(d); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+  return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c]; }); }
+
+var ST = {
+  m_sph:8.3, d_sph:12.70, L:0.89, Dt:"",
+  rv_name:"", rv_rho:"",
+  F:[{name:"",tempC:"",volMl:50,massG:"",t:["","","",""],sus:"",susT:""},
+     {name:"",tempC:"",volMl:50,massG:"",t:["","","",""],sus:"",susT:""}],
+  rv:[20,25,30,35,40,45,50,55,60].map(function(T){ return {T:T, mPas:""}; })
+};
+
+/* ---- master fluid input table ---------------------------------------- */
+var FIELDS = [
+  ["name","Fluid name","","text"],
+  ["tempC","Temperature, \u00B0C","0.1","number"],
+  ["volMl","Beaker volume, mL","1","number"],
+  ["massG","Fluid mass, g","0.01","number"],
+  ["t0","Fall time t1, s","0.01","trial"],
+  ["t1","Fall time t2, s","0.01","trial"],
+  ["t2","Fall time t3, s","0.01","trial"],
+  ["t3","Fall time t4, s","0.01","trial"],
+  ["susT","Saybolt temperature, \u00B0C","0.1","number"],
+  ["sus","Saybolt time, SUS","0.1","number"]
+];
+function buildFluidInputs(){
+  var tb = $("fluid-in").querySelector("tbody"); tb.innerHTML="";
+  FIELDS.forEach(function(f){
+    var tr = document.createElement("tr");
+    var td0 = document.createElement("td"); td0.textContent = f[1]; tr.appendChild(td0);
+    [0,1].forEach(function(k){
+      var td = document.createElement("td");
+      var inp = document.createElement("input");
+      inp.type = (f[3]==="text") ? "text" : "number";
+      if(f[2]) inp.step = f[2];
+      if(f[3]==="trial"){ inp.value = ST.F[k].t[+f[0].slice(1)]; }
+      else { inp.value = ST.F[k][f[0]]; }
+      if(f[3]==="text") inp.style.textAlign="left";
+      inp.addEventListener("input", function(){
+        if(f[3]==="trial") ST.F[k].t[+f[0].slice(1)] = inp.value;
+        else ST.F[k][f[0]] = inp.value;
+        render();
+      });
+      td.appendChild(inp); tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+}
+function buildRotaryInputs(){
+  var tb = $("rv-table").querySelector("tbody"); tb.innerHTML="";
+  ST.rv.forEach(function(r,i){
+    var tr = document.createElement("tr");
+    tr.appendChild(cell(String(i+1)));
+    [["T","0.1"],["mPas","0.1"]].forEach(function(f){
+      var td = document.createElement("td");
+      var inp = document.createElement("input"); inp.type="number"; inp.step=f[1]; inp.value=r[f[0]];
+      inp.addEventListener("input", function(){ r[f[0]] = inp.value; renderRotary(); });
+      td.appendChild(inp); tr.appendChild(td);
+    });
+    ["c1","c2","c3"].forEach(function(){ tr.appendChild(cell("--","na")); });
+    tb.appendChild(tr);
+  });
+}
+function cell(text, cls){ var td=document.createElement("td");
+  if(cls) td.className=cls; td.textContent=text; return td; }
+
+/* ---- derived ---------------------------------------------------------- */
+function sphere(){
+  var m=num(ST.m_sph), d=num(ST.d_sph);
+  var r=isFinite(d)? d/2000 : NaN;
+  var V=isFinite(r)? PHYS.sphereVolume(r):NaN;
+  return {m:m, d:d, r:r, V:V, rho:PHYS.density(m/1000, V)};
+}
+function fluid(k){
+  var f=ST.F[k], sp=sphere(), L=num(ST.L);
+  var mass=num(f.massG), vol=num(f.volMl);
+  var rho=(isFinite(mass)&&vol>0)? (mass/vol)*1000 : NaN;
+  var ts=f.t.map(num).filter(function(x){return isFinite(x)&&x>0;});
+  var tAvg=ts.length? PHYS.average(ts):NaN;
+  var range=ts.length>1 ? Math.max.apply(null,ts)-Math.min.apply(null,ts) : NaN;
+  var relUnc=(isFinite(range)&&tAvg>0)? range/tAvg : NaN;
+  var v=PHYS.velocity(L,tAvg);
+  var dRho=sp.rho-rho;
+  var mu=PHYS.muStokes(dRho, sp.r, v);
+  var cP=PHYS.PasToCp(mu), rg=PHYS.kgm3_to_gcm3(rho);
+  var cSt=PHYS.cpToCst(cP, rg);
+  var Re=PHYS.reynolds(rho, v, sp.r, mu);
+  var wall=null, Dt=num(ST.Dt);
+  if(isFinite(Dt)&&Dt>sp.d&&isFinite(v)){
+    var beta=sp.d/Dt, K=PHYS.wallFactor(beta), vInf=PHYS.velocityCorrected(v,beta);
+    var muW=PHYS.muStokes(dRho, sp.r, vInf);
+    wall={beta:beta,K:K,vInf:vInf,mu:muW,pct:(muW-mu)/mu*100};
+  }
+  // saybolt
+  var sus=num(f.sus), br=PHYS.sayboltBranch(sus);
+  var sCst=(br==="low"||br==="high")? PHYS.sayboltToCst(sus):NaN;
+  var sCp=PHYS.cstToCp(sCst, rg);
+  return {i:k, name:f.name||("Fluid "+(k+1)), rho:rho, rg:rg, tempC:num(f.tempC),
+          ts:ts, tAvg:tAvg, range:range, relUnc:relUnc, L:L, v:v, dRho:dRho,
+          mu:mu, cP:cP, cSt:cSt, Re:Re, cls:PHYS.stokesClass(Re), wall:wall, sp:sp,
+          sus:sus, sBranch:br, sCst:sCst, sCp:sCp, sMu:PHYS.cpToPas(sCp), susT:num(f.susT)};
+}
+function rotary(){
+  var rho=num(ST.rv_rho), rg=isFinite(rho)? PHYS.kgm3_to_gcm3(rho):NaN;
+  return ST.rv.map(function(r){
+    var m=num(r.mPas), T=num(r.T);
+    return {T:T, mPas:m, Pas:isFinite(m)?m/1000:NaN, cP:m, cSt:PHYS.cpToCst(m, rg)};
+  });
+}
+
+/* ---- rendering helpers ------------------------------------------------ */
+function ans(host, title, html, tone){
+  var d=document.createElement("div");
+  d.className="ans"+(tone?(" "+tone):"");
+  d.innerHTML='<div class="h">'+title+"</div>"+html;
+  host.appendChild(d);
+}
+function work(host, text){
+  var d=document.createElement("div"); d.className="work"; d.textContent=text; host.appendChild(d);
+}
+function V(x,d,u){ return '<span class="val">'+fmt(x,d)+(u?(" "+u):"")+"</span>"; }
+
+/* ---- section renderers ------------------------------------------------ */
+function renderSphere(){
+  var h=$("k-sphere"); h.innerHTML=""; var s=sphere();
+  ans(h,"Expected answers",
+    "Radius "+V(s.r*1000,3,"mm")+" = "+V(s.r,5,"m")+". Volume "+
+    (isFinite(s.V)? '<span class="val">'+s.V.toExponential(4)+"</span>":"--")+
+    " m&sup3;. Sphere density "+V(s.rho,1,"kg/m&sup3;")+
+    ". Diameter in inches "+V(s.d/25.4,4,"in")+".");
+  work(h,
+    "r = D/2 = "+fmt(s.d,2)+" mm / 2 = "+fmt(s.r*1000,3)+" mm = "+fmt(s.r,5)+" m\n"+
+    "V = (4/3)\u03C0r\u00B3 = (4/3)\u03C0("+fmt(s.r,5)+")\u00B3 = "+
+      (isFinite(s.V)? s.V.toExponential(4):"--")+" m\u00B3\n"+
+    "\u03C1s = m/V = "+fmt(s.m/1000,5)+" kg / "+(isFinite(s.V)? s.V.toExponential(4):"--")+
+      " m\u00B3 = "+fmt(s.rho,1)+" kg/m\u00B3");
+  ans(h,"Common error",
+    "Dividing grams by cubic metres and reporting a density a thousand times too large. "+
+    "The mass must be converted to kilograms first. A sphere density outside roughly "+
+    "7500 to 8100 kg/m&sup3; is not steel and points to an arithmetic slip, not a bad sphere.",
+    "note");
+}
+function renderDensity(){
+  var h=$("k-density"); h.innerHTML="";
+  var a=fluid(0), b=fluid(1);
+  var rows = [a,b].map(function(f){
+    return "<b>"+esc(f.name)+"</b>: "+V(f.rho/1000,4,"g/mL")+" = "+V(f.rho,0,"g/L")+" = "+
+           V(f.rho,1,"kg/m&sup3;")+", at "+(isFinite(f.tempC)? fmt(f.tempC,1)+" \u00B0C":"temperature not recorded");
+  }).join("<br>");
+  ans(h,"Expected answers", rows);
+  ans(h,"What to look for",
+    "The three density figures are the same number in different units; a student who writes "+
+    "different values in the three blanks has made a conversion error, not a measurement error. "+
+    "Petroleum fluids at room temperature should land between about 820 and 900 kg/m&sup3;. "+
+    "A value above 1000 means water contamination or a beaker weighed without taring.", "note");
+}
+function renderVelocity(){
+  var h=$("k-velocity"); h.innerHTML="";
+  [fluid(0),fluid(1)].forEach(function(f){
+    if(!f.ts.length){ ans(h, esc(f.name), "No fall times entered.", "note"); return; }
+    ans(h,"Expected answers &mdash; "+esc(f.name),
+      "t<sub>avg</sub> = "+V(f.tAvg,3,"s")+" from "+f.ts.length+
+      " trial"+(f.ts.length===1?"":"s")+". Velocity "+V(f.v,4,"m/s")+".");
+    work(h,
+      "t_avg = ("+f.ts.map(function(t){return fmt(t,2);}).join(" + ")+") / "+f.ts.length+
+        " = "+fmt(f.tAvg,3)+" s\n"+
+      "v = L / t_avg = "+fmt(f.L,3)+" / "+fmt(f.tAvg,3)+" = "+fmt(f.v,4)+" m/s");
+  });
+}
+function renderVisc(){
+  var h=$("k-visc"); h.innerHTML="";
+  [fluid(0),fluid(1)].forEach(function(f){
+    if(!isFinite(f.mu)){ ans(h, esc(f.name), "Not enough data entered.", "note"); return; }
+    ans(h,"Expected answers &mdash; "+esc(f.name),
+      "&Delta;&rho; = "+V(f.dRho,1,"kg/m&sup3;")+". &mu; = "+V(f.mu,4,"Pa&middot;s")+
+      " = "+V(f.cP,2,"cP")+" = "+V(f.cSt,2,"cSt")+".");
+    work(h,
+      "\u0394\u03C1 = \u03C1s \u2212 \u03C1f = "+fmt(f.sp.rho,1)+" \u2212 "+fmt(f.rho,1)+
+        " = "+fmt(f.dRho,1)+" kg/m\u00B3\n"+
+      "\u03BC = 2\u0394\u03C1gr\u00B2 / (9v)\n"+
+      "  = 2("+fmt(f.dRho,1)+")(9.81)("+fmt(f.sp.r,5)+")\u00B2 / [9("+fmt(f.v,4)+")]\n"+
+      "  = "+fmt(f.mu,4)+" Pa\u00B7s\n"+
+      "cP  = "+fmt(f.mu,4)+" \u00D7 1000 = "+fmt(f.cP,2)+" cP\n"+
+      "cSt = cP / \u03C1[g/cm\u00B3] = "+fmt(f.cP,2)+" / "+fmt(f.rg,4)+" = "+fmt(f.cSt,2)+" cSt");
+    if(f.wall){
+      ans(h,"Wall correction, instructor only &mdash; "+esc(f.name),
+        "&beta; = d/D = "+V(f.wall.beta,3)+", K = "+V(f.wall.K,4)+
+        ". Corrected velocity "+V(f.wall.vInf,4,"m/s")+" gives &mu; = "+V(f.wall.mu,4,"Pa&middot;s")+
+        ", "+V(Math.abs(f.wall.pct),1,"percent")+" "+(f.wall.pct<0?"below":"above")+
+        " the uncorrected value. The tube wall retards the sphere, so the student's uncorrected "+
+        "result reads high. This is not part of the student procedure and should not be marked "+
+        "against them; it is here so you can explain the residual disagreement with the rotary "+
+        "viscometer if a student asks.", "note");
+    }
+  });
+}
+function renderUnc(){
+  var h=$("k-unc"); h.innerHTML="";
+  [fluid(0),fluid(1)].forEach(function(f){
+    if(!isFinite(f.relUnc)){ ans(h, esc(f.name), "Fewer than two trials entered.", "note"); return; }
+    ans(h,"Expected answers &mdash; "+esc(f.name),
+      "Range "+V(f.range,3,"s")+" over an average of "+V(f.tAvg,3,"s")+" is "+
+      V(f.relUnc*100,1,"percent")+". Since &mu; &prop; 1/v &prop; t, that carries straight through: "+
+      "&mu; = "+V(f.mu,4)+" &plusmn; "+V(f.mu*f.relUnc,4,"Pa&middot;s")+".");
+  });
+  ans(h,"Grading note",
+    "Accept any defensible uncertainty estimate: range over average, standard deviation, or "+
+    "standard error of the mean. What earns the credit is recognising that the fractional "+
+    "uncertainty in time transfers one-for-one to viscosity, because &mu; is directly "+
+    "proportional to t through v = L/t. A student who reports a viscosity to six significant "+
+    "figures after a stopwatch measurement has missed the point of this section.", "note");
+}
+function renderRe(){
+  var h=$("k-re"); h.innerHTML="";
+  [fluid(0),fluid(1)].forEach(function(f){
+    if(!isFinite(f.Re)){ ans(h, esc(f.name), "Not enough data entered.", "note"); return; }
+    var tone = f.cls.tone==="bad" ? "bad" : (f.cls.tone==="warn" ? "warn" : "");
+    ans(h,"Expected answer &mdash; "+esc(f.name),
+      "Re = "+V(f.Re,2)+", so Stokes' law is <b>"+f.cls.label+"</b> for this measurement."+
+      (f.cls.label==="INVALID"||f.cls.label==="MARGINAL"
+        ? " The student must say so; a report that presents the viscosity without this caveat "+
+          "loses the credit for this section even if the arithmetic is perfect."
+        : ""), tone);
+    work(h, "Re = \u03C1f v (2r) / \u03BC = "+fmt(f.rho,1)+"("+fmt(f.v,4)+")("+
+      fmt(2*f.sp.r,5)+") / "+fmt(f.mu,4)+" = "+fmt(f.Re,2));
+  });
+  var sp=sphere();
+  if(isFinite(sp.r)){
+    ans(h,"Why this happens with the bench sphere",
+      "Re &prop; r&sup3; at fixed fluid properties, because the terminal velocity itself goes as "+
+      "r&sup2;. The 12.70 mm sphere is roughly "+
+      V(Math.pow(12.70/2.3,3),0)+" times worse for Reynolds number than a 2.3 mm ball bearing "+
+      "in the same fluid. With the fluids on this bench, no combination reaches Re &lt; 0.1 with "+
+      "the standard sphere. That is a feature of the exercise, not a fault to be hidden: it is "+
+      "the cleanest demonstration in the course that a model can return a repeatable number "+
+      "well outside the conditions it was derived for.", "note");
+  }
+}
+function renderSaybolt(){
+  var h=$("k-saybolt"); h.innerHTML="";
+  [fluid(0),fluid(1)].forEach(function(f){
+    if(f.sBranch==="none"){ ans(h, esc(f.name), "No SUS reading entered.", "note"); return; }
+    if(f.sBranch==="below"){
+      ans(h,"Expected answer &mdash; "+esc(f.name),
+        "A reading of "+V(f.sus,1,"s")+" is below the 32 s floor of the correlation. Neither "+
+        "equation applies. The correct student response is to say so, not to substitute into "+
+        "Equation (6) anyway.", "bad");
+      return;
+    }
+    var eqn = f.sBranch==="low" ? "(6), the 32 to 100 branch" : "(7), the above-100 branch";
+    ans(h,"Expected answers &mdash; "+esc(f.name),
+      "Equation "+eqn+". &nu; = "+V(f.sCst,2,"cSt")+", &mu; = "+V(f.sCp,2,"cP")+
+      " = "+V(f.sMu,5,"Pa&middot;s")+", using &rho; = "+V(f.rg,4,"g/cm&sup3;")+" from Table 1.");
+    work(h,
+      (f.sBranch==="low"
+        ? "cSt = 0.226("+fmt(f.sus,1)+") \u2212 195/"+fmt(f.sus,1)
+        : "cSt = 0.220("+fmt(f.sus,1)+") \u2212 135/"+fmt(f.sus,1))+
+      " = "+fmt(f.sCst,3)+" cSt\n"+
+      "cP = cSt \u00D7 \u03C1[g/cm\u00B3] = "+fmt(f.sCst,3)+" \u00D7 "+fmt(f.rg,4)+
+      " = "+fmt(f.sCp,2)+" cP");
+  });
+  ans(h,"Grading note",
+    "The most common failure is selecting the wrong branch, which for a reading near 100 s "+
+    "makes almost no difference and for a reading of 300 s makes a large one. The second most "+
+    "common is treating the Saybolt result as a dynamic viscosity and comparing it directly "+
+    "with the falling-ball value without multiplying by density.", "note");
+}
+function renderRotary(){
+  var rows=rotary();
+  var trs=$("rv-table").querySelectorAll("tbody tr");
+  rows.forEach(function(r,i){
+    var tds=trs[i].querySelectorAll("td");
+    [[3,r.Pas,5],[4,r.cP,1],[5,r.cSt,1]].forEach(function(c){
+      tds[c[0]].textContent = fmt(c[1], c[2]);
+      tds[c[0]].className = isFinite(c[1]) ? "out" : "na";
+    });
+  });
+  var h=$("k-rotary"); h.innerHTML="";
+  var have=rows.filter(function(r){ return isFinite(r.mPas)&&isFinite(r.T); });
+  if(have.length<2){
+    ans(h,"Temperature trend","Enter at least two rotary readings to generate the trend answer.","note");
+  } else {
+    have.sort(function(a,b){ return a.T-b.T; });
+    var lo=have[0], hi=have[have.length-1];
+    var drop=(lo.mPas-hi.mPas)/lo.mPas*100;
+    var lf=PHYS.linfit(have.map(function(r){return r.T;}), have.map(function(r){return r.mPas;}));
+    ans(h,"Expected answers",
+      "Over "+V(lo.T,0,"\u00B0C")+" to "+V(hi.T,0,"\u00B0C")+" the viscosity falls from "+
+      V(lo.mPas,1,"mPa&middot;s")+" to "+V(hi.mPas,1,"mPa&middot;s")+", a drop of "+
+      V(drop,1,"percent")+". A straight line through the data gives slope "+
+      V(lf.m,3,"mPa&middot;s per &deg;C")+" with R&sup2; = "+V(lf.r2,4)+".");
+    ans(h,"The point to draw out",
+      "An R&sup2; near but not equal to one, with the residuals curving, is the signature of an "+
+      "exponential relationship being fitted with a straight line. Viscosity falls roughly as "+
+      "exp(B/T) with T in kelvin. Students are not required to fit that model, but they should "+
+      "notice that the curve steepens at low temperature and say that a single quoted viscosity "+
+      "is meaningless without a temperature.", "note");
+  }
+  renderQuestions();
+}
+
+/* ---- model answers ---------------------------------------------------- */
+function renderQuestions(){
+  var a=fluid(0), b=fluid(1), rows=rotary().filter(function(r){return isFinite(r.mPas);});
+  var host=$("k-questions"); host.innerHTML="";
+  function q(pts, html){
+    var li=document.createElement("li");
+    li.innerHTML=html+' <span class="pts">['+pts+']</span>';
+    host.appendChild(li);
+  }
+  var thicker = (isFinite(a.mu)&&isFinite(b.mu)) ? (a.mu>=b.mu?a:b) : null;
+  var thinner = thicker ? (thicker===a?b:a) : null;
+
+  q("2 pts", "<b>Greater resistance to flow.</b> "+
+    (thicker
+      ? esc(thicker.name)+", by a factor of "+V(thicker.mu/thinner.mu,2)+". The establishing "+
+        "measurement is the fall time: "+V(thicker.tAvg,2,"s")+" against "+V(thinner.tAvg,2,"s")+
+        " over the same "+V(a.L,3,"m")+". The viscosity is a calculated consequence of that "+
+        "timing, so a student who cites only the calculated &mu; has answered in a circle."
+      : "Answer depends on the fluids measured; the establishing evidence must be the fall "+
+        "time, not the calculated viscosity."));
+
+  q("4 pts", "<b>Why Saybolt yields kinematic viscosity.</b> The fluid is driven through the "+
+    "orifice by its own weight, so the driving pressure is proportional to &rho;g h. The "+
+    "resistance to that flow is proportional to &mu;. The efflux time therefore depends on "+
+    "&mu;/&rho;, which is the definition of kinematic viscosity. A denser fluid of the same "+
+    "dynamic viscosity is pushed harder through the same orifice and drains faster. Full credit "+
+    "requires the density appearing on the driving side, not just the assertion that the answer "+
+    "comes out in centistokes.");
+
+  var rvAt = null;
+  if(rows.length && isFinite(a.tempC)){
+    var best=null,bd=1e9;
+    rows.forEach(function(r){ var d=Math.abs(r.T-a.tempC); if(d<bd){bd=d;best=r;} });
+    if(bd<=2.5) rvAt=best;
+  }
+  q("3 pts", "<b>Falling ball against rotary.</b> "+
+    (rvAt && isFinite(a.mu)
+      ? "At "+V(rvAt.T,0,"\u00B0C")+" the rotary reads "+V(rvAt.Pas,4,"Pa&middot;s")+
+        " and the falling ball gives "+V(a.mu,4,"Pa&middot;s")+", a difference of "+
+        V((a.mu-rvAt.Pas)/rvAt.Pas*100,1,"percent")+" relative to the rotary value. Expect the "+
+        "falling-ball result to be the larger of the two."
+      : "Compute as (falling ball &minus; rotary) / rotary &times; 100, comparing readings at "+
+        "the same temperature. Expect the falling-ball result to be the larger of the two."));
+
+  q("4 pts", "<b>Two causes independent of Stokes validity.</b> Any two of: the sphere had not "+
+    "reached terminal velocity before the START mark; the tube wall retards the sphere and the "+
+    "uncorrected result reads high; stopwatch reaction time, worth several percent on a "+
+    "two-second fall; the two instruments sampled the fluid at different temperatures; parallax "+
+    "in reading the marks; a sphere released off-axis, which touches or nears the wall. Reject "+
+    "answers that only restate the Reynolds number problem, since the question excludes it.");
+
+  q("6 pts", "<b>Validity and the direction of the error.</b> "+
+    (isFinite(a.Re)
+      ? esc(a.name)+": Re = "+V(a.Re,2)+" ("+a.cls.label+"). "+
+        (isFinite(b.Re)? esc(b.name)+": Re = "+V(b.Re,2)+" ("+b.cls.label+"). " : "")
+      : "")+
+    "Above Re &asymp; 1 the real drag exceeds the Stokes drag, so the sphere falls more slowly "+
+    "than Stokes' law predicts for the true viscosity. The student measured that slow velocity "+
+    "and put it into &mu; = 2&Delta;&rho;gr&sup2;/(9v), where &mu; is inversely proportional to "+
+    "v. A velocity that is too low therefore produces a viscosity that is <b>too high</b>. This "+
+    "is the single most valuable answer on the sheet: it explains the disagreement with the "+
+    "rotary viscometer in Question 3 in the correct direction, and it should be weighted "+
+    "accordingly.");
+
+  q("3 pts", "<b>Bringing Re into range.</b> Use a smaller sphere. Since v &prop; r&sup2; and "+
+    "Re &prop; &rho;v(2r)/&mu;, it follows that Re &prop; r&sup3;. Halving the diameter divides "+
+    "the Reynolds number by eight; going from the 12.70 mm bench sphere to a 2.3 mm ball "+
+    "bearing divides it by about "+V(Math.pow(12.70/2.3,3),0)+". Accept also: use a more "+
+    "viscous fluid, or cool the fluid, both of which raise &mu; and lower v. Do not accept "+
+    "lengthening the tube, which changes neither velocity nor Re.");
+
+  q("4 pts", "<b>Shape of the temperature curve.</b> Viscosity falls steeply at low temperature "+
+    "and flattens at high temperature; it is convex, not linear. A straight line fits poorly "+
+    "over the full 20 to 60 &deg;C range even when R&sup2; looks respectable, because the "+
+    "residuals are systematically curved rather than scattered. The implication is that a "+
+    "viscosity quoted without a temperature is meaningless, which is why ISO grades specify "+
+    "40 &deg;C.");
+
+  q("4 pts", "<b>Cold start.</b> The trouble is at the pump inlet. Cold fluid is far more "+
+    "viscous, so it cannot flow fast enough through the suction line to keep the inlet port "+
+    "full. The pressure at the inlet drops below the fluid's vapour pressure and vapour cavities "+
+    "form, then collapse violently on the pressure side. That is cavitation, and it erodes the "+
+    "pump and sounds like gravel. The actuator merely moves slowly, which is a nuisance rather "+
+    "than damage. Full credit requires naming the suction side and the mechanism, not only "+
+    "saying the oil is thick.");
+
+  q("4 pts", "<b>15W-40 against ISO 46.</b> The SAE engine oil grade is a two-part "+
+    "specification: the 15W refers to low-temperature cranking and pumping behaviour, and the "+
+    "40 to a kinematic viscosity band at 100 &deg;C. An ISO viscosity grade is a single "+
+    "kinematic viscosity band in centistokes at 40 &deg;C. The two cannot be compared directly "+
+    "because they are quoted at different reference temperatures and, in the SAE case, are not "+
+    "a single number at all.");
+
+  q("6 pts", "<b>Which measurement to trust.</b> The defensible answer is the rotary "+
+    "viscometer, and the defence must be quantitative: the falling-ball result carries a "+
+    "Reynolds number of "+(isFinite(a.Re)? V(a.Re,2) : "the value from Section 5.6")+
+    ", outside the regime Stokes' law was derived for, plus a timing uncertainty of about "+
+    (isFinite(a.relUnc)? V(a.relUnc*100,1,"percent") : "the value from Section 5.5")+
+    ". The rotary instrument measures torque directly and needs no flow-regime assumption. "+
+    "Award full credit only where both pieces of the student's own evidence are cited. An "+
+    "answer that says the rotary viscometer is best because it is digital earns nothing.");
+}
+
+function render(){
+  buildFluidLabels();
+  renderSphere(); renderDensity(); renderVelocity(); renderVisc();
+  renderUnc(); renderRe(); renderSaybolt(); renderRotary();
+  flag("");
+}
+function buildFluidLabels(){
+  var th=$("fluid-in").querySelectorAll("thead th");
+  th[1].textContent = ST.F[0].name || "Fluid 1";
+  th[2].textContent = ST.F[1].name || "Fluid 2";
+}
+
+/* ---- top-level inputs, persistence ------------------------------------ */
+["m_sph","d_sph","L","Dt","rv_name","rv_rho"].forEach(function(id){
+  $(id).addEventListener("input", function(){ ST[id]=this.value; render(); });
+});
+var STORE=(function(){ var mem={},ok=true;
+  try{ window.localStorage.setItem("__p","1"); window.localStorage.removeItem("__p"); }catch(e){ ok=false; }
+  return { ok:ok,
+    get:function(k){ try{ return ok? window.localStorage.getItem(k):(mem[k]||null); }catch(e){ return mem[k]||null; } },
+    set:function(k,v){ try{ if(ok) window.localStorage.setItem(k,v); else mem[k]=v; }catch(e){ mem[k]=v; } },
+    del:function(k){ try{ if(ok) window.localStorage.removeItem(k); else delete mem[k]; }catch(e){ delete mem[k]; } } };
+})();
+var KEY="viscosity-answersheet-v1";
+function flag(m){ $("flag").textContent=m; }
+$("btn-save").addEventListener("click", function(){
+  STORE.set(KEY, JSON.stringify(ST));
+  flag(STORE.ok ? "saved" : "saved in memory only");
+});
+$("btn-load").addEventListener("click", function(){
+  var raw=STORE.get(KEY); if(!raw){ flag("nothing saved"); return; }
+  try{ var o=JSON.parse(raw); Object.keys(ST).forEach(function(k){ if(o[k]!==undefined) ST[k]=o[k]; });
+       applyInputs(); flag("loaded"); }
+  catch(e){ flag("could not load"); }
+});
+$("btn-reset").addEventListener("click", function(){
+  if(!window.confirm("Clear all master values?")) return;
+  ST.F.forEach(function(f){ f.name=""; f.tempC=""; f.massG=""; f.sus=""; f.susT="";
+    f.t=["","","",""]; });
+  ST.rv.forEach(function(r){ r.mPas=""; });
+  ST.Dt=""; ST.rv_name=""; ST.rv_rho="";
+  STORE.del(KEY); applyInputs(); flag("cleared");
+});
+$("btn-print").addEventListener("click", function(){ window.print(); });
+function applyInputs(){
+  ["m_sph","d_sph","L","Dt","rv_name","rv_rho"].forEach(function(id){ $(id).value=ST[id]; });
+  buildFluidInputs(); buildRotaryInputs(); render();
+}
+applyInputs();
+</script>
+</body>
+</html>

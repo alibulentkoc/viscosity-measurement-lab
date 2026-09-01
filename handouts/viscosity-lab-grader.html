@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viscosity Measurement Laboratory &mdash; Grading Tool</title>
+<style>
+/* Grading tool. Two independent jobs, kept visually separate:
+   (1) audit each reported measurement against the master within a tolerance,
+   (2) compute every answer twice, once from the master and once from what the
+       group actually wrote down, so measurement error and arithmetic error can
+       be graded apart from each other. */
+:root{
+  --ink:#161a1e; --ink2:#454d55; --ink3:#7b838a;
+  --rule:#d2d5d8; --rule2:#e6e8ea; --paper:#fbfaf8;
+  --in:#14417d; --in-bg:#eef3fa;
+  --mas:#5a4a16; --mas-bg:#faf5e6;
+  --ok:#15571c;  --ok-bg:#eef5ee;
+  --warn:#95540f; --warn-bg:#fcf4e8;
+  --bad:#92201b; --bad-bg:#fbeeed;
+  --sans:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,"Liberation Mono",monospace;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e7e2;color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5}
+.page{max-width:1180px;margin:0 auto;background:var(--paper);min-height:100vh;
+      padding:22px 26px 60px;box-shadow:0 0 0 1px #d5d2cc}
+header h1{font-family:var(--serif);font-size:23px;font-weight:600;margin:0 0 3px}
+header .sub{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3)}
+hr.rule{border:none;border-top:2px solid var(--ink);margin:12px 0 18px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.toolbar .spacer{flex:1 1 auto}
+.btn{font-size:13px;background:#fff;border:1px solid var(--rule);border-radius:3px;
+     padding:5px 11px;cursor:pointer;font-family:inherit}
+.btn:hover{background:#f2f0ea}
+.btn.primary{background:#14417d;border-color:#14417d;color:#fff}
+.btn.danger{border-color:#c5a3a1;color:var(--bad)}
+.flagtxt{font-family:var(--mono);font-size:11px;color:var(--ink3)}
+h2{font-size:13px;font-family:var(--mono);letter-spacing:.11em;text-transform:uppercase;
+   color:var(--ink3);margin:26px 0 8px;border-bottom:1px solid var(--rule);padding-bottom:5px}
+h3{font-size:14px;margin:16px 0 6px}
+p.lede{color:var(--ink2);max-width:78ch;margin:0 0 12px}
+.idrow{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.idrow label{font-size:13px;color:var(--ink2)}
+.idrow input{padding:4px 7px;border:1px solid var(--rule);border-radius:3px;
+   font-family:var(--mono);font-size:13px;background:var(--in-bg);color:var(--in);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:13px;margin-bottom:10px}
+th{border-top:1.5px solid var(--ink);border-bottom:1px solid var(--ink);padding:6px 7px;
+   font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
+   color:var(--ink3);font-weight:600;text-align:right}
+th:first-child{text-align:left}
+td{border-bottom:1px solid var(--rule2);padding:4px 7px;text-align:right}
+td:first-child{text-align:left}
+tr:last-child td{border-bottom:1.5px solid var(--ink)}
+input.m,input.r{width:92px;padding:3px 6px;border:1px solid var(--rule);border-radius:3px;
+   text-align:right;font-family:var(--mono);font-size:12.5px;font-weight:600}
+input.m{background:var(--mas-bg);color:var(--mas)}
+input.r{background:var(--in-bg);color:var(--in)}
+input.tol{width:66px;padding:3px 5px;border:1px solid var(--rule);border-radius:3px;
+   text-align:right;font-family:var(--mono);font-size:12px;background:#fff;color:var(--ink2)}
+td.v{font-family:var(--mono);font-weight:600}
+td.ok{color:var(--ok)} td.warnv{color:var(--warn)} td.badv{color:var(--bad)}
+td.na{font-family:var(--mono);color:var(--ink3);font-weight:400}
+.verdict{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.04em}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--ink2);margin:6px 0 14px}
+.sw{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.flag{border-radius:3px;padding:9px 12px;margin:9px 0;font-size:13px;border:1px solid}
+.flag b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;margin-bottom:3px}
+.flag.ok{color:var(--ok);background:var(--ok-bg);border-color:#bcd6bd}
+.flag.warn{color:var(--warn);background:var(--warn-bg);border-color:#e8d0aa}
+.flag.bad{color:var(--bad);background:var(--bad-bg);border-color:#e2b7b4}
+.flag.info{color:var(--ink2);background:#f3f1ea;border-color:var(--rule)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.card{background:#fff;border:1px solid var(--rule);border-radius:4px;padding:12px 14px;margin-bottom:14px}
+.card h4{margin:0 0 8px;font-size:12px;font-family:var(--mono);letter-spacing:.09em;
+   text-transform:uppercase;color:var(--ink3)}
+.note{font-size:12.5px;color:var(--ink2);background:#f4f2ec;border-left:3px solid var(--rule);
+   padding:8px 10px;margin:8px 0}
+.score{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.score input{width:60px;padding:3px 6px;border:1px solid var(--rule);border-radius:3px;
+   text-align:right;font-family:var(--mono);background:var(--in-bg);color:var(--in);font-weight:600}
+textarea{width:100%;min-height:70px;padding:7px 9px;border:1px solid var(--rule);border-radius:3px;
+   font-family:inherit;font-size:13px;background:var(--in-bg)}
+@media (max-width:900px){ .two{grid-template-columns:1fr} }
+@media print{
+  body{background:#fff} .page{box-shadow:none;max-width:none;padding:.4in}
+  .toolbar{display:none} .card,table,.flag{break-inside:avoid}
+  input{border:none;background:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>Viscosity Measurement Laboratory &mdash; Grading Tool</h1>
+  <div class="sub">Instructor use &middot; measurement audit and dual answer computation</div>
+</header>
+<hr class="rule">
+
+<p class="lede">Enter the master measurements for the bench once, then a group's reported values.
+Each reading is checked against the master within a tolerance you can edit. Every answer is then
+computed twice: from the master, which is the correct answer for this bench, and from what the
+group actually wrote down, which is what their arithmetic should have produced. Grade the
+arithmetic against the second column and the measuring against the first.</p>
+
+<div class="idrow">
+  <label>Group <input id="g-name" type="text" style="width:190px;text-align:left" placeholder="names or number"></label>
+  <label>Date <input id="g-date" type="text" style="width:120px;text-align:left"></label>
+  <label>Section <input id="g-sec" type="text" style="width:90px;text-align:left"></label>
+</div>
+
+<div class="toolbar">
+  <button class="btn primary" id="btn-save">Save</button>
+  <button class="btn" id="btn-load">Load</button>
+  <button class="btn" id="btn-clear">Clear group only</button>
+  <button class="btn danger" id="btn-reset">Clear everything</button>
+  <span class="spacer"></span>
+  <button class="btn" id="btn-print">Print report</button>
+  <span class="flagtxt" id="flag"></span>
+</div>
+
+<h2>1. Measurement audit</h2>
+<div class="legend">
+  <span><span class="sw" style="background:var(--mas-bg);border:1px solid #c9b878"></span>master value</span>
+  <span><span class="sw" style="background:var(--in-bg);border:1px solid #a9c2e0"></span>group reported</span>
+  <span><span class="sw" style="background:var(--ok-bg);border:1px solid #bcd6bd"></span>within tolerance</span>
+  <span><span class="sw" style="background:var(--warn-bg);border:1px solid #e8d0aa"></span>1 to 3 &times; tolerance</span>
+  <span><span class="sw" style="background:var(--bad-bg);border:1px solid #e2b7b4"></span>beyond 3 &times; tolerance</span>
+</div>
+<table id="audit">
+  <thead><tr>
+    <th style="width:30%">Measurement</th><th>Master</th><th>Reported</th>
+    <th>Deviation</th><th>Tolerance</th><th>Multiple</th><th style="text-align:right">Verdict</th>
+  </tr></thead>
+  <tbody></tbody>
+</table>
+<div id="audit-flags"></div>
+
+<h2>2. Answers computed twice</h2>
+<p class="lede">A group that mismeasures a bore but then works its own numbers through correctly
+should keep the credit for method. That is only visible when the answer is computed from their
+numbers as well as from yours.</p>
+<table id="dual">
+  <thead><tr>
+    <th style="width:34%">Quantity</th><th>From master</th><th>From reported</th>
+    <th>Difference</th><th style="text-align:right">Note</th>
+  </tr></thead>
+  <tbody></tbody>
+</table>
+
+<h2>3. Automatic checks</h2>
+<div id="auto"></div>
+
+<h2>4. Scoring</h2>
+<div class="two">
+  <div class="card">
+    <h4>Suggested allocation</h4>
+    <table id="score">
+      <thead><tr><th style="width:64%">Component</th><th>Out of</th><th style="text-align:right">Awarded</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="score"><b>Total</b> <span class="verdict" id="total">0 / 100</span></div>
+  </div>
+  <div class="card">
+    <h4>Comments to the group</h4>
+    <textarea id="comments" placeholder="Written feedback"></textarea>
+    <div class="note" id="autocomment"></div>
+  </div>
+</div>
+
+<script>
+/* ===== PHYSICS-START =====================================================
+   Duplicated verbatim from viscosity-lab.html so this file opens on its own.
+   ====================================================================== */
+var PHYS = (function(){
+  var G = 9.81;
+  function sphereVolume(r){ return (4/3)*Math.PI*Math.pow(r,3); }
+  function density(m,V){ return V>0 ? m/V : NaN; }
+  function average(l){ var v=l.filter(function(x){return typeof x==="number"&&isFinite(x);});
+    return v.length ? v.reduce(function(a,b){return a+b;},0)/v.length : NaN; }
+  function velocity(L,t){ return t>0 ? L/t : NaN; }
+  function muStokes(dRho,r,v){ return v>0 ? 2*dRho*G*r*r/(9*v) : NaN; }
+  function reynolds(rho,v,r,mu){ return mu>0 ? rho*v*2*r/mu : NaN; }
+  function stokesClass(Re){
+    if(!isFinite(Re)) return {label:"--", tone:"info"};
+    if(Re<0.1) return {label:"VALID", tone:"ok"};
+    if(Re<1.0) return {label:"valid", tone:"ok"};
+    if(Re<10)  return {label:"MARGINAL", tone:"warn"};
+    return {label:"INVALID", tone:"bad"};
+  }
+  function PasToCp(mu){ return mu*1000; }
+  function cpToPas(cp){ return cp/1000; }
+  function cpToCst(cp,rg){ return rg>0 ? cp/rg : NaN; }
+  function cstToCp(cst,rg){ return rg>0 ? cst*rg : NaN; }
+  function kgm3_to_gcm3(r){ return r/1000; }
+  var SUS_MIN=32;
+  function sayboltToCst(s){ if(!(s>0)) return NaN; return s<=100 ? 0.226*s-195/s : 0.220*s-135/s; }
+  function sayboltBranch(s){ if(!(s>0)) return "none"; if(s<SUS_MIN) return "below";
+    return s<=100 ? "low" : "high"; }
+  return {G:G,sphereVolume:sphereVolume,density:density,average:average,velocity:velocity,
+    muStokes:muStokes,reynolds:reynolds,stokesClass:stokesClass,PasToCp:PasToCp,cpToPas:cpToPas,
+    cpToCst:cpToCst,cstToCp:cstToCp,kgm3_to_gcm3:kgm3_to_gcm3,sayboltToCst:sayboltToCst,
+    sayboltBranch:sayboltBranch,SUS_MIN:SUS_MIN};
+})();
+/* ===== PHYSICS-END ==================================================== */
+
+function $(id){ return document.getElementById(id); }
+function num(v){ var x=parseFloat(v); return isFinite(x)?x:NaN; }
+function fmt(x,d){ if(x==null||!isFinite(x)) return "--"; d=(d===undefined)?3:d;
+  if(x!==0 && (Math.abs(x)<1e-4||Math.abs(x)>=1e6)) return x.toExponential(3);
+  return x.toFixed(d); }
+
+/* Per-measurement tolerances. Defaults reflect what the instrument can actually
+   resolve in a teaching laboratory, not what the arithmetic can carry:
+   a micrometer reads to 0.01 mm, a balance to 0.1 g, a stopwatch held by a
+   student is worth no better than a tenth of a second, and a tape measure on a
+   vertical tube no better than 5 mm. */
+var ROWS = [
+  {k:"m_sph", label:"Sphere mass",              u:"g",    tol:0.10,  dp:2},
+  {k:"d_sph", label:"Sphere diameter",          u:"mm",   tol:0.05,  dp:2},
+  {k:"L",     label:"Distance between marks",   u:"m",    tol:0.005, dp:3},
+  {k:"mass1", label:"Fluid 1 mass in beaker",   u:"g",    tol:0.20,  dp:2},
+  {k:"temp1", label:"Fluid 1 temperature",      u:"\u00B0C", tol:1.0, dp:1},
+  {k:"t1",    label:"Fluid 1 average fall time",u:"s",    tol:0.10,  dp:3},
+  {k:"mass2", label:"Fluid 2 mass in beaker",   u:"g",    tol:0.20,  dp:2},
+  {k:"temp2", label:"Fluid 2 temperature",      u:"\u00B0C", tol:1.0, dp:1},
+  {k:"t2",    label:"Fluid 2 average fall time",u:"s",    tol:0.10,  dp:3},
+  {k:"sus1",  label:"Fluid 1 Saybolt time",     u:"SUS",  tol:2.0,   dp:1},
+  {k:"sus2",  label:"Fluid 2 Saybolt time",     u:"SUS",  tol:2.0,   dp:1}
+];
+var VOL = 50;   // beaker volume, mL, assumed common to both columns
+
+var ST = { id:{name:"",date:"",sec:""}, M:{}, R:{}, TOL:{}, scores:{}, comments:"" };
+ROWS.forEach(function(r){ ST.M[r.k]=""; ST.R[r.k]=""; ST.TOL[r.k]=r.tol; });
+/* the bench values that ship with the activity, as a starting master set */
+ST.M.m_sph="8.3"; ST.M.d_sph="12.70"; ST.M.L="0.89";
+
+var SCORE_ITEMS = [
+  ["Measurement technique and completeness", 25],
+  ["Arithmetic and unit handling", 20],
+  ["Uncertainty estimate", 10],
+  ["Reynolds number and validity statement", 15],
+  ["Saybolt branch and conversion", 10],
+  ["Temperature plot", 10],
+  ["Analysis questions", 10]
+];
+SCORE_ITEMS.forEach(function(s,i){ ST.scores["s"+i]=""; });
+
+/* ---- audit table ------------------------------------------------------ */
+function buildAudit(){
+  var tb=$("audit").querySelector("tbody"); tb.innerHTML="";
+  ROWS.forEach(function(r){
+    var tr=document.createElement("tr");
+    var td0=document.createElement("td");
+    td0.innerHTML = r.label + ' <span style="color:var(--ink3);font-family:var(--mono);font-size:11px">'+r.u+'</span>';
+    tr.appendChild(td0);
+    [["m","M"],["r","R"]].forEach(function(c){
+      var td=document.createElement("td");
+      var i=document.createElement("input"); i.className=c[0]; i.type="number"; i.step="any";
+      i.value=ST[c[1]][r.k]; i.placeholder="blank";
+      i.addEventListener("input", function(){ ST[c[1]][r.k]=i.value; render(); });
+      td.appendChild(i); tr.appendChild(td);
+    });
+    ["dev","tolcell","mult","verd"].forEach(function(cls){
+      var td=document.createElement("td");
+      if(cls==="tolcell"){
+        var t=document.createElement("input"); t.className="tol"; t.type="number"; t.step="any";
+        t.value=ST.TOL[r.k];
+        t.addEventListener("input", function(){ ST.TOL[r.k]=num(t.value); render(); });
+        td.appendChild(t);
+      } else { td.className="na"; td.textContent="--"; }
+      td.setAttribute("data-c",cls);
+      tr.appendChild(td);
+    });
+    tr.setAttribute("data-k", r.k);
+    tb.appendChild(tr);
+  });
+}
+function auditRow(r){
+  var m=num(ST.M[r.k]), g=num(ST.R[r.k]), tol=num(ST.TOL[r.k]);
+  if(!isFinite(m)||!isFinite(g)) return {state:"none"};
+  var dev=g-m, mult=(tol>0)? Math.abs(dev)/tol : NaN;
+  var state = !isFinite(mult) ? "none" : (mult<=1 ? "ok" : (mult<=3 ? "warn" : "bad"));
+  return {m:m,g:g,tol:tol,dev:dev,mult:mult,state:state};
+}
+function renderAudit(){
+  var flags=[], exact=0, counted=0;
+  ROWS.forEach(function(r){
+    var tr=$("audit").querySelector('tr[data-k="'+r.k+'"]');
+    var a=auditRow(r);
+    var cd=tr.querySelector('[data-c="dev"]'), cm=tr.querySelector('[data-c="mult"]'),
+        cv=tr.querySelector('[data-c="verd"]');
+    if(a.state==="none"){
+      cd.className="na"; cd.textContent="--";
+      cm.className="na"; cm.textContent="--";
+      cv.className="na"; cv.textContent="--";
+      return;
+    }
+    counted++;
+    if(a.dev===0) exact++;
+    var cls = a.state==="ok"?"ok":(a.state==="warn"?"warnv":"badv");
+    cd.className="v "+cls; cd.textContent=(a.dev>0?"+":"")+fmt(a.dev,r.dp);
+    cm.className="v "+cls; cm.textContent=fmt(a.mult,2)+"\u00D7";
+    cv.className="v "+cls+" verdict";
+    cv.textContent = a.state==="ok" ? "within" : (a.state==="warn" ? "check" : "REMEASURE");
+    if(a.state==="bad") flags.push(r.label+" is off by "+fmt(Math.abs(a.dev),r.dp)+" "+r.u+
+      ", which is "+fmt(a.mult,1)+" times the tolerance");
+  });
+  var host=$("audit-flags"); host.innerHTML="";
+  if(flags.length){
+    add(host,"bad","MEASUREMENTS OUTSIDE THREE TIMES TOLERANCE",
+      flags.join("; ")+". Check whether the group used the wrong instrument, misread a scale, "+
+      "or transcribed a digit.");
+  }
+  /* Both a count and a proportion, so a long sheet with a handful of coincidental
+     matches (a temperature, a beaker volume) does not trip the warning, while a
+     sheet that is mostly copied does. */
+  if(counted>=6 && exact>=6 && exact/counted>=0.6){
+    add(host,"warn","REPORTED VALUES MATCH THE MASTER EXACTLY",
+      exact+" of "+counted+" readings agree with the master to the last digit. Independent "+
+      "measurements with a micrometer, a balance and a stopwatch do not agree that closely. "+
+      "This is worth a conversation before it is worth a grade.");
+  }
+  return {exact:exact, counted:counted, flags:flags};
+}
+function add(host, tone, title, body){
+  var d=document.createElement("div"); d.className="flag "+tone;
+  d.innerHTML="<b>"+title+"</b>"+body; host.appendChild(d);
+}
+
+/* ---- dual computation -------------------------------------------------- */
+function solve(src){
+  var g = function(k){ return num(ST[src][k]); };
+  var d=g("d_sph"), r=isFinite(d)? d/2000 : NaN;
+  var V=isFinite(r)? PHYS.sphereVolume(r):NaN;
+  var rhoS=PHYS.density(g("m_sph")/1000, V);
+  var L=g("L");
+  function one(i){
+    var rho=(isFinite(g("mass"+i)) && VOL>0)? (g("mass"+i)/VOL)*1000 : NaN;
+    var rg=PHYS.kgm3_to_gcm3(rho);
+    var t=g("t"+i), v=PHYS.velocity(L,t);
+    var dRho=rhoS-rho;
+    var mu=PHYS.muStokes(dRho, r, v);
+    var cP=PHYS.PasToCp(mu), cSt=PHYS.cpToCst(cP, rg);
+    var Re=PHYS.reynolds(rho, v, r, mu);
+    var sus=g("sus"+i), br=PHYS.sayboltBranch(sus);
+    var sCst=(br==="low"||br==="high")? PHYS.sayboltToCst(sus):NaN;
+    return {rho:rho, rg:rg, v:v, dRho:dRho, mu:mu, cP:cP, cSt:cSt, Re:Re,
+            cls:PHYS.stokesClass(Re), sus:sus, branch:br, sCst:sCst,
+            sCp:PHYS.cstToCp(sCst, rg)};
+  }
+  return {r:r, V:V, rhoS:rhoS, L:L, f1:one(1), f2:one(2)};
+}
+var DUAL = [
+  ["Sphere volume, m\u00B3",        function(s){return s.V;},        6, "exp"],
+  ["Sphere density, kg/m\u00B3",    function(s){return s.rhoS;},     1],
+  ["Fluid 1 density, kg/m\u00B3",   function(s){return s.f1.rho;},   1],
+  ["Fluid 1 velocity, m/s",         function(s){return s.f1.v;},     4],
+  ["Fluid 1 \u03BC, Pa\u00B7s",     function(s){return s.f1.mu;},    4],
+  ["Fluid 1 \u03BC, cP",            function(s){return s.f1.cP;},    2],
+  ["Fluid 1 \u03BD, cSt",           function(s){return s.f1.cSt;},   2],
+  ["Fluid 1 Reynolds number",       function(s){return s.f1.Re;},    2],
+  ["Fluid 2 density, kg/m\u00B3",   function(s){return s.f2.rho;},   1],
+  ["Fluid 2 velocity, m/s",         function(s){return s.f2.v;},     4],
+  ["Fluid 2 \u03BC, Pa\u00B7s",     function(s){return s.f2.mu;},    4],
+  ["Fluid 2 \u03BC, cP",            function(s){return s.f2.cP;},    2],
+  ["Fluid 2 \u03BD, cSt",           function(s){return s.f2.cSt;},   2],
+  ["Fluid 2 Reynolds number",       function(s){return s.f2.Re;},    2],
+  ["Fluid 1 Saybolt \u03BD, cSt",   function(s){return s.f1.sCst;},  2],
+  ["Fluid 1 Saybolt \u03BC, cP",    function(s){return s.f1.sCp;},   2],
+  ["Fluid 2 Saybolt \u03BD, cSt",   function(s){return s.f2.sCst;},  2],
+  ["Fluid 2 Saybolt \u03BC, cP",    function(s){return s.f2.sCp;},   2]
+];
+function renderDual(){
+  var M=solve("M"), R=solve("R");
+  var tb=$("dual").querySelector("tbody"); tb.innerHTML="";
+  DUAL.forEach(function(row){
+    var a=row[1](M), b=row[1](R), dp=row[2];
+    var tr=document.createElement("tr");
+    var c0=document.createElement("td"); c0.textContent=row[0]; tr.appendChild(c0);
+    function cell(x){
+      var td=document.createElement("td");
+      td.className = isFinite(x) ? "v" : "na";
+      td.textContent = (row[3]==="exp" && isFinite(x)) ? x.toExponential(4) : fmt(x,dp);
+      return td;
+    }
+    tr.appendChild(cell(a)); tr.appendChild(cell(b));
+    var dt=document.createElement("td");
+    if(isFinite(a)&&isFinite(b)&&a!==0){
+      var pct=(b-a)/Math.abs(a)*100;
+      dt.className="v "+(Math.abs(pct)<=1?"ok":(Math.abs(pct)<=5?"warnv":"badv"));
+      dt.textContent=(pct>0?"+":"")+fmt(pct,1)+" %";
+    } else { dt.className="na"; dt.textContent="--"; }
+    tr.appendChild(dt);
+    var nt=document.createElement("td");
+    nt.style.textAlign="right"; nt.style.fontSize="12px"; nt.style.color="var(--ink3)";
+    if(/Reynolds/.test(row[0])){
+      var cM = /1/.test(row[0]) ? M.f1.cls.label : M.f2.cls.label;
+      var cR = /1/.test(row[0]) ? R.f1.cls.label : R.f2.cls.label;
+      nt.textContent = (cM==="--"&&cR==="--") ? "" : (cM+" / "+cR);
+    }
+    tr.appendChild(nt);
+    tb.appendChild(tr);
+  });
+  return {M:M, R:R};
+}
+
+/* ---- automatic checks -------------------------------------------------- */
+function renderAuto(sol, audit){
+  var host=$("auto"); host.innerHTML="";
+  var M=sol.M, R=sol.R, any=false;
+
+  /* a sphere density that is not steel */
+  if(isFinite(R.rhoS) && (R.rhoS<7300 || R.rhoS>8300)){
+    any=true;
+    add(host,"bad","REPORTED SPHERE DENSITY IS NOT STEEL",
+      "Their sphere mass and diameter give "+fmt(R.rhoS,0)+" kg/m\u00B3. Steel is about 7700 to "+
+      "8000. Almost always this is grams divided by cubic metres without converting to kilograms, "+
+      "or a radius entered where a diameter belongs.");
+  }
+  /* a fluid denser than water */
+  [["1",R.f1],["2",R.f2]].forEach(function(p){
+    if(isFinite(p[1].rho) && p[1].rho>1000){ any=true;
+      add(host,"warn","FLUID "+p[0]+" REPORTED DENSER THAN WATER",
+        fmt(p[1].rho,0)+" kg/m\u00B3. A petroleum fluid should be 820 to 900. Check whether the "+
+        "beaker was tared, and whether the 50 mL volume was actually 50 mL.");
+    }
+    if(isFinite(p[1].dRho) && p[1].dRho<=0){ any=true;
+      add(host,"bad","FLUID "+p[0]+" WOULD FLOAT THE SPHERE",
+        "Their numbers make the fluid at least as dense as the sphere, so \u0394\u03C1 is not "+
+        "positive and Stokes' law returns a negative or infinite viscosity. The measurement "+
+        "cannot be salvaged by arithmetic.");
+    }
+  });
+  /* Saybolt out of range */
+  [["1",R.f1],["2",R.f2]].forEach(function(p){
+    if(p[1].branch==="below"){ any=true;
+      add(host,"warn","FLUID "+p[0]+" SAYBOLT READING BELOW 32 s",
+        "A reading of "+fmt(p[1].sus,1)+" s falls below the range of both conversion "+
+        "expressions. The correct student response is to say the correlation does not apply. "+
+        "If they produced a centistokes value anyway, that is the error to mark.");
+    }
+  });
+  /* the teaching point: validity */
+  var vlist=[];
+  if(M.f1.cls.label==="MARGINAL"||M.f1.cls.label==="INVALID") vlist.push("Fluid 1 ("+M.f1.cls.label+", Re "+fmt(M.f1.Re,1)+")");
+  if(M.f2.cls.label==="MARGINAL"||M.f2.cls.label==="INVALID") vlist.push("Fluid 2 ("+M.f2.cls.label+", Re "+fmt(M.f2.Re,1)+")");
+  if(vlist.length){ any=true;
+    add(host,"info","SECTION 5.6 MUST BE ADDRESSED IN THIS REPORT",
+      "On the master values, Stokes' law is outside its valid range for "+vlist.join(" and ")+
+      ". A report that presents these viscosities without saying so has missed the central point "+
+      "of the exercise, regardless of how clean the arithmetic is. Question 5 asks for the "+
+      "direction of the error, and the answer is that the viscosity reads high.");
+  }
+  /* arithmetic versus measurement */
+  var arith=[];
+  DUAL.forEach(function(row){
+    var a=row[1](M), b=row[1](R);
+    if(isFinite(a)&&isFinite(b)&&a!==0 && Math.abs((b-a)/a)>0.05) arith.push(row[0]);
+  });
+  if(arith.length && audit.flags.length===0){ any=true;
+    add(host,"warn","ANSWERS DIVERGE WITHOUT A MEASUREMENT TO EXPLAIN IT",
+      "Every reading is within tolerance, yet "+arith.length+" computed value"+
+      (arith.length===1?" differs":"s differ")+" from the master by more than five percent: "+
+      arith.slice(0,4).join(", ")+(arith.length>4?", and others":"")+
+      ". Since the inputs agree, the fault is in the arithmetic or the unit handling, not the "+
+      "measuring. Mark it under the arithmetic component.");
+  }
+  if(!any) add(host,"ok","NOTHING FLAGGED",
+    "No automatic check fired. This does not mean the report is correct, only that nothing is "+
+    "impossible on its face.");
+
+  /* narrative for the comment box */
+  var c=[];
+  if(audit.flags.length) c.push("Remeasure: "+audit.flags.length+" reading"+(audit.flags.length===1?"":"s")+" beyond three times tolerance.");
+  if(arith.length) c.push("Check the arithmetic on "+arith.length+" derived value"+(arith.length===1?"":"s")+".");
+  if(vlist.length) c.push("Address the Reynolds number explicitly in Section 5.6.");
+  $("autocomment").textContent = c.length ? ("Suggested points to raise: "+c.join(" ")) :
+    "No automatic points to raise.";
+}
+
+/* ---- scoring ----------------------------------------------------------- */
+function buildScores(){
+  var tb=$("score").querySelector("tbody"); tb.innerHTML="";
+  SCORE_ITEMS.forEach(function(s,i){
+    var tr=document.createElement("tr");
+    var a=document.createElement("td"); a.textContent=s[0]; tr.appendChild(a);
+    var b=document.createElement("td"); b.className="v"; b.textContent=s[1]; tr.appendChild(b);
+    var c=document.createElement("td");
+    var inp=document.createElement("input"); inp.type="number"; inp.step="0.5"; inp.max=s[1];
+    inp.style.width="64px"; inp.style.textAlign="right";
+    inp.style.fontFamily="var(--mono)"; inp.style.background="var(--in-bg)";
+    inp.style.color="var(--in)"; inp.style.fontWeight="600";
+    inp.style.border="1px solid var(--rule)"; inp.style.borderRadius="3px"; inp.style.padding="3px 6px";
+    inp.value=ST.scores["s"+i];
+    inp.addEventListener("input", function(){ ST.scores["s"+i]=inp.value; totalScore(); });
+    c.appendChild(inp); c.style.textAlign="right"; tr.appendChild(c);
+    tb.appendChild(tr);
+  });
+}
+function totalScore(){
+  var t=0, max=0, anyEntered=false;
+  SCORE_ITEMS.forEach(function(s,i){
+    max+=s[1];
+    var v=num(ST.scores["s"+i]);
+    if(isFinite(v)){ t+=v; anyEntered=true; }
+  });
+  $("total").textContent = anyEntered ? (fmt(t,1)+" / "+max) : ("0 / "+max);
+}
+
+/* ---- persistence -------------------------------------------------------- */
+var STORE=(function(){ var mem={},ok=true;
+  try{ window.localStorage.setItem("__p","1"); window.localStorage.removeItem("__p"); }catch(e){ ok=false; }
+  return { ok:ok,
+    get:function(k){ try{ return ok? window.localStorage.getItem(k):(mem[k]||null); }catch(e){ return mem[k]||null; } },
+    set:function(k,v){ try{ if(ok) window.localStorage.setItem(k,v); else mem[k]=v; }catch(e){ mem[k]=v; } },
+    del:function(k){ try{ if(ok) window.localStorage.removeItem(k); else delete mem[k]; }catch(e){ delete mem[k]; } } };
+})();
+var KEY="viscosity-grader-v1";
+function flag(m){ $("flag").textContent=m; }
+$("btn-save").addEventListener("click", function(){
+  ST.comments=$("comments").value;
+  STORE.set(KEY, JSON.stringify(ST));
+  flag(STORE.ok?"saved":"saved in memory only");
+});
+$("btn-load").addEventListener("click", function(){
+  var raw=STORE.get(KEY); if(!raw){ flag("nothing saved"); return; }
+  try{ var o=JSON.parse(raw);
+    ["id","M","R","TOL","scores"].forEach(function(k){ if(o[k]) ST[k]=o[k]; });
+    ST.comments=o.comments||""; applyAll(); flag("loaded"); }
+  catch(e){ flag("could not load"); }
+});
+$("btn-clear").addEventListener("click", function(){
+  ROWS.forEach(function(r){ ST.R[r.k]=""; });
+  SCORE_ITEMS.forEach(function(s,i){ ST.scores["s"+i]=""; });
+  ST.comments=""; ST.id={name:"",date:"",sec:""};
+  applyAll(); flag("group cleared, master kept");
+});
+$("btn-reset").addEventListener("click", function(){
+  if(!window.confirm("Clear the master values as well as the group's?")) return;
+  ROWS.forEach(function(r){ ST.M[r.k]=""; ST.R[r.k]=""; ST.TOL[r.k]=r.tol; });
+  SCORE_ITEMS.forEach(function(s,i){ ST.scores["s"+i]=""; });
+  ST.comments=""; ST.id={name:"",date:"",sec:""};
+  STORE.del(KEY); applyAll(); flag("cleared");
+});
+$("btn-print").addEventListener("click", function(){ window.print(); });
+[["g-name","name"],["g-date","date"],["g-sec","sec"]].forEach(function(p){
+  $(p[0]).addEventListener("input", function(){ ST.id[p[1]]=this.value; });
+});
+$("comments").addEventListener("input", function(){ ST.comments=this.value; });
+
+function render(){
+  var audit=renderAudit();
+  var sol=renderDual();
+  renderAuto(sol, audit);
+  totalScore();
+}
+function applyAll(){
+  $("g-name").value=ST.id.name; $("g-date").value=ST.id.date; $("g-sec").value=ST.id.sec;
+  $("comments").value=ST.comments||"";
+  buildAudit(); buildScores(); render();
+}
+applyAll();
+</script>
+</body>
+</html>

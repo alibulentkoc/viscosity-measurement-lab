@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: If you use these materials, please cite them as below.
+title: "Viscosity Measurement Laboratory: Interactive Falling Ball, Saybolt, and Rotary Viscometers with Laboratory Materials"
+abstract: >-
+  A browser-based, offline-capable laboratory covering three methods of viscosity
+  measurement: a falling ball viscometer in which the sphere falls at the velocity
+  the student's own timings imply, a Saybolt viscometer that drains over the
+  student's own efflux time, and a rotary viscometer station that plots the
+  student's temperature sweep. The Reynolds number is computed live and the
+  validity of Stokes' law is labelled rather than hidden, so students can see a
+  model return a repeatable number outside the conditions it was derived for.
+  Includes a student handout, an instructor answer sheet with live calculation,
+  a grading tool that computes every answer both from master and from reported
+  measurements, and verification suites covering the physics, the unit
+  conversions, and the interface behaviour.
+type: software
+authors:
+  - family-names: Koc
+    given-names: A. Bulent
+    orcid: "https://orcid.org/0000-0003-3633-1699"
+    affiliation: "Department of Agricultural Sciences, Agricultural Mechanization and Business Program, Clemson University"
+version: 1.0.0
+date-released: "2026-08-31"
+license: MIT
+license-url: "https://opensource.org/licenses/MIT"
+repository-code: "https://github.com/alibulentkoc/viscosity-measurement-lab"
+url: "https://alibulentkoc.github.io/viscosity-measurement-lab/lab/viscosity-lab.html"
+keywords:
+  - fluid power
+  - viscosity
+  - Stokes law
+  - Reynolds number
+  - Saybolt viscometer
+  - rotary viscometer
+  - engineering education
+  - laboratory instruction
+  - interactive simulation
+  - measurement uncertainty

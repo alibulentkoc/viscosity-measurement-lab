@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viscosity Measurement Laboratory</title>
+<style>
+  :root{--ink:#161a1e;--ink2:#454d55;--ink3:#7b838a;--rule:#d2d5d8;--paper:#fbfaf8;
+        --accent:#0f6e5c;--accent-bg:#e6f2ef;
+        --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+        --mono:ui-monospace,Consolas,"Liberation Mono",monospace;}
+  *{box-sizing:border-box}
+  body{margin:0;background:#e9e7e2;color:var(--ink);
+       font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.55}
+  .page{max-width:800px;margin:0 auto;background:var(--paper);min-height:100vh;
+        padding:44px 40px 70px;box-shadow:0 0 0 1px #d5d2cc}
+  h1{font-family:var(--serif);font-size:27px;font-weight:600;margin:0 0 4px}
+  .sub{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+       color:var(--ink3)}
+  hr{border:none;border-top:2px solid var(--ink);margin:16px 0 24px}
+  p{color:var(--ink2);max-width:66ch}
+  a.card{display:block;text-decoration:none;color:inherit;border:1px solid var(--rule);
+     border-radius:5px;padding:15px 18px;margin-bottom:12px;background:#fff}
+  a.card:hover{border-color:var(--accent);background:var(--accent-bg)}
+  a.card .t{font-weight:600;font-size:16px;margin-bottom:3px}
+  a.card .d{font-size:13.5px;color:var(--ink2)}
+  a.card .who{float:right;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+     text-transform:uppercase;color:var(--ink3);border:1px solid var(--rule);
+     border-radius:3px;padding:1px 7px}
+  footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--rule);
+     font-size:12.5px;color:var(--ink3)}
+  code{font-family:var(--mono);font-size:12px}
+</style>
+</head>
+<body><div class="page">
+  <h1>Viscosity Measurement Laboratory</h1>
+  <div class="sub">Fluid Power Systems &amp; Internal Combustion Engines</div>
+  <hr>
+  <p>Three instruments measure the same property by different routes, and the three
+  routes do not always agree. Explaining the disagreement is the point of the laboratory.
+  Everything below runs in the browser with no network access.</p>
+
+  <a class="card" href="lab/viscosity-lab.html">
+    <span class="who">students</span>
+    <div class="t">Interactive Laboratory</div>
+    <div class="d">Falling ball, Saybolt and rotary viscometers, unit conversion,
+      temperature analysis, notebook and export.</div></a>
+
+  <a class="card" href="handouts/viscosity-lab-handout.html">
+    <span class="who">students</span>
+    <div class="t">Student Handout</div>
+    <div class="d">Printable procedure, data tables and analysis questions.
+      Print to PDF from any browser.</div></a>
+
+  <a class="card" href="handouts/viscosity-lab-answers.html">
+    <span class="who">instructors</span>
+    <div class="t">Answer Sheet</div>
+    <div class="d">Enter the bench master measurements and every answer recomputes,
+      with substituted working and model answers.</div></a>
+
+  <a class="card" href="handouts/viscosity-lab-grader.html">
+    <span class="who">instructors</span>
+    <div class="t">Grading Tool</div>
+    <div class="d">Audits reported readings against tolerances and computes every
+      answer twice, so measurement error and arithmetic error grade apart.</div></a>
+
+  <footer>
+    Koc, A. B. <i>Viscosity Measurement Laboratory</i>. Agricultural Mechanization and
+    Business Program, Clemson University. ORCID <code>0000-0003-3633-1699</code>.<br>
+    Source MIT licensed; laboratory materials CC BY 4.0.
+  </footer>
+</div></body>
+</html>
