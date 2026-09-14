@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Viscosity Measurement: Engineering Reference</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+  <style type="text/css">:root{--ink:#111418;--ink2:#3d444b;--ink3:#767d84;--rule:#b9bcc0;--note:#f4f2ec;
+--serif:"Latin Modern Roman","Computer Modern Serif","Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+--mono:ui-monospace,"Cascadia Mono",Consolas,"Liberation Mono",monospace}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e7e2;color:var(--ink);font-family:var(--serif);font-size:11.2pt;line-height:1.46}
+#page{max-width:7.0in;margin:0 auto;background:#fff;padding:0.75in 0.85in 1in;box-shadow:0 0 0 1px #d5d2cc}
+h1{font-size:17.5pt;font-weight:600;margin:0 0 6px;line-height:1.28}
+h2{font-size:12.5pt;font-weight:600;margin:22px 0 7px;border-bottom:.6pt solid var(--rule);padding-bottom:2px}
+h3{font-size:11.4pt;font-weight:600;margin:16px 0 5px;font-style:italic}
+p{margin:0 0 8px;text-align:justify;hyphens:auto}
+ul,ol{margin:0 0 9px;padding-left:1.35em} li{margin-bottom:3px}
+table{border-collapse:collapse;width:100%;margin:10px 0 14px;font-size:10.3pt}
+th,td{padding:4px 7px;text-align:left;vertical-align:top;border-bottom:.5pt solid var(--rule)}
+thead th{border-top:1pt solid var(--ink);border-bottom:.8pt solid var(--ink)}
+pre{background:var(--note);padding:8px 10px;font-family:var(--mono);font-size:9.8pt;overflow-x:auto;border-left:2pt solid var(--ink3)}
+code{font-family:var(--mono);font-size:9.8pt}
+math{font-size:11.5pt} .math.display{display:block;text-align:center;margin:10px 0}
+strong{font-weight:600}
+a{color:#1a3f7a}
+@media print{body{background:#fff}#page{box-shadow:none;max-width:none;padding:0}}
+</style>
+</head>
+<body><div id="page">
+<h1 id="viscosity-measurement-engineering-reference">Viscosity
+Measurement: Engineering Reference</h1>
+<p>Falling Ball, Saybolt, and Rotary Viscometers Companion to the
+Viscosity Measurement Laboratory, Clemson University (DOI
+10.5281/zenodo.22218165)</p>
+<p>This document holds the derivations, validity limits, corrections,
+and uncertainty analysis behind the student handout and the
+plain-language guide. Equations are numbered independently of the
+handout. Symbols follow the handout where they overlap.</p>
+<h2 id="definitions">1. Definitions</h2>
+<p>Newton’s law of viscosity for simple shear:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><mi>μ</mi><mover><mi>γ</mi><mo accent="true">̇</mo></mover></mrow><annotation encoding="application/x-tex">\tau = \mu \dot{\gamma}</annotation></semantics></math></p>
+<p>where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
+is shear stress (Pa),
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>γ</mi><mo accent="true">̇</mo></mover><annotation encoding="application/x-tex">\dot{\gamma}</annotation></semantics></math>
+is shear rate (1/s), and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+is dynamic viscosity (Pa.s). A fluid for which
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+is independent of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>γ</mi><mo accent="true">̇</mo></mover><annotation encoding="application/x-tex">\dot{\gamma}</annotation></semantics></math>
+is Newtonian. Every equation below assumes this.</p>
+<p>Kinematic viscosity:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ν</mi><mo>=</mo><mi>μ</mi><mi>/</mi><mi>ρ</mi></mrow><annotation encoding="application/x-tex">\nu = \mu / \rho</annotation></semantics></math></p>
+<p>with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>
+the fluid density. In SI,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ν</mi><annotation encoding="application/x-tex">\nu</annotation></semantics></math>
+is in m^2/s. Practical units:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th>SI</th>
+<th>Practical</th>
+<th>Relation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math></td>
+<td>Pa.s</td>
+<td>cP, mPa.s, P</td>
+<td>1 Pa.s = 1000 cP = 1000 mPa.s = 10 P</td>
+</tr>
+<tr class="even">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ν</mi><annotation encoding="application/x-tex">\nu</annotation></semantics></math></td>
+<td>m^2/s</td>
+<td>cSt, St</td>
+<td>1 cSt = 1 mm^2/s = 1e-6 m^2/s; 1 St = 100 cSt</td>
+</tr>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math></td>
+<td>kg/m3</td>
+<td>g/cm3, g/mL</td>
+<td>1 g/cm3 = 1000 kg/m3</td>
+</tr>
+</tbody>
+</table>
+<p>The bridge used at the bench:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ν</mi><annotation encoding="application/x-tex">\nu</annotation></semantics></math>
+[cSt] =
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+[cP] /
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>
+[g/cm3]. Any conversion across the dynamic/kinematic boundary needs a
+density at the same temperature as the viscosity.</p>
+<p>Grade systems. ISO 3448 grades (ISO VG 32, 46, 68, …) are the
+midpoint kinematic viscosity in cSt at 40 C, with a band of plus or
+minus 10 percent. SAE J300 engine oil grades are two-part: the W number
+sets low-temperature cranking (CCS) and pumping (MRV) limits at
+specified sub-zero temperatures; the second number sets a kinematic band
+at 100 C and a minimum HTHS viscosity at 150 C. The two systems share no
+reference temperature and cannot be compared without a
+viscosity-temperature curve.</p>
+<h2 id="falling-ball-viscometer">2. Falling-ball viscometer</h2>
+<h3 id="stokes-law-and-the-terminal-velocity-balance">2.1 Stokes’ law
+and the terminal-velocity balance</h3>
+<p>For a sphere of radius
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math>
+moving at speed
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>v</mi><annotation encoding="application/x-tex">v</annotation></semantics></math>
+through an unbounded Newtonian fluid in creeping flow (inertia
+negligible), the drag is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>D</mi></msub><mo>=</mo><mn>6</mn><mi>π</mi><mi>μ</mi><mi>r</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">F_D = 6 \pi \mu r v \tag{1}</annotation></semantics></math></p>
+<p>At terminal velocity, drag balances weight less buoyancy:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mi>π</mi><mi>μ</mi><mi>r</mi><mi>v</mi><mo>=</mo><mfrac displaystyle="false"><mn>4</mn><mn>3</mn></mfrac><mi>π</mi><msup><mi>r</mi><mn>3</mn></msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ρ</mi><mi>s</mi></msub><mo>−</mo><msub><mi>ρ</mi><mi>f</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">6 \pi \mu r v = \tfrac{4}{3}\pi r^3 (\rho_s - \rho_f) g \tag{2}</annotation></semantics></math></p>
+<p>Solving for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>=</mo><mfrac><mrow><mn>2</mn><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ρ</mi><mi>s</mi></msub><mo>−</mo><msub><mi>ρ</mi><mi>f</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>g</mi><msup><mi>r</mi><mn>2</mn></msup></mrow><mrow><mn>9</mn><mi>v</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mu = \frac{2 (\rho_s - \rho_f) g r^2}{9 v} \tag{3}</annotation></semantics></math></p>
+<p>with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mo>=</mo><mi>L</mi><mi>/</mi><msub><mi>t</mi><mrow><mi>a</mi><mi>v</mi><mi>g</mi></mrow></msub></mrow><annotation encoding="application/x-tex">v = L / t_{avg}</annotation></semantics></math>
+over the marked distance
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>.</p>
+<p>Sphere density from mass and diameter:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ρ</mi><mi>s</mi></msub><mo>=</mo><mfrac><mi>m</mi><mrow><mfrac displaystyle="false"><mn>4</mn><mn>3</mn></mfrac><mi>π</mi><msup><mi>r</mi><mn>3</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\rho_s = \frac{m}{\tfrac{4}{3}\pi r^3} \tag{4}</annotation></semantics></math></p>
+<h3 id="the-bench-constant">2.2 The bench constant</h3>
+<p>For fixed sphere, tube marks, and fluid density, (3) collapses to</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>=</mo><mi>K</mi><mspace width="0.167em"></mspace><mi>t</mi><mo>,</mo><mspace width="2.0em"></mspace><mi>K</mi><mo>=</mo><mfrac><mrow><mn>2</mn><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ρ</mi><mi>s</mi></msub><mo>−</mo><msub><mi>ρ</mi><mi>f</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>g</mi><msup><mi>r</mi><mn>2</mn></msup></mrow><mrow><mn>9</mn><mi>L</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mu = K\, t, \qquad K = \frac{2 (\rho_s - \rho_f) g r^2}{9 L} \tag{5}</annotation></semantics></math></p>
+<p>Bench values:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>
+= 8.3 g,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>
+= 12.70 mm,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+= 0.89 m.</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math>
+= 6.35e-3 m,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>r</mi><mn>2</mn></msup><annotation encoding="application/x-tex">r^2</annotation></semantics></math>
+= 4.0323e-5 m^2,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>
+= 1.0725e-6 m^3,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ρ</mi><mi>s</mi></msub><annotation encoding="application/x-tex">\rho_s</annotation></semantics></math>
+= 7739 kg/m3.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Fluid</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ρ</mi><mi>f</mi></msub><annotation encoding="application/x-tex">\rho_f</annotation></semantics></math>
+(kg/m3)</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ρ</mi><mi>s</mi></msub><mo>−</mo><msub><mi>ρ</mi><mi>f</mi></msub></mrow><annotation encoding="application/x-tex">\rho_s - \rho_f</annotation></semantics></math></th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>
+(Pa.s per s)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>15W-40</td>
+<td>868</td>
+<td>6871</td>
+<td>0.6786</td>
+</tr>
+<tr class="even">
+<td>Dexron II</td>
+<td>844</td>
+<td>6895</td>
+<td>0.6810</td>
+</tr>
+</tbody>
+</table>
+<p>Both round to 0.68, which is the figure given in the plain-language
+guide. The 0.3 percent difference between them is well below timing
+uncertainty.</p>
+<p>Bench results:</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fluid</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>t</mi><mrow><mi>a</mi><mi>v</mi><mi>g</mi></mrow></msub><annotation encoding="application/x-tex">t_{avg}</annotation></semantics></math>
+(s)</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>v</mi><annotation encoding="application/x-tex">v</annotation></semantics></math>
+(m/s)</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+(Pa.s)</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+(cP)</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ν</mi><annotation encoding="application/x-tex">\nu</annotation></semantics></math>
+(cSt)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>15W-40</td>
+<td>1.89</td>
+<td>0.4709</td>
+<td>1.2826</td>
+<td>1283</td>
+<td>1478</td>
+</tr>
+<tr class="even">
+<td>Dexron II</td>
+<td>0.80</td>
+<td>1.1125</td>
+<td>0.5448</td>
+<td>545</td>
+<td>645</td>
+</tr>
+</tbody>
+</table>
+<h3 id="reynolds-number-and-validity">2.3 Reynolds number and
+validity</h3>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi><mo>=</mo><mfrac><mrow><msub><mi>ρ</mi><mi>f</mi></msub><mi>v</mi><mi>d</mi></mrow><mi>μ</mi></mfrac></mrow><annotation encoding="application/x-tex">Re = \frac{\rho_f v d}{\mu} \tag{6}</annotation></semantics></math></p>
+<p>Equation (1) is the leading term of an expansion in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>.
+Oseen’s correction gives</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>D</mi></msub><mo>=</mo><mn>6</mn><mi>π</mi><mi>μ</mi><mi>r</mi><mi>v</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><mfrac displaystyle="false"><mn>3</mn><mn>16</mn></mfrac><mi>R</mi><mi>e</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">F_D = 6 \pi \mu r v \left(1 + \tfrac{3}{16} Re\right) \tag{7}</annotation></semantics></math></p>
+<p>so the Stokes drag is low by 2 percent at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+= 0.1, 19 percent at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+= 1, and about a factor of 2.9 at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+= 10. A practical classification:</p>
+<table>
+<thead>
+<tr class="header">
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math></th>
+<th>Label</th>
+<th>Error in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+from (3)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>under 0.1</td>
+<td>good</td>
+<td>under 2 percent</td>
+</tr>
+<tr class="even">
+<td>0.1 to 1</td>
+<td>usable</td>
+<td>up to about 20 percent, always high</td>
+</tr>
+<tr class="odd">
+<td>1 to 10</td>
+<td>marginal</td>
+<td>20 percent to 3x, high</td>
+</tr>
+<tr class="even">
+<td>10 and over</td>
+<td>invalid</td>
+<td>more than 3x, high</td>
+</tr>
+</tbody>
+</table>
+<p>Direction of the error. Real drag exceeds Stokes drag, so the sphere
+falls slower than (3) assumes for the true viscosity. Equation (3) has
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>v</mi><annotation encoding="application/x-tex">v</annotation></semantics></math>
+in the denominator, so a low
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>v</mi><annotation encoding="application/x-tex">v</annotation></semantics></math>
+returns a high
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>.
+Uncorrected falling-ball results at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">Re &gt; 1</annotation></semantics></math>
+always read high.</p>
+<p>Bench form. Substituting (5) and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mo>=</mo><mi>L</mi><mi>/</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">v = L/t</annotation></semantics></math>
+into (6):</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi><mo>=</mo><mfrac><mrow><msub><mi>ρ</mi><mi>f</mi></msub><mi>L</mi><mi>d</mi></mrow><mrow><mi>K</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">Re = \frac{\rho_f L d}{K t^2} \tag{8}</annotation></semantics></math></p>
+<p>For 15W-40:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+= 868 x 0.89 x 0.0127 / (0.6786
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>t</mi><mn>2</mn></msup><annotation encoding="application/x-tex">t^2</annotation></semantics></math>)
+= 14.46 /
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>t</mi><mn>2</mn></msup><annotation encoding="application/x-tex">t^2</annotation></semantics></math>.
+For Dexron II: 14.0 /
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>t</mi><mn>2</mn></msup><annotation encoding="application/x-tex">t^2</annotation></semantics></math>.
+Hence the rule of thumb
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi><mo>≈</mo><mn>14</mn><mi>/</mi><msup><mi>t</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">Re \approx 14/t^2</annotation></semantics></math>
+and the thresholds:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+&gt; 3.8 s for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+&lt; 1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+&gt; 12 s for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+&lt; 0.1.</p>
+<p>Bench Reynolds numbers, computed with the Stokes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Fluid</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math></th>
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>15W-40</td>
+<td>4.05</td>
+<td>marginal</td>
+</tr>
+<tr class="even">
+<td>Dexron II</td>
+<td>21.9</td>
+<td>invalid</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-self-reference-problem">2.4 The self-reference problem</h3>
+<p>Equation (6) evaluated with the Stokes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+from (3) understates
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+whenever (3) is itself invalid, because the inflated
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+sits in the denominator. The honest check uses an independent viscosity,
+for example the rotary reading at the same temperature. With typical
+published values:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Fluid</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+typical, 20 C (Pa.s)</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+with typical
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math></th>
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>15W-40</td>
+<td>0.26 to 0.30</td>
+<td>17 to 20</td>
+<td>invalid</td>
+</tr>
+<tr class="even">
+<td>Dexron II</td>
+<td>0.06 to 0.09</td>
+<td>130 to 190</td>
+<td>invalid</td>
+</tr>
+</tbody>
+</table>
+<p>So on this bench neither fluid is marginal. Both are well outside the
+law. Section 5.6 of the handout should be answered twice: once with the
+Stokes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+(as printed) and once with the rotary
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>.</p>
+<h3 id="finite-reynolds-correction-for-instructors">2.5 Finite-Reynolds
+correction (for instructors)</h3>
+<p>To recover a better estimate from the same timing, replace (1) with a
+drag coefficient correlation. Schiller and Naumann (valid to about
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+= 800):</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>D</mi></msub><mo>=</mo><mfrac><mn>24</mn><mrow><mi>R</mi><mi>e</mi></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><mn>0.15</mn><mi>R</mi><msup><mi>e</mi><mn>0.687</mn></msup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">C_D = \frac{24}{Re}\left(1 + 0.15 Re^{0.687}\right) \tag{9}</annotation></semantics></math></p>
+<p>with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>D</mi></msub><mo>=</mo><msub><mi>C</mi><mi>D</mi></msub><mo>⋅</mo><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><msub><mi>ρ</mi><mi>f</mi></msub><msup><mi>v</mi><mn>2</mn></msup><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">F_D = C_D \cdot \tfrac{1}{2}\rho_f v^2 \pi r^2</annotation></semantics></math>.
+The force balance becomes</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>=</mo><mfrac><mrow><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ρ</mi><mi>s</mi></msub><mo>−</mo><msub><mi>ρ</mi><mi>f</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>g</mi><mi>V</mi></mrow><mrow><mn>6</mn><mi>π</mi><mi>r</mi><mi>v</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><mn>0.15</mn><mi>R</mi><msup><mi>e</mi><mn>0.687</mn></msup><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mu = \frac{(\rho_s - \rho_f) g V}{6 \pi r v \left(1 + 0.15 Re^{0.687}\right)} \tag{10}</annotation></semantics></math></p>
+<p>which must be iterated because
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+contains
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>.
+Starting from the Stokes value converges in a few steps.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fluid</th>
+<th>Stokes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+(Pa.s)</th>
+<th>Corrected
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+(Pa.s)</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+at solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>15W-40</td>
+<td>1.283</td>
+<td>0.842</td>
+<td>6.2</td>
+</tr>
+<tr class="even">
+<td>Dexron II</td>
+<td>0.545</td>
+<td>0.120</td>
+<td>99</td>
+</tr>
+</tbody>
+</table>
+<p>The corrected 15W-40 figure (0.84 Pa.s) is still about 3x a typical
+value. The rest of the gap is explained by the wall effect (2.6) and
+possibly by incomplete settling (2.7). The corrected ATF figure (0.12
+Pa.s) is within a factor of 1.5 to 2 of typical, which is the best that
+can be expected at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+near 100 with a wall correction still unapplied.</p>
+<h3 id="wall-correction-faxen">2.6 Wall correction (Faxen)</h3>
+<p>A sphere of diameter
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>
+falling on the axis of a tube of bore
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math>
+is retarded by the wall. With
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>=</mo><mi>d</mi><mi>/</mi><mi>D</mi></mrow><annotation encoding="application/x-tex">\beta = d/D</annotation></semantics></math>,
+the creeping-flow result of Faxen is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>∞</mi></msub><mo>=</mo><mfrac><msub><mi>v</mi><mrow><mi>m</mi><mi>e</mi><mi>a</mi><mi>s</mi></mrow></msub><mrow><mn>1</mn><mo>−</mo><mn>2.104</mn><mi>β</mi><mo>+</mo><mn>2.09</mn><msup><mi>β</mi><mn>3</mn></msup><mo>−</mo><mn>0.95</mn><msup><mi>β</mi><mn>5</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">v_\infty = \frac{v_{meas}}{1 - 2.104\beta + 2.09\beta^3 - 0.95\beta^5} \tag{11}</annotation></semantics></math></p>
+<p>The simulator uses the series to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>β</mi><mn>3</mn></msup><annotation encoding="application/x-tex">\beta^3</annotation></semantics></math>;
+the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>β</mi><mn>5</mn></msup><annotation encoding="application/x-tex">\beta^5</annotation></semantics></math>
+term is under 0.1 percent for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+&lt; 0.3. The simpler Ladenburg form is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>∞</mi></msub><mo>=</mo><msub><mi>v</mi><mrow><mi>m</mi><mi>e</mi><mi>a</mi><mi>s</mi></mrow></msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><mn>2.4</mn><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">v_\infty = v_{meas}(1 + 2.4\beta)</annotation></semantics></math>
+and agrees with (11) to first order. The viscosity should be computed
+from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>v</mi><mi>∞</mi></msub><annotation encoding="application/x-tex">v_\infty</annotation></semantics></math>,
+and is therefore lower than the uncorrected result by the same
+factor.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math>
+(mm)</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></th>
+<th>correction factor</th>
+<th>uncorrected
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+/ corrected
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>25.4</td>
+<td>0.500</td>
+<td>0.209</td>
+<td>4.8</td>
+</tr>
+<tr class="even">
+<td>38.1</td>
+<td>0.333</td>
+<td>0.376</td>
+<td>2.7</td>
+</tr>
+<tr class="odd">
+<td>50.8</td>
+<td>0.250</td>
+<td>0.507</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<td>76.2</td>
+<td>0.167</td>
+<td>0.659</td>
+<td>1.5</td>
+</tr>
+<tr class="odd">
+<td>101.6</td>
+<td>0.125</td>
+<td>0.741</td>
+<td>1.3</td>
+</tr>
+</tbody>
+</table>
+<p>With the 12.70 mm sphere the wall effect is never small in any tube a
+student can lift. In a 50 mm tube it alone doubles the result. Faxen’s
+result is a creeping-flow result and carries the same
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+caveat as Stokes’ law; at the bench
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+it is indicative, not exact.</p>
+<h3 id="settling-distance-before-the-start-mark">2.7 Settling distance
+before the START mark</h3>
+<p>In creeping flow the approach to terminal velocity is exponential
+with time constant</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>τ</mi><mi>v</mi></msub><mo>=</mo><mfrac><mrow><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ρ</mi><mi>s</mi></msub><mo>+</mo><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><msub><mi>ρ</mi><mi>f</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.167em"></mspace><msup><mi>d</mi><mn>2</mn></msup></mrow><mrow><mn>18</mn><mi>μ</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\tau_v = \frac{(\rho_s + \tfrac{1}{2}\rho_f)\, d^2}{18 \mu} \tag{12}</annotation></semantics></math></p>
+<p>where the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><msub><mi>ρ</mi><mi>f</mi></msub></mrow><annotation encoding="application/x-tex">\tfrac{1}{2}\rho_f</annotation></semantics></math>
+term is the added mass. Settling to 99 percent takes about
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4.6</mn><msub><mi>τ</mi><mi>v</mi></msub></mrow><annotation encoding="application/x-tex">4.6\tau_v</annotation></semantics></math>
+and covers roughly
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>t</mi></msub><mo>⋅</mo><mn>3.6</mn><msub><mi>τ</mi><mi>v</mi></msub></mrow><annotation encoding="application/x-tex">v_t \cdot 3.6\tau_v</annotation></semantics></math>.</p>
+<p>For the bench sphere in 15W-40 at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+= 0.3 Pa.s:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>τ</mi><mi>v</mi></msub><annotation encoding="application/x-tex">\tau_v</annotation></semantics></math>
+= 0.24 s. A numerical integration of the fall with the drag law (9) and
+added mass gives:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fluid
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>,
+Pa.s)</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>v</mi><mi>t</mi></msub><annotation encoding="application/x-tex">v_t</annotation></semantics></math>
+free (m/s)</th>
+<th>95 percent settled after (m)</th>
+<th>99 percent settled after (m)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>15W-40 (0.26 to 0.30)</td>
+<td>0.80 to 0.84</td>
+<td>0.12 to 0.13</td>
+<td>0.20 to 0.23</td>
+</tr>
+<tr class="even">
+<td>ATF (0.07 to 0.12)</td>
+<td>1.11 to 1.29</td>
+<td>0.21 to 0.28</td>
+<td>0.37 to 0.48</td>
+</tr>
+</tbody>
+</table>
+<p>The START mark should therefore be at least 0.25 m below the release
+point for the oil and at least 0.5 m for the ATF. If the tube does not
+allow that, the ATF timing includes acceleration and reads high on top
+of the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+and wall errors.</p>
+<p>The same integration predicts a free-fall transit of about 1.1 s over
+0.89 m for a typical 15W-40 at room temperature, against the bench
+average of 1.89 s. A wall factor near 0.5 (50 mm bore) accounts for the
+difference, which supports the interpretation in 2.5 and 2.6.</p>
+<h3 id="uncertainty">2.8 Uncertainty</h3>
+<p>From (3), with independent errors,</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>δ</mi><mi>μ</mi></mrow><mi>μ</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>δ</mi><mi>t</mi></mrow><mi>t</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mn>2</mn><mspace width="0.167em"></mspace><mi>δ</mi><mi>r</mi></mrow><mi>r</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ρ</mi><mi>s</mi></msub><mo>−</mo><msub><mi>ρ</mi><mi>f</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mrow><msub><mi>ρ</mi><mi>s</mi></msub><mo>−</mo><msub><mi>ρ</mi><mi>f</mi></msub></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>δ</mi><mi>L</mi></mrow><mi>L</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\left(\frac{\delta\mu}{\mu}\right)^2 = \left(\frac{\delta t}{t}\right)^2 + \left(\frac{2\,\delta r}{r}\right)^2 + \left(\frac{\delta(\rho_s - \rho_f)}{\rho_s - \rho_f}\right)^2 + \left(\frac{\delta L}{L}\right)^2 \tag{13}</annotation></semantics></math></p>
+<p>Bench estimates:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>Value</th>
+<th>Relative</th>
+<th>Contribution to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mi>μ</mi><mi>/</mi><mi>μ</mi></mrow><annotation encoding="application/x-tex">\delta\mu/\mu</annotation></semantics></math></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>stopwatch,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">\delta t</annotation></semantics></math>
+= 0.1 s on 1.89 s</td>
+<td>5.3 percent</td>
+<td>5.3 percent</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>micrometer,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">\delta r</annotation></semantics></math>
+= 0.01 mm on 6.35 mm</td>
+<td>0.16 percent</td>
+<td>0.3 percent</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>balance,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">\delta m</annotation></semantics></math>
+= 0.05 g on 8.3 g</td>
+<td>0.6 percent</td>
+<td>0.6 percent (through
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ρ</mi><mi>s</mi></msub><annotation encoding="application/x-tex">\rho_s</annotation></semantics></math>)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>fluid density, 2 percent of 868</td>
+<td>2 percent of 12.6 percent of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mi>ρ</mi></mrow><annotation encoding="application/x-tex">\Delta\rho</annotation></semantics></math></td>
+<td>0.25 percent</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>tape,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mi>L</mi></mrow><annotation encoding="application/x-tex">\delta L</annotation></semantics></math>
+= 2 mm on 890 mm</td>
+<td>0.2 percent</td>
+<td>0.2 percent</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Combined (root sum of squares)</td>
+<td></td>
+<td>about 5.4 percent</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Timing dominates. Four trials bring the random part down by a factor
+of 2; reaction-time bias does not average out and should be estimated
+separately by timing a known interval. The range of the four timings
+divided by the mean is the first-order estimate the handout asks
+for.</p>
+<p>None of this accounts for model error (Sections 2.3 to 2.7), which at
+the bench
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+is a factor of 3 to 8, not a few percent. Report both: “1.28 plus or
+minus 0.07 Pa.s by Stokes’ law, model invalid at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+= 4, result reads high by an estimated factor of 3 to 4.”</p>
+<h3 id="design-of-a-valid-falling-ball-test">2.9 Design of a valid
+falling-ball test</h3>
+<p>From (3) and (6),
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mo>∝</mo><msup><mi>r</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">v \propto r^2</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi><mo>∝</mo><msup><mi>r</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">Re \propto r^3</annotation></semantics></math>.
+To bring the bench fluids inside
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+&lt; 1:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sphere
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>
+(mm)</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+scale factor vs 12.70 mm</th>
+<th>15W-40
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+(from 17)</th>
+<th>ATF
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+(from 170)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6.35</td>
+<td>1/8</td>
+<td>2.1</td>
+<td>21</td>
+</tr>
+<tr class="even">
+<td>3.18</td>
+<td>1/64</td>
+<td>0.27</td>
+<td>2.7</td>
+</tr>
+<tr class="odd">
+<td>2.38</td>
+<td>1/152</td>
+<td>0.11</td>
+<td>1.1</td>
+</tr>
+<tr class="even">
+<td>1.59</td>
+<td>1/512</td>
+<td>0.03</td>
+<td>0.33</td>
+</tr>
+</tbody>
+</table>
+<p>A 3/32 inch (2.38 mm) chrome steel ball makes the oil measurement
+valid and the ATF marginal. A 1/16 inch ball makes both valid. Small
+balls fall slowly (about 8 mm/s in the oil for 2.38 mm), so a shorter
+marked distance and a longer tube-to-diameter ratio both follow
+naturally, and the wall correction shrinks to a few percent.</p>
+<h2 id="saybolt-viscometer">3. Saybolt viscometer</h2>
+<h3 id="principle">3.1 Principle</h3>
+<p>A fixed volume (60 mL) drains under its own head through a calibrated
+orifice. For a gravity-driven efflux the driving pressure scales with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mi>g</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">\rho g h</annotation></semantics></math>
+and the resistance with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>,
+so the efflux time scales with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mi>/</mi><mi>ρ</mi><mo>=</mo><mi>ν</mi></mrow><annotation encoding="application/x-tex">\mu/\rho = \nu</annotation></semantics></math>.
+This is why the Saybolt reading converts to kinematic viscosity without
+a density. The instrument is standardised in ASTM D88; conversions to
+cSt are in ASTM D2161.</p>
+<h3 id="conversion">3.2 Conversion</h3>
+<p>The classic two-branch approximation used in the lab:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ν</mi><mspace width="0.167em"></mspace><mrow><mo stretchy="true" form="prefix">[</mo><mtext mathvariant="normal">cSt</mtext><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mn>0.226</mn><mspace width="0.167em"></mspace><mi>t</mi><mo>−</mo><mfrac><mn>195</mn><mi>t</mi></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mn>32</mn><mo>&lt;</mo><mi>t</mi><mo>≤</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">\nu\,[\text{cSt}] = 0.226\,t - \frac{195}{t}, \qquad 32 &lt; t \le 100 \tag{14}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ν</mi><mspace width="0.167em"></mspace><mrow><mo stretchy="true" form="prefix">[</mo><mtext mathvariant="normal">cSt</mtext><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mn>0.220</mn><mspace width="0.167em"></mspace><mi>t</mi><mo>−</mo><mfrac><mn>135</mn><mi>t</mi></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mi>t</mi><mo>&gt;</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">\nu\,[\text{cSt}] = 0.220\,t - \frac{135}{t}, \qquad t &gt; 100 \tag{15}</annotation></semantics></math></p>
+<p>with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+in SUS. Both give 20.65 cSt at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+= 100, so the pair is continuous. Below 32 s the orifice flow is no
+longer laminar-dominated and neither branch applies. Above about 1000 s
+the test is impractical and the Saybolt Furol orifice (about 10x larger)
+is used instead.</p>
+<p>Inverse, for prediction from a known
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ν</mi><annotation encoding="application/x-tex">\nu</annotation></semantics></math>:
+solve the quadratic
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><msup><mi>t</mi><mn>2</mn></msup><mo>−</mo><mi>ν</mi><mi>t</mi><mo>−</mo><mi>c</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a t^2 - \nu t - c = 0</annotation></semantics></math>
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>,</mo><mi>c</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(a, c)</annotation></semantics></math>
+= (0.226, 195) for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ν</mi><mo>≤</mo><mn>20.65</mn></mrow><annotation encoding="application/x-tex">\nu \le 20.65</annotation></semantics></math>
+and (0.220, 135) above:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mfrac><mrow><mi>ν</mi><mo>+</mo><msqrt><mrow><msup><mi>ν</mi><mn>2</mn></msup><mo>+</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">t = \frac{\nu + \sqrt{\nu^2 + 4ac}}{2a} \tag{16}</annotation></semantics></math></p>
+<p>Dynamic viscosity then follows from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+[cP] =
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ν</mi><annotation encoding="application/x-tex">\nu</annotation></semantics></math>
+[cSt] x
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>
+[g/cm3], with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>
+at the test temperature.</p>
+<h3 id="temperature-note">3.3 Temperature note</h3>
+<p>Equations (14) and (15) are defined at 100 F (37.8 C). ASTM D2161
+corrects SUS at other temperatures by the factor
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>+</mo><mn>0.000061</mn><mspace width="0.167em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>T</mi><mi>F</mi></msub><mo>−</mo><mn>100</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">1 + 0.000061\,(T_F - 100)</annotation></semantics></math>,
+which is 0.1 percent at 50 C and can be ignored at bench precision. The
+choice of 50 C in the procedure is a practical one: it moves the efflux
+time of the bench oils into the 32 to 1000 s window. From the Walther
+curve of a typical 15W-40
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ν</mi><annotation encoding="application/x-tex">\nu</annotation></semantics></math>
+= 105 cSt at 40 C, 14.5 cSt at 100 C):</p>
+<table>
+<thead>
+<tr class="header">
+<th>T (C)</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ν</mi><annotation encoding="application/x-tex">\nu</annotation></semantics></math>
+(cSt)</th>
+<th>predicted SUS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>20</td>
+<td>300</td>
+<td>1364</td>
+</tr>
+<tr class="even">
+<td>40</td>
+<td>105</td>
+<td>484</td>
+</tr>
+<tr class="odd">
+<td>50</td>
+<td>68</td>
+<td>313</td>
+</tr>
+<tr class="even">
+<td>60</td>
+<td>46</td>
+<td>213</td>
+</tr>
+</tbody>
+</table>
+<p>At room temperature the oil is outside the window; at 50 C it is well
+inside.</p>
+<h3 id="worked-example">3.4 Worked example</h3>
+<p>Reading: 275 SUS on 15W-40 at 50 C,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>
+= 0.868 g/cm3 (measured at 20 C; correct by about -0.0007 g/cm3 per C if
+a 50 C density is wanted, giving 0.847).</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ν</mi><annotation encoding="application/x-tex">\nu</annotation></semantics></math>
+= 0.220 x 275 - 135/275 = 60.5 - 0.49 = 60.0 cSt
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+= 60.0 x 0.847 = 50.8 cP = 0.051 Pa.s</p>
+<h2 id="rotary-concentric-cylinder-viscometer">4. Rotary
+(concentric-cylinder) viscometer</h2>
+<h3 id="couette-flow-between-coaxial-cylinders">4.1 Couette flow between
+coaxial cylinders</h3>
+<p>Rotor (bob) of radius
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>R</mi><mi>i</mi></msub><annotation encoding="application/x-tex">R_i</annotation></semantics></math>
+and immersed height
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>
+turns at angular speed
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ω</mi><annotation encoding="application/x-tex">\omega</annotation></semantics></math>
+inside a stationary cup of radius
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>R</mi><mi>o</mi></msub><annotation encoding="application/x-tex">R_o</annotation></semantics></math>.
+For steady laminar Newtonian flow the azimuthal velocity is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>θ</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>A</mi><mi>r</mi><mo>+</mo><mfrac><mi>B</mi><mi>r</mi></mfrac></mrow><annotation encoding="application/x-tex">v_\theta(r) = A r + \frac{B}{r} \tag{17}</annotation></semantics></math></p>
+<p>with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>θ</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>R</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>ω</mi><msub><mi>R</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">v_\theta(R_i) = \omega R_i</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>θ</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>R</mi><mi>o</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">v_\theta(R_o) = 0</annotation></semantics></math>,
+giving</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mo>−</mo><mfrac><mrow><mi>ω</mi><msubsup><mi>R</mi><mi>i</mi><mn>2</mn></msubsup></mrow><mrow><msubsup><mi>R</mi><mi>o</mi><mn>2</mn></msubsup><mo>−</mo><msubsup><mi>R</mi><mi>i</mi><mn>2</mn></msubsup></mrow></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mi>B</mi><mo>=</mo><mfrac><mrow><mi>ω</mi><msubsup><mi>R</mi><mi>i</mi><mn>2</mn></msubsup><msubsup><mi>R</mi><mi>o</mi><mn>2</mn></msubsup></mrow><mrow><msubsup><mi>R</mi><mi>o</mi><mn>2</mn></msubsup><mo>−</mo><msubsup><mi>R</mi><mi>i</mi><mn>2</mn></msubsup></mrow></mfrac></mrow><annotation encoding="application/x-tex">A = -\frac{\omega R_i^2}{R_o^2 - R_i^2}, \qquad B = \frac{\omega R_i^2 R_o^2}{R_o^2 - R_i^2} \tag{18}</annotation></semantics></math></p>
+<p>Shear stress in cylindrical Couette flow is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><mi>μ</mi><mspace width="0.167em"></mspace><mi>r</mi><mspace width="0.167em"></mspace><mfrac><mi>d</mi><mrow><mi>d</mi><mi>r</mi></mrow></mfrac><mspace width="-0.167em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>v</mi><mi>θ</mi></msub><mi>r</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>−</mo><mfrac><mrow><mn>2</mn><mi>μ</mi><mi>B</mi></mrow><msup><mi>r</mi><mn>2</mn></msup></mfrac></mrow><annotation encoding="application/x-tex">\tau = \mu\, r\, \frac{d}{dr}\!\left(\frac{v_\theta}{r}\right) = -\frac{2\mu B}{r^2}</annotation></semantics></math>,
+and the torque transmitted across any cylindrical surface,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mn>2</mn><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup><mi>H</mi><mi>τ</mi></mrow><annotation encoding="application/x-tex">M = 2\pi r^2 H \tau</annotation></semantics></math>,
+is independent of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mfrac><mrow><mn>4</mn><mi>π</mi><mi>μ</mi><mspace width="0.167em"></mspace><mi>ω</mi><mspace width="0.167em"></mspace><mi>H</mi><mspace width="0.167em"></mspace><msubsup><mi>R</mi><mi>i</mi><mn>2</mn></msubsup><msubsup><mi>R</mi><mi>o</mi><mn>2</mn></msubsup></mrow><mrow><msubsup><mi>R</mi><mi>o</mi><mn>2</mn></msubsup><mo>−</mo><msubsup><mi>R</mi><mi>i</mi><mn>2</mn></msubsup></mrow></mfrac></mrow><annotation encoding="application/x-tex">M = \frac{4\pi\mu\,\omega\,H\,R_i^2 R_o^2}{R_o^2 - R_i^2} \tag{19}</annotation></semantics></math></p>
+<p>This is the Margules equation. Solved for viscosity:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>=</mo><mfrac><mrow><mi>M</mi><mspace width="0.167em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>R</mi><mi>o</mi><mn>2</mn></msubsup><mo>−</mo><msubsup><mi>R</mi><mi>i</mi><mn>2</mn></msubsup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mrow><mn>4</mn><mi>π</mi><mspace width="0.167em"></mspace><mi>ω</mi><mspace width="0.167em"></mspace><mi>H</mi><mspace width="0.167em"></mspace><msubsup><mi>R</mi><mi>i</mi><mn>2</mn></msubsup><msubsup><mi>R</mi><mi>o</mi><mn>2</mn></msubsup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mu = \frac{M\,(R_o^2 - R_i^2)}{4\pi\,\omega\,H\,R_i^2 R_o^2} \tag{20}</annotation></semantics></math></p>
+<p>Shear rate and shear stress at the rotor surface:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>γ</mi><mo accent="true">̇</mo></mover><mi>i</mi></msub><mo>=</mo><mfrac><mrow><mn>2</mn><mspace width="0.167em"></mspace><mi>ω</mi><mspace width="0.167em"></mspace><msubsup><mi>R</mi><mi>o</mi><mn>2</mn></msubsup></mrow><mrow><msubsup><mi>R</mi><mi>o</mi><mn>2</mn></msubsup><mo>−</mo><msubsup><mi>R</mi><mi>i</mi><mn>2</mn></msubsup></mrow></mfrac><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>τ</mi><mi>i</mi></msub><mo>=</mo><mfrac><mi>M</mi><mrow><mn>2</mn><mi>π</mi><msubsup><mi>R</mi><mi>i</mi><mn>2</mn></msubsup><mi>H</mi></mrow></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mi>μ</mi><mo>=</mo><mfrac><msub><mi>τ</mi><mi>i</mi></msub><msub><mover><mi>γ</mi><mo accent="true">̇</mo></mover><mi>i</mi></msub></mfrac></mrow><annotation encoding="application/x-tex">\dot{\gamma}_i = \frac{2\,\omega\,R_o^2}{R_o^2 - R_i^2}, \qquad \tau_i = \frac{M}{2\pi R_i^2 H}, \qquad \mu = \frac{\tau_i}{\dot{\gamma}_i} \tag{21}</annotation></semantics></math></p>
+<p>Angular speed from rev/min:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo>=</mo><mn>2</mn><mi>π</mi><mi>N</mi><mi>/</mi><mn>60</mn></mrow><annotation encoding="application/x-tex">\omega = 2\pi N/60</annotation></semantics></math>.</p>
+<p>Wide-cup limit
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>o</mi></msub><mo>→</mo><mi>∞</mi></mrow><annotation encoding="application/x-tex">R_o \to \infty</annotation></semantics></math>):
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>γ</mi><mo accent="true">̇</mo></mover><mi>i</mi></msub><mo>→</mo><mn>2</mn><mi>ω</mi></mrow><annotation encoding="application/x-tex">\dot{\gamma}_i \to 2\omega</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>→</mo><mn>4</mn><mi>π</mi><mi>μ</mi><mi>ω</mi><mi>H</mi><msubsup><mi>R</mi><mi>i</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">M \to 4\pi\mu\omega H R_i^2</annotation></semantics></math>.
+This is the regime of a spindle in a large beaker, which is how bench
+rotary viscometers are normally used.</p>
+<h3 id="the-spindle-factor">4.2 The spindle factor</h3>
+<p>Everything in (20) except
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
+is geometry, so</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>=</mo><msub><mi>K</mi><mi>s</mi></msub><mfrac><mi>M</mi><mi>N</mi></mfrac></mrow><annotation encoding="application/x-tex">\mu = K_s \frac{M}{N} \tag{22}</annotation></semantics></math></p>
+<p>with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mi>s</mi></msub><annotation encoding="application/x-tex">K_s</annotation></semantics></math>
+a constant for a given spindle in a given cup. Instrument makers
+tabulate it as a spindle factor (often as a “full-scale range” per
+spindle and speed). A reading without spindle and speed cannot be
+reproduced or checked, which is why the handout requires both.</p>
+<p>Percent of full scale. If the instrument’s torque capacity is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mrow><mi>f</mi><mi>s</mi></mrow></msub><annotation encoding="application/x-tex">M_{fs}</annotation></semantics></math>,
+the reading is at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.167em"></mspace><mi>M</mi><mi>/</mi><msub><mi>M</mi><mrow><mi>f</mi><mi>s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">100\,M/M_{fs}</annotation></semantics></math>
+percent. Below about 10 percent the torque signal is in the noise; above
+100 percent the instrument is over range. Choose spindle and speed to
+sit in between.</p>
+<h3 id="assumptions-and-their-limits">4.3 Assumptions and their
+limits</h3>
+<ul>
+<li>Newtonian fluid. Oils and water qualify; suspensions and polymer
+solutions generally do not.</li>
+<li>Laminar flow. For an inner rotating cylinder the flow becomes
+unstable to Taylor vortices when the Taylor number
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>a</mi><mo>=</mo><msup><mi>ρ</mi><mn>2</mn></msup><msup><mi>ω</mi><mn>2</mn></msup><msub><mi>R</mi><mi>i</mi></msub><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>R</mi><mi>o</mi></msub><mo>−</mo><msub><mi>R</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mn>3</mn></msup><mi>/</mi><msup><mi>μ</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">Ta = \rho^2 \omega^2 R_i (R_o - R_i)^3 / \mu^2</annotation></semantics></math>
+exceeds roughly 1700 (narrow gap). For oils at bench speeds
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">Ta</annotation></semantics></math>
+is far below this; for water in a wide gap it is not, which is one
+reason bench rotary viscometers do not read water well.</li>
+<li>Isothermal. Viscous heating at these torques is negligible.</li>
+<li>End effects neglected. The top and bottom faces of the rotor add
+torque not captured by (19). Makers either shape the spindle to minimise
+it or fold it into
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mi>s</mi></msub><annotation encoding="application/x-tex">K_s</annotation></semantics></math>
+by calibration.</li>
+<li>Rotor fully immersed and coaxial. Partial immersion reduces
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>
+in an unknown way; eccentricity changes the gap.</li>
+</ul>
+<h3 id="worked-example-1">4.4 Worked example</h3>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>R</mi><mi>i</mi></msub><annotation encoding="application/x-tex">R_i</annotation></semantics></math>
+= 10 mm,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>R</mi><mi>o</mi></msub><annotation encoding="application/x-tex">R_o</annotation></semantics></math>
+= 40 mm,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>
+= 40 mm,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
+= 60 rev/min,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+= 0.300 Pa.s.</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ω</mi><annotation encoding="application/x-tex">\omega</annotation></semantics></math>
+= 6.283 rad/s
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>γ</mi><mo accent="true">̇</mo></mover><mi>i</mi></msub><annotation encoding="application/x-tex">\dot{\gamma}_i</annotation></semantics></math>
+= 2 x 6.283 x 0.0016 / (0.0016 - 0.0001) = 13.4 1/s
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+= 4 pi x 0.300 x 6.283 x 0.040 x 1e-4 x 0.0016 / 0.0015 = 1.01e-4 N.m
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>τ</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\tau_i</annotation></semantics></math>
+= 1.01e-4 / (2 pi x 1e-4 x 0.040) = 4.02 Pa
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+= 4.02 / 13.4 = 0.300 Pa.s (closes)</p>
+<p>A torque of 0.1 mN.m is typical of a bench instrument’s low range,
+which illustrates why a larger spindle or faster speed is needed for
+thin fluids.</p>
+<h2 id="viscosity-against-temperature">5. Viscosity against
+temperature</h2>
+<h3 id="walther-equation-astm-d341">5.1 Walther equation (ASTM
+D341)</h3>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>log</mo><mn>10</mn></msub><mspace width="-0.167em"></mspace><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">(</mo><msub><mo>log</mo><mn>10</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>ν</mi><mo>+</mo><mn>0.7</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo minsize="1.2" maxsize="1.2" stretchy="false" form="postfix">)</mo><mo>=</mo><mi>A</mi><mo>−</mo><mi>B</mi><msub><mo>log</mo><mn>10</mn></msub><mi>T</mi></mrow><annotation encoding="application/x-tex">\log_{10}\!\big(\log_{10}(\nu + 0.7)\big) = A - B\log_{10} T \tag{23}</annotation></semantics></math></p>
+<p>with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ν</mi><annotation encoding="application/x-tex">\nu</annotation></semantics></math>
+in cSt and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>
+in kelvin. Two points
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>T</mi><mn>1</mn></msub><mo>,</mo><msub><mi>ν</mi><mn>1</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(T_1, \nu_1)</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>T</mi><mn>2</mn></msub><mo>,</mo><msub><mi>ν</mi><mn>2</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(T_2, \nu_2)</annotation></semantics></math>
+determine the constants:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mfrac><mrow><msub><mi>Z</mi><mn>1</mn></msub><mo>−</mo><msub><mi>Z</mi><mn>2</mn></msub></mrow><mrow><msub><mo>log</mo><mn>10</mn></msub><msub><mi>T</mi><mn>2</mn></msub><mo>−</mo><msub><mo>log</mo><mn>10</mn></msub><msub><mi>T</mi><mn>1</mn></msub></mrow></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mi>A</mi><mo>=</mo><msub><mi>Z</mi><mn>1</mn></msub><mo>+</mo><mi>B</mi><msub><mo>log</mo><mn>10</mn></msub><msub><mi>T</mi><mn>1</mn></msub><mo>,</mo><mspace width="2.0em"></mspace><mi>Z</mi><mo>=</mo><msub><mo>log</mo><mn>10</mn></msub><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">(</mo><msub><mo>log</mo><mn>10</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>ν</mi><mo>+</mo><mn>0.7</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo minsize="1.2" maxsize="1.2" stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">B = \frac{Z_1 - Z_2}{\log_{10} T_2 - \log_{10} T_1}, \qquad A = Z_1 + B\log_{10} T_1, \qquad Z = \log_{10}\big(\log_{10}(\nu+0.7)\big) \tag{24}</annotation></semantics></math></p>
+<p>More than two points are fitted by least squares in the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><msub><mo>log</mo><mn>10</mn></msub><mi>T</mi><mo>,</mo><mi>Z</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\log_{10} T, Z)</annotation></semantics></math>
+plane. The 0.7 form loses accuracy below about 2 cSt, where D341
+switches to a polynomial in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ν</mi><annotation encoding="application/x-tex">\nu</annotation></semantics></math>.
+On Walther paper a mineral oil plots as a straight line, which is the
+basis of the ASTM viscosity-temperature chart and of the viscosity
+index.</p>
+<p>Example, generic 15W-40 from its grade sheet
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ν</mi><annotation encoding="application/x-tex">\nu</annotation></semantics></math>
+= 105 cSt at 40 C, 14.5 cSt at 100 C):
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+= 3.62,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+= 9.27. Evaluated:</p>
+<table>
+<thead>
+<tr class="header">
+<th>T (C)</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ν</mi><annotation encoding="application/x-tex">\nu</annotation></semantics></math>
+(cSt)</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+(cP,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>
+= 0.868)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td>816</td>
+<td>708</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>300</td>
+<td>261</td>
+</tr>
+<tr class="odd">
+<td>40</td>
+<td>105</td>
+<td>91</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td>68</td>
+<td>59</td>
+</tr>
+<tr class="odd">
+<td>60</td>
+<td>46</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+<p>Roughly a halving every 12 to 15 C in the 20 to 60 C band, and a
+factor of about 8 between 40 C and 5 C. That factor is the cold-start
+problem in Analysis Question 8.</p>
+<h3 id="andrade-arrhenius-form">5.2 Andrade (Arrhenius) form</h3>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>=</mo><mi>A</mi><mspace width="0.167em"></mspace><msup><mi>e</mi><mrow><mi>B</mi><mi>/</mi><mi>T</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\mu = A\,e^{B/T} \tag{25}</annotation></semantics></math></p>
+<p>fitted as
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>ln</mo><mi>μ</mi><mo>=</mo><mo>ln</mo><mi>A</mi><mo>+</mo><mi>B</mi><mi>/</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">\ln\mu = \ln A + B/T</annotation></semantics></math>.
+Adequate over a narrow range (30 to 40 C span); the Walther form is
+better over wide ranges and is the industry standard. The simulator
+carries both; the Walther fit drives the displayed curve.</p>
+<h3 id="using-the-rotary-sweep">5.3 Using the rotary sweep</h3>
+<p>A rotary sweep of two or more temperatures on the same fluid
+supersedes published pairs in the simulator. A bath temperature outside
+the span of the fitted data is extrapolation and should be labelled as
+such. A single point fixes a value, not a slope, and must never be
+extrapolated.</p>
+<h2 id="reconciling-the-three-methods-on-the-bench">6. Reconciling the
+three methods on the bench</h2>
+<p>For 15W-40, one fluid, three numbers:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Condition</th>
+<th>Raw result</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Falling ball, 12.70 mm sphere, room temperature</td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+about 17 (true)</td>
+<td>1.28 Pa.s</td>
+<td>invalid; reads high by 3x to 5x from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Re</annotation></semantics></math>
+and wall effects combined</td>
+</tr>
+<tr class="even">
+<td>Saybolt, 50 C</td>
+<td>inside 32 to 1000 s</td>
+<td>about 0.05 Pa.s</td>
+<td>valid at 50 C; convert to 20 C with the Walther curve before
+comparing</td>
+</tr>
+<tr class="odd">
+<td>Rotary, sweep 60 to 20 C</td>
+<td>spindle and speed recorded, on scale</td>
+<td>about 0.26 to 0.30 Pa.s at 20 C</td>
+<td>valid; the reference for the other two</td>
+</tr>
+</tbody>
+</table>
+<p>The comparison the handout asks for in Question 3 is falling ball
+against rotary at the same temperature. The expected disagreement is
+several hundred percent, and Question 5 asks for its direction and
+cause. The Saybolt result enters only after temperature correction, and
+then should agree with the rotary within the combined uncertainty of the
+two methods, typically 5 to 15 percent at bench precision.</p>
+<h2 id="constants">7. Constants</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Constant</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math></td>
+<td>9.81 m/s^2</td>
+</tr>
+<tr class="even">
+<td>steel (chrome, AISI 52100)</td>
+<td>7810 kg/m3</td>
+</tr>
+<tr class="odd">
+<td>1/2 inch chrome steel ball</td>
+<td>12.700 mm, 8.36 g</td>
+</tr>
+<tr class="even">
+<td>water, 20 C</td>
+<td>998.2 kg/m3, 1.002 cP, 1.004 cSt</td>
+</tr>
+<tr class="odd">
+<td>mineral oil density coefficient</td>
+<td>about -0.0007 g/cm3 per C</td>
+</tr>
+<tr class="even">
+<td>1 inch</td>
+<td>25.4 mm</td>
+</tr>
+<tr class="odd">
+<td>100 F</td>
+<td>37.8 C</td>
+</tr>
+</tbody>
+</table>
+<h2 id="references">8. References</h2>
+<ul>
+<li>ASTM D88, Standard Test Method for Saybolt Viscosity.</li>
+<li>ASTM D2161, Standard Practice for Conversion of Kinematic Viscosity
+to Saybolt Universal Viscosity or to Saybolt Furol Viscosity.</li>
+<li>ASTM D341, Standard Practice for Viscosity-Temperature Equations and
+Charts for Liquid Petroleum or Hydrocarbon Products.</li>
+<li>ISO 3448, Industrial liquid lubricants: ISO viscosity
+classification.</li>
+<li>SAE J300, Engine Oil Viscosity Classification.</li>
+<li>Faxen, H. (1922). Der Widerstand gegen die Bewegung einer starren
+Kugel in einer zahen Flussigkeit, die zwischen zwei parallelen ebenen
+Wanden eingeschlossen ist. Annalen der Physik 68, 89 to 119.</li>
+<li>Schiller, L. and Naumann, A. (1933). Uber die grundlegenden
+Berechnungen bei der Schwerkraftaufbereitung. Zeitschrift des Vereines
+Deutscher Ingenieure 77, 318 to 320.</li>
+<li>Clift, R., Grace, J. R., Weber, M. E. (1978). Bubbles, Drops, and
+Particles. Academic Press. (drag correlations, wall effects,
+settling)</li>
+<li>Macosko, C. W. (1994). Rheology: Principles, Measurements, and
+Applications. Wiley-VCH. (concentric-cylinder derivation, end effects,
+Taylor instability)</li>
+</ul>
+</div></body>
+</html>

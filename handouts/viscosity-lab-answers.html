@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Viscosity Measurement Laboratory &mdash; Instructor Answer Sheet</title>
+<title>Viscosity Measurement Laboratory: Instructor Answer Sheet</title>
 <style>
 /* Live answer key. Enter the master measurements for the bench once and every
    answer in the handout recomputes, so the key is correct for the actual jack
@@ -90,7 +90,7 @@ code{font-family:var(--mono);font-size:9.5pt}
 
 <div class="titleblock">
   <h1>Viscosity Measurement: Falling Ball, Saybolt, and Rotary Viscometers</h1>
-  <div class="sub">Instructor Answer Sheet &mdash; live calculation</div>
+  <div class="sub">Instructor Answer Sheet: live calculation</div>
   <div class="tag">Not for distribution to students</div>
 </div>
 <hr class="rule">
@@ -138,7 +138,7 @@ are computed; blue fields are yours. Print this page for a paper key.</p>
   <tbody></tbody>
 </table>
 
-<h2 class="pagebreak"><span class="n">B</span>Answer Key &mdash; Part I, Falling Ball</h2>
+<h2 class="pagebreak"><span class="n">B</span>Answer Key: Part I, Falling Ball</h2>
 
 <h3><span class="n">5.1</span>Steel sphere</h3>
 <div id="k-sphere"></div>
@@ -158,10 +158,10 @@ are computed; blue fields are yours. Print this page for a paper key.</p>
 <h3><span class="n">5.6</span>Reynolds number and validity</h3>
 <div id="k-re"></div>
 
-<h2><span class="n">C</span>Answer Key &mdash; Part II, Saybolt</h2>
+<h2><span class="n">C</span>Answer Key: Part II, Saybolt</h2>
 <div id="k-saybolt"></div>
 
-<h2><span class="n">D</span>Answer Key &mdash; Part III, Rotary</h2>
+<h2><span class="n">D</span>Answer Key: Part III, Rotary</h2>
 <table id="rv-table">
   <thead><tr><th style="width:12%">Trial</th><th>Temp, &deg;C</th><th>mPa&middot;s</th>
     <th>Pa&middot;s</th><th>cP</th><th>cSt</th></tr></thead>
@@ -169,7 +169,7 @@ are computed; blue fields are yours. Print this page for a paper key.</p>
 </table>
 <div id="k-rotary"></div>
 
-<h2 class="pagebreak"><span class="n">E</span>Analysis Questions &mdash; Model Answers</h2>
+<h2 class="pagebreak"><span class="n">E</span>Analysis Questions: Model Answers</h2>
 <ol class="q" id="k-questions"></ol>
 
 <h2><span class="n">F</span>Suggested Weighting</h2>
@@ -187,7 +187,7 @@ are computed; blue fields are yours. Print this page for a paper key.</p>
 </table>
 
 <footer>
-  Koc, A. B. <i>Viscosity Measurement Laboratory &mdash; Instructor Answer Sheet</i>.
+  Koc, A. B. <i>Viscosity Measurement Laboratory: Instructor Answer Sheet</i>.
   Agricultural Mechanization and Business Program, Clemson University.
   DOI <code>10.5281/zenodo.22218165</code> &middot; ORCID <code>0000-0003-3633-1699</code>.
 </footer>
@@ -407,7 +407,7 @@ function renderVelocity(){
   var h=$("k-velocity"); h.innerHTML="";
   [fluid(0),fluid(1)].forEach(function(f){
     if(!f.ts.length){ ans(h, esc(f.name), "No fall times entered.", "note"); return; }
-    ans(h,"Expected answers &mdash; "+esc(f.name),
+    ans(h,"Expected answers: "+esc(f.name),
       "t<sub>avg</sub> = "+V(f.tAvg,3,"s")+" from "+f.ts.length+
       " trial"+(f.ts.length===1?"":"s")+". Velocity "+V(f.v,4,"m/s")+".");
     work(h,
@@ -420,7 +420,7 @@ function renderVisc(){
   var h=$("k-visc"); h.innerHTML="";
   [fluid(0),fluid(1)].forEach(function(f){
     if(!isFinite(f.mu)){ ans(h, esc(f.name), "Not enough data entered.", "note"); return; }
-    ans(h,"Expected answers &mdash; "+esc(f.name),
+    ans(h,"Expected answers: "+esc(f.name),
       "&Delta;&rho; = "+V(f.dRho,1,"kg/m&sup3;")+". &mu; = "+V(f.mu,4,"Pa&middot;s")+
       " = "+V(f.cP,2,"cP")+" = "+V(f.cSt,2,"cSt")+".");
     work(h,
@@ -432,7 +432,7 @@ function renderVisc(){
       "cP  = "+fmt(f.mu,4)+" \u00D7 1000 = "+fmt(f.cP,2)+" cP\n"+
       "cSt = cP / \u03C1[g/cm\u00B3] = "+fmt(f.cP,2)+" / "+fmt(f.rg,4)+" = "+fmt(f.cSt,2)+" cSt");
     if(f.wall){
-      ans(h,"Wall correction, instructor only &mdash; "+esc(f.name),
+      ans(h,"Wall correction, instructor only: "+esc(f.name),
         "&beta; = d/D = "+V(f.wall.beta,3)+", K = "+V(f.wall.K,4)+
         ". Corrected velocity "+V(f.wall.vInf,4,"m/s")+" gives &mu; = "+V(f.wall.mu,4,"Pa&middot;s")+
         ", "+V(Math.abs(f.wall.pct),1,"percent")+" "+(f.wall.pct<0?"below":"above")+
@@ -447,7 +447,7 @@ function renderUnc(){
   var h=$("k-unc"); h.innerHTML="";
   [fluid(0),fluid(1)].forEach(function(f){
     if(!isFinite(f.relUnc)){ ans(h, esc(f.name), "Fewer than two trials entered.", "note"); return; }
-    ans(h,"Expected answers &mdash; "+esc(f.name),
+    ans(h,"Expected answers: "+esc(f.name),
       "Range "+V(f.range,3,"s")+" over an average of "+V(f.tAvg,3,"s")+" is "+
       V(f.relUnc*100,1,"percent")+". Since &mu; &prop; 1/v &prop; t, that carries straight through: "+
       "&mu; = "+V(f.mu,4)+" &plusmn; "+V(f.mu*f.relUnc,4,"Pa&middot;s")+".");
@@ -464,7 +464,7 @@ function renderRe(){
   [fluid(0),fluid(1)].forEach(function(f){
     if(!isFinite(f.Re)){ ans(h, esc(f.name), "Not enough data entered.", "note"); return; }
     var tone = f.cls.tone==="bad" ? "bad" : (f.cls.tone==="warn" ? "warn" : "");
-    ans(h,"Expected answer &mdash; "+esc(f.name),
+    ans(h,"Expected answer: "+esc(f.name),
       "Re = "+V(f.Re,2)+", so Stokes' law is <b>"+f.cls.label+"</b> for this measurement."+
       (f.cls.label==="INVALID"||f.cls.label==="MARGINAL"
         ? " The student must say so; a report that presents the viscosity without this caveat "+
@@ -472,6 +472,25 @@ function renderRe(){
         : ""), tone);
     work(h, "Re = \u03C1f v (2r) / \u03BC = "+fmt(f.rho,1)+"("+fmt(f.v,4)+")("+
       fmt(2*f.sp.r,5)+") / "+fmt(f.mu,4)+" = "+fmt(f.Re,2));
+    /* Honest check: the Re above is built from the Stokes viscosity, which is
+       the quantity under test. Recompute with the rotary reading nearest the
+       falling-ball temperature when the bench fluid names match. */
+    var rvName=(ST.rv_name||"").trim().toLowerCase(), fName=(f.name||"").trim().toLowerCase();
+    var rrows=rotary().filter(function(r){ return isFinite(r.Pas)&&r.Pas>0; });
+    if(rvName && rvName===fName && rrows.length && isFinite(f.tempC)){
+      var best=null, bd=1e9;
+      rrows.forEach(function(r){ var dd=Math.abs(r.T-f.tempC); if(dd<bd){bd=dd;best=r;} });
+      if(best && bd<=2.5){
+        var ReR=PHYS.reynolds(f.rho, f.v, f.sp.r, best.Pas), clsR=PHYS.stokesClass(ReR);
+        ans(h,"Honest check with the rotary viscosity: "+esc(f.name),
+          "Using the rotary reading at "+V(best.T,0,"\u00B0C")+" ("+V(best.Pas,4,"Pa&middot;s")+
+          ") instead of the Stokes result gives Re = "+V(ReR,1)+", <b>"+clsR.label+"</b>. "+
+          "The Re computed from the Stokes viscosity is self-referential: when the law fails the "+
+          "viscosity is inflated and the Reynolds number built from it is understated by the same "+
+          "factor. A student who recomputes Re this way and reports both has understood Section 5.6 "+
+          "fully.", clsR.tone==="bad"?"bad":(clsR.tone==="warn"?"warn":""));
+      }
+    }
   });
   var sp=sphere();
   if(isFinite(sp.r)){
@@ -490,14 +509,14 @@ function renderSaybolt(){
   [fluid(0),fluid(1)].forEach(function(f){
     if(f.sBranch==="none"){ ans(h, esc(f.name), "No SUS reading entered.", "note"); return; }
     if(f.sBranch==="below"){
-      ans(h,"Expected answer &mdash; "+esc(f.name),
+      ans(h,"Expected answer: "+esc(f.name),
         "A reading of "+V(f.sus,1,"s")+" is below the 32 s floor of the correlation. Neither "+
         "equation applies. The correct student response is to say so, not to substitute into "+
         "Equation (6) anyway.", "bad");
       return;
     }
     var eqn = f.sBranch==="low" ? "(6), the 32 to 100 branch" : "(7), the above-100 branch";
-    ans(h,"Expected answers &mdash; "+esc(f.name),
+    ans(h,"Expected answers: "+esc(f.name),
       "Equation "+eqn+". &nu; = "+V(f.sCst,2,"cSt")+", &mu; = "+V(f.sCp,2,"cP")+
       " = "+V(f.sMu,5,"Pa&middot;s")+", using &rho; = "+V(f.rg,4,"g/cm&sup3;")+" from Table 1.");
     work(h,

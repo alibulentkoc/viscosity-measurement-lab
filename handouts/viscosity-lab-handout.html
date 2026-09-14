@@ -117,7 +117,7 @@ code{font-family:var(--mono);font-size:9.6pt}
 
 <div class="titleblock">
   <h1>Viscosity Measurement:<br>Falling Ball, Saybolt, and Rotary Viscometers</h1>
-  <div class="sub">Student Handout &mdash; Fluid Power Systems and Internal Combustion Engines</div>
+  <div class="sub">Student Handout: Fluid Power Systems and Internal Combustion Engines</div>
   <div class="course">AGRICULTURAL MECHANIZATION AND BUSINESS &middot; CLEMSON UNIVERSITY</div>
 </div>
 
@@ -142,8 +142,8 @@ code{font-family:var(--mono);font-size:9.6pt}
 
 <h2><span class="n">2</span>Core Principle</h2>
 <p>Viscosity is a measure of a fluid's resistance to flow. None of the three instruments on
-this bench measures that resistance directly. Each one measures something else &mdash; how fast a
-sphere sinks, how long a fixed volume takes to drain, how hard a rotor must be driven &mdash; and
+this bench measures that resistance directly. Each one measures something else (how fast a
+sphere sinks, how long a fixed volume takes to drain, how hard a rotor must be driven) and
 then infers viscosity from a model. The model is where the physics lives, and the model can
 fail while the instrument still gives you a perfectly repeatable number.</p>
 
@@ -163,7 +163,7 @@ where the other is expected is the most common error in this laboratory.</p>
 
 <h2><span class="n">3</span>Safety</h2>
 <ul>
-  <li>Fluids heated to 50 &ndash; 60 &deg;C will burn skin. Use gloves and tongs on the Saybolt
+  <li>Fluids heated to 50 to 60 &deg;C will burn skin. Use gloves and tongs on the Saybolt
       cup and the rotary beaker.</li>
   <li>Wipe every spill at once. Oil on a hard floor is a fall hazard.</li>
   <li>Do not heat any fluid above the temperature stated in the procedure.</li>
@@ -190,7 +190,7 @@ where the other is expected is the most common error in this laboratory.</p>
 
 <div class="pagebreak"></div>
 
-<h2><span class="n">5</span>Part I &mdash; Falling Ball Viscometer</h2>
+<h2><span class="n">5</span>Part I: Falling Ball Viscometer</h2>
 <p>One of the oldest ways of measuring the viscosity of a fluid is to measure how fast a sphere
 falls through it. A sphere released in a viscous fluid accelerates for a short distance and then
 settles at a constant <i class="v">terminal velocity</i>, where the drag force exactly balances
@@ -216,7 +216,19 @@ relates that settling velocity to viscosity, rearranged below to solve for visco
   Equation (1) applies only to a sphere already at terminal velocity. If you release the sphere
   at the START mark it is still accelerating as it crosses it, your timed velocity is too low,
   and your viscosity comes out too high. Release it at the top of the tube and let it settle
-  before it reaches the mark.
+  before it reaches the mark. The bench sphere needs about 0.25 m of travel to reach terminal
+  velocity in a motor oil and about 0.5 m in an ATF, so the START mark must be at least that far
+  below the release point.
+</div>
+
+<div class="note">
+  <div class="h">The whole station in one multiplication</div>
+  Once the sphere, the marks and the fluid density are fixed, Equation (1) collapses to
+  <i class="v">&mu;</i> = <i class="v">K</i> <i class="v">t</i><sub>avg</sub> with
+  <i class="v">K</i> = 2 &Delta;<i class="v">&rho;</i> <i class="v">g</i> <i class="v">r</i>&sup2; / (9 <i class="v">L</i>).
+  For the bench sphere and marks, <i class="v">K</i> is about 0.68 Pa&middot;s per second for both
+  bench fluids. Compute <i class="v">K</i> once, then every fall time becomes a viscosity in one step.
+  Section 5.6 reduces the same way: <i class="v">Re</i> = <i class="v">&rho;</i><sub>f</sub> <i class="v">L</i> (2<i class="v">r</i>) / (<i class="v">K</i> <i class="v">t</i><sub>avg</sub>&sup2;), about 14 / <i class="v">t</i><sub>avg</sub>&sup2; on this bench.
 </div>
 
 <h3><span class="n">5.1</span>Steel sphere</h3>
@@ -330,11 +342,18 @@ requires it to be much less than one.</p>
 </div><div class="tag">(5)</div></div>
 
 <div class="line">Fluid 1: <i class="v">Re</i> = <span class="b"></span> &nbsp;&nbsp;
-  Circle one: &nbsp; valid (<i>Re</i> &lt; 1) &nbsp;&middot;&nbsp; marginal (1 &ndash; 10)
+  Circle one: &nbsp; valid (<i>Re</i> &lt; 1) &nbsp;&middot;&nbsp; marginal (1 to 10)
   &nbsp;&middot;&nbsp; invalid (<i>Re</i> &ge; 10)</div>
 <div class="line">Fluid 2: <i class="v">Re</i> = <span class="b"></span> &nbsp;&nbsp;
-  Circle one: &nbsp; valid (<i>Re</i> &lt; 1) &nbsp;&middot;&nbsp; marginal (1 &ndash; 10)
+  Circle one: &nbsp; valid (<i>Re</i> &lt; 1) &nbsp;&middot;&nbsp; marginal (1 to 10)
   &nbsp;&middot;&nbsp; invalid (<i>Re</i> &ge; 10)</div>
+
+<p>The Reynolds number above uses the viscosity you are testing, so when Stokes' law fails the
+inflated <i class="v">&mu;</i> makes <i class="v">Re</i> look smaller than it is. Recompute it
+with the rotary reading for the same fluid at the same temperature (Part III). That is the
+honest check, and it is the value to use in Questions 5 and 10.</p>
+<div class="line">Fluid 1: <i class="v">Re</i> with rotary <i class="v">&mu;</i> = <span class="b"></span> &nbsp;&nbsp;
+  Fluid 2: <i class="v">Re</i> with rotary <i class="v">&mu;</i> = <span class="b"></span></div>
 
 <div class="note">
   <div class="h">Do not discard a number because the model failed</div>
@@ -346,7 +365,7 @@ requires it to be much less than one.</p>
 
 <div class="pagebreak"></div>
 
-<h2><span class="n">6</span>Part II &mdash; Saybolt Viscometer</h2>
+<h2><span class="n">6</span>Part II: Saybolt Viscometer</h2>
 <p>The Saybolt viscometer measures fluid flow through a capillary of very small diameter. Before
 filling the vessel, secure the rubber stopper at the base. The container must be filled just to
 overflowing for accurate and consistent results, because the height of fluid above the orifice
@@ -396,8 +415,8 @@ reading, then to dynamic viscosity using the density you measured in Table 1.</p
   than force a number out of Equation (6).
 </div>
 
-<h2><span class="n">7</span>Part III &mdash; Rotary Viscometer</h2>
-<p>A rotary viscometer measures the absolute viscosity of a fluid directly. A rotor immersed in
+<h2><span class="n">7</span>Part III: Rotary Viscometer</h2>
+<p>A rotary viscometer comes closest to reporting the absolute viscosity of a fluid directly. A rotor immersed in
 the sample is driven at a set speed, and the torque required to maintain that speed is
 proportional to the fluid's viscosity. Sensors inside the instrument measure that torque and the
 viscosity is displayed on the screen. The measurement is easier to perform and generally more
@@ -582,6 +601,10 @@ enter it. It computes the Reynolds number live and labels the Stokes regime, so 
 directly how sphere size moves a measurement in and out of validity. Use it to check your
 arithmetic and to explore fluids the bench does not stock. It does not replace the bench
 measurements.</p>
+<p>Two companion documents accompany this handout: a <a href="viscosity-plain-language-guide.html">plain-language
+guide</a> that reduces each station to one multiplication with worked examples, and an
+<a href="viscosity-engineering-reference.html">engineering reference</a> with the derivations,
+validity limits and corrections behind every equation printed here.</p>
 <p style="text-align:left"><a href="https://alibulentkoc.github.io/viscosity-measurement-lab/lab/viscosity-lab.html">https://alibulentkoc.github.io/viscosity-measurement-lab/lab/viscosity-lab.html</a></p>
 
 <div class="note noprint">
@@ -594,7 +617,7 @@ measurements.</p>
 <footer class="cite">
   <div class="h">Cite this activity as</div>
   Koc, A. B. <i>Viscosity Measurement Laboratory: Falling Ball, Saybolt, and Rotary
-  Viscometers &mdash; Student Handout and Interactive Simulator</i>. Department of Agricultural
+  Viscometers: Student Handout and Interactive Simulator</i>. Department of Agricultural
   Sciences, Agricultural Mechanization and Business Program, Clemson University.
   DOI <a href="https://doi.org/10.5281/zenodo.22218165">10.5281/zenodo.22218165</a>.
   ORCID <code>0000-0003-3633-1699</code>.

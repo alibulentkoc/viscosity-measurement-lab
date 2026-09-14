@@ -252,6 +252,23 @@ footer.lab code{font-family:var(--mono);font-size:11.5px}
     </div>
 
     <div class="card">
+      <h3>In Plain Language</h3>
+      <ul class="obj">
+        <li><b>Falling ball:</b> drop a steel ball, time it. Viscosity in Pa&middot;s is about 0.68 times
+            the fall time in seconds on this bench. The ball must take longer than about 4 s for the
+            formula to be trustworthy; under about 1.2 s it does not apply at all.</li>
+        <li><b>Saybolt cup:</b> time 60 mL draining at 50 &deg;C. Kinematic viscosity in cSt is a bit
+            less than 0.22 times the seconds. Multiply by density (g/mL) for cP.</li>
+        <li><b>Rotary:</b> read the screen in mPa&middot;s (same as cP). Divide by 1000 for Pa&middot;s.
+            Always write down the spindle and the speed.</li>
+        <li>Two kinds of viscosity: dynamic (how hard to stir, cP) and kinematic (how fast it flows
+            under its own weight, cSt). Density is the only bridge between them.</li>
+      </ul>
+      <p style="margin:6px 0 0;font-size:12px"><a href="../handouts/viscosity-plain-language-guide.html">Plain-language guide</a>
+      &nbsp;&middot;&nbsp; <a href="../handouts/viscosity-engineering-reference.html">Engineering reference</a></p>
+    </div>
+
+    <div class="card">
       <h3>Safety and Laboratory Notes</h3>
       <ul class="obj">
         <li>Hydraulic fluid and oil heated to 60 &deg;C will burn skin. Use gloves and tongs.</li>
@@ -294,12 +311,12 @@ footer.lab code{font-family:var(--mono);font-size:11.5px}
      STATION 1  FALLING BALL
      ================================================================== -->
 <section role="tabpanel" id="p-fb" aria-labelledby="t-fb">
-  <h2 class="sec">Station 1 &mdash; Falling Ball Viscometer</h2>
+  <h2 class="sec">Station 1: Falling Ball Viscometer</h2>
   <p class="lede">A sphere released in a viscous fluid accelerates only briefly, then falls at a steady
   terminal velocity where drag balances net weight. Timing that steady fall over a known distance
   gives the velocity, and Stokes' law converts velocity into viscosity.</p>
 
-  <details class="formulas" id="fx-fb"><summary>Formula Reference &mdash; Falling Ball</summary>
+  <details class="formulas" id="fx-fb"><summary>Formula Reference: Falling Ball</summary>
     <div class="body">
       <div class="fx"><div class="n">Sphere volume</div><div class="e">V = (4/3) &pi; r&sup3;</div></div>
       <div class="fx"><div class="n">Density</div><div class="e">&rho; = m / V</div></div>
@@ -399,9 +416,20 @@ footer.lab code{font-family:var(--mono);font-size:11.5px}
         <div class="fields">
           <label for="fb-L">Distance between marks, L</label><input id="fb-L" type="number" step="0.001" value="0.89"><span class="u">m</span>
           <label for="fb-Dt">Tube inner diameter (optional)</label><input id="fb-Dt" type="number" step="0.1" placeholder="blank"><span class="u">mm</span>
-          <div class="hint">Enter the tube bore only if you measured it. It enables the wall correction
-          and is not part of the printed procedure.</div>
+          <div class="hint">Enter the tube bore only if you measured it. It enables the Faxen wall correction
+          and is not part of the printed procedure. With the 12.70 mm sphere the wall effect is large:
+          in a 50 mm tube it roughly doubles the uncorrected result.</div>
+          <div class="hint">Release the sphere well above the START mark. The bench sphere needs about
+          0.25 m to settle to terminal velocity in a motor oil and about 0.5 m in an ATF.</div>
         </div>
+      </div>
+
+      <div class="card" id="fb-simple">
+        <h3>Plain-Language Result</h3>
+        <div class="hint" style="margin-bottom:8px">The whole station in three lines. The constant K
+        folds the sphere, the marks, gravity and the density difference into one number, so the
+        viscosity is just K times the fall time.</div>
+        <div class="out" id="fb-simple-out"></div>
       </div>
 
       <div class="card">
@@ -425,13 +453,13 @@ footer.lab code{font-family:var(--mono);font-size:11.5px}
      STATION 2  SAYBOLT
      ================================================================== -->
 <section role="tabpanel" id="p-sb" aria-labelledby="t-sb">
-  <h2 class="sec">Station 2 &mdash; Saybolt Viscometer</h2>
+  <h2 class="sec">Station 2: Saybolt Viscometer</h2>
   <p class="lede">The Saybolt method times how long a fixed volume takes to drain through a
   standardized orifice. The reading is a time in Saybolt Universal Seconds, not a viscosity, and it
   must be converted. Because the method measures flow under the fluid's own weight, it yields
   <b>kinematic</b> viscosity directly; density is needed to reach dynamic viscosity.</p>
 
-  <details class="formulas"><summary>Formula Reference &mdash; Saybolt</summary>
+  <details class="formulas"><summary>Formula Reference: Saybolt</summary>
     <div class="body">
       <div class="fx"><div class="n">32 &lt; SUS &lt; 100</div><div class="e">cSt = 0.226 SUS &minus; 195 / SUS</div></div>
       <div class="fx"><div class="n">SUS &gt; 100</div><div class="e">cSt = 0.220 SUS &minus; 135 / SUS</div></div>
@@ -500,13 +528,13 @@ footer.lab code{font-family:var(--mono);font-size:11.5px}
      STATION 3  ROTARY
      ================================================================== -->
 <section role="tabpanel" id="p-rv" aria-labelledby="t-rv">
-  <h2 class="sec">Station 3 &mdash; Rotary Viscometer</h2>
+  <h2 class="sec">Station 3: Rotary Viscometer</h2>
   <p class="lede">A rotor turning in the fluid at a set speed meets a resisting torque proportional to
   viscosity. The instrument measures that torque and displays dynamic viscosity directly in mPa&middot;s.
   This is the station where temperature dependence is easiest to see, because the fluid can be held
   at a series of set temperatures while readings are taken.</p>
 
-  <details class="formulas" id="fx-rv"><summary>Formula Reference &mdash; Rotary Viscometer</summary>
+  <details class="formulas" id="fx-rv"><summary>Formula Reference: Rotary Viscometer</summary>
     <div class="body">
       <div class="fx"><div class="n">Angular velocity from the set speed</div>
         <div class="e">&omega; = <span class="frac"><span class="t">2&pi;N</span><span class="b">60</span></span>
@@ -663,7 +691,7 @@ footer.lab code{font-family:var(--mono);font-size:11.5px}
      STATION 4  FLUID LIBRARY
      ================================================================== -->
 <section role="tabpanel" id="p-fl" aria-labelledby="t-fl">
-  <h2 class="sec">Fluid Library &mdash; Comparison</h2>
+  <h2 class="sec">Fluid Library: Comparison</h2>
   <p class="lede">Every fluid on the bench and a set of familiar ones, on one axis. Viscosity
   spans four orders of magnitude between gasoline and honey, which is why the chart is
   logarithmic and why no single instrument covers the whole range.</p>
@@ -862,7 +890,7 @@ var PHYS = (function(){
     if(!(mu>0)) return NaN;
     return rhoF*v_ms*2*r_m/mu;
   }
-  // Ladenburg / Faxen wall correction for a sphere falling on the axis of a
+  // Faxen wall correction (the b^5 term dropped) for a sphere falling on the axis of a
   // cylindrical tube. beta = d_sphere / D_tube. Returns the unbounded-fluid
   // velocity that the measured velocity corresponds to.
   function wallFactor(beta){
@@ -1023,8 +1051,19 @@ var PHYS = (function(){
    rest are characterised from the student's own rotary sweep.
    nonNewtonian entries deliberately carry no viscosity at all. */
 var FLUIDS = [
- {id:"15w40",   name:"15W-40 Motor Oil",   cat:"Engine Oils",         rho:868,  mu:1.2826, color:"#3a2415", lab:true,  t_measured:1.89, refT:null, src:"bench"},
- {id:"dexron",  name:"Dexron II ATF",      cat:"Transmission Fluids", rho:844,  mu:0.5448, color:"#8b1a12", lab:true,  t_measured:0.80, refT:null, src:"bench"},
+ /* The two bench fluids. t_measured is the class average fall time over 0.89 m
+    and is a genuine measurement. mu is NOT the falling-ball result (1.2826 and
+    0.5448 Pa.s): that result was obtained at Re far above the Stokes limit and
+    reads 4 to 8 times high. Using it as a reference would rank 15W-40 above
+    castor oil and make the prediction panel agree with itself. mu is instead a
+    typical published value at 20 C, and tempPts are typical grade-sheet
+    kinematic viscosities at 40 and 100 C so the ASTM D341 curve can be fitted. */
+ {id:"15w40",   name:"15W-40 Motor Oil",   cat:"Engine Oils",         rho:868,  mu:0.261,  color:"#3a2415", lab:true,  t_measured:1.89, refT:20, src:"published",
+   tempPts:[[40,105],[100,14.5]],
+   note:"typical 15W-40: about 105 cSt at 40 C and 14.5 cSt at 100 C; the bench falling-ball figure of 1.28 Pa.s is a Stokes result outside its valid range and is not a reference"},
+ {id:"dexron",  name:"Dexron II ATF",      cat:"Transmission Fluids", rho:844,  mu:0.072,  color:"#8b1a12", lab:true,  t_measured:0.80, refT:20, src:"published",
+   tempPts:[[40,37],[100,7.5]],
+   note:"typical ATF: about 37 cSt at 40 C and 7.5 cSt at 100 C; the bench falling-ball figure of 0.54 Pa.s is a Stokes result outside its valid range and is not a reference"},
 
  {id:"iso32",   name:"Hydraulic ISO VG 32",cat:"Hydraulic Fluids",    rho:870,  mu:0.02784,color:"#d8b45c", refT:40, src:"grade",
    note:"32 cSt at 40 C by ISO 3448; density typical for a mineral hydraulic oil"},
@@ -1163,6 +1202,21 @@ function slotDerived(key){
   var Re = PHYS.reynolds(rho, v, sp.r, mu);
   var cls = PHYS.stokesClass(Re);
 
+  /* Honest Reynolds check. Re computed with the Stokes mu is self-referential:
+     when the law is invalid the inflated mu sits in the denominator and hides
+     the problem. Recompute Re with an independent viscosity for the same fluid
+     near the same temperature: a rotary reading first, then the fitted
+     temperature curve, then the published value at its reference temperature. */
+  var indep = independentMu(slot.custom || f.name, f, num(slot.tempC));
+  var ReInd = (indep && isFinite(v)) ? PHYS.reynolds(rho, v, sp.r, indep.mu) : NaN;
+  var clsInd = PHYS.stokesClass(ReInd);
+
+  /* Bench shortcut. With the sphere, marks and fluid density fixed, Stokes'
+     law collapses to mu = K t, and Re = rho L d / (K t^2). K is reported so a
+     student can do the whole station with one multiplication. */
+  var Kb = (isFinite(dRho) && isFinite(L) && L>0) ? 2*dRho*PHYS.G*sp.r*sp.r/(9*L) : NaN;
+  var ReCoef = (isFinite(Kb) && Kb>0) ? rho*L*2*sp.r/Kb : NaN;   // Re = ReCoef / t^2
+
   // optional wall correction
   var Dt = num(S.fb.tubeIDmm), wall = null;
   if(isFinite(Dt) && Dt > sp.d_mm && isFinite(v)){
@@ -1204,7 +1258,29 @@ function slotDerived(key){
            tempC:num(slot.tempC), tAvg:tAvg, tRef:tRef, nTrials:ts.length,
            L:L, v:v, dRho:dRho, mu:mu, cP:cP, cSt:cSt, Re:Re, cls:cls,
            wall:wall, vPred:vPred, tPred:tPred, sp:sp,
+           indep:indep, ReInd:ReInd, clsInd:clsInd, Kb:Kb, ReCoef:ReCoef,
            tUsed:tUsed, vUsed:vUsed, tSource:tSource, shown:shown };
+}
+
+/* An independent viscosity for the same fluid, for the honest Reynolds check.
+   Returns {mu in Pa.s, src} or null. Never the Stokes result itself. */
+function independentMu(name, f, tempC){
+  var m = isFinite(tempC) ? rotaryMatchFor(name, tempC) : null;
+  if(m && num(S.rv.rho)>0){
+    var muR = PHYS.cpToPas(PHYS.cstToCp(m.cSt, PHYS.kgm3_to_gcm3(num(S.rv.rho))));
+    if(isFinite(muR) && muR>0) return {mu:muR, src:"rotary reading at "+fmt(m.T,0)+" \u00B0C"};
+  }
+  if(isFinite(tempC)){
+    var tm = fluidTempModel(name, f);
+    if(tm){
+      var nu = PHYS.waltherAt(tm.fit, tempC);
+      var muT = PHYS.cpToPas(PHYS.cstToCp(nu, PHYS.kgm3_to_gcm3(f.rho)));
+      if(isFinite(muT) && muT>0) return {mu:muT, src:"temperature curve from "+tm.src+", at "+fmt(tempC,0)+" \u00B0C"};
+    }
+  }
+  if(f && isFinite(f.mu) && f.mu>0 && !f.nonNewtonian)
+    return {mu:f.mu, src:"published value"+(isFinite(f.refT)? " at "+fmt(f.refT,0)+" \u00B0C":"")};
+  return null;
 }
 
 /* Above roughly 1000 s the Universal orifice is impractically slow and the
@@ -1401,6 +1477,15 @@ function renderSlotOut(key){
   outRow(host, "Reynolds number Re", fmt(d.Re,3));
   outRow(host, "Stokes' law", d.cls.label,
          d.cls.tone==="bad" ? "ref" : (d.cls.tone==="warn" ? "ref" : ""));
+  if(isFinite(d.ReInd)){
+    outRow(host, "Re with independent \u03BC", fmt(d.ReInd,2)+"  ["+d.clsInd.label+"]",
+           d.clsInd.tone==="ok" ? "" : "ref");
+  }
+  host.appendChild(el("hr"));
+  outRow(host, "Bench shortcut K", isFinite(d.Kb)? fmt(d.Kb,3)+" Pa\u00B7s per second" : "--");
+  outRow(host, "\u03BC = K \u00D7 t", isFinite(d.Kb)&&isFinite(d.tAvg)? fmt(d.Kb,3)+" \u00D7 "+fmt(d.tAvg,2)+" = "+fmt(d.Kb*d.tAvg,3)+" Pa\u00B7s" : "--");
+  outRow(host, "Re = "+(isFinite(d.ReCoef)? fmt(d.ReCoef,1):"--")+" / t\u00B2",
+         isFinite(d.ReCoef)? "valid needs t > "+fmt(Math.sqrt(d.ReCoef),1)+" s; usable needs t > "+fmt(Math.sqrt(d.ReCoef/10),1)+" s" : "--");
 
   // substituted working
   var w = $("fb-work"+key);
@@ -1427,13 +1512,23 @@ function renderSlotOut(key){
       (bad ? "Inertial forces dominate at this Reynolds number, so the drag is larger than the law predicts and the viscosity above is overstated. "
            : "Inertial effects are no longer negligible, so treat the value above as approximate. ") +
       "The value is reported because the equation was applied as printed in the procedure, not because the model holds. " +
-      "A smaller sphere lowers Re roughly as the square of its diameter."));
+      "A smaller sphere lowers Re as the cube of its diameter (v scales with r squared, Re with r cubed): halving the diameter divides Re by eight."));
     fl.appendChild(div);
   } else if(d.cls.key==="valid" || d.cls.key==="valid2"){
     var ok = el("div",{class:"flag ok"});
     ok.appendChild(el("b",null,"STOKES' LAW: APPLICABLE"));
-    ok.appendChild(document.createTextNode("Re = "+fmt(d.Re,3)+", within the creeping-flow regime."));
+    ok.appendChild(document.createTextNode("Re = "+fmt(d.Re,3)+", within the creeping-flow regime."+
+      (d.cls.key==="valid2" ? " Between 0.1 and 1 the law is usable but the real drag is up to about 20 percent above Stokes drag, so the result reads up to about 20 percent high." : "")));
     fl.appendChild(ok);
+  }
+  if(isFinite(d.ReInd) && d.indep && (d.clsInd.key==="invalid" || d.clsInd.key==="marginal") && d.cls.key!=="invalid"){
+    var hf = el("div",{class:"flag warn"});
+    hf.appendChild(el("b",null,"HONEST CHECK: RE RECOMPUTED WITH AN INDEPENDENT VISCOSITY"));
+    hf.appendChild(document.createTextNode(
+      "The Re above uses the Stokes viscosity, which is the number being tested. Using "+d.indep.src+
+      " ("+fmt(PHYS.PasToCp(d.indep.mu),0)+" cP) instead gives Re = "+fmt(d.ReInd,1)+" ["+d.clsInd.label+"]. "+
+      "When the law fails, the Stokes viscosity is too high, so the Re built from it is too low. Report both."));
+    fl.appendChild(hf);
   }
   if(d.wall){
     var wf = el("div",{class:"flag info"});
@@ -3013,6 +3108,28 @@ function renderPrediction(){
         : "The two agree closely, which is what you should expect only when the Reynolds number is small.")));
     host.appendChild(f1);
   }
+  // plain-language card
+  var sh=$("fb-simple-out"); sh.innerHTML="";
+  [A,B].forEach(function(P){
+    var d=P.d;
+    if(P.nonNewtonian){ outRow(sh, d.name, "no single viscosity: not a Newtonian fluid", "na"); return; }
+    if(!isFinite(d.Kb)){ outRow(sh, d.name, "--", "na"); return; }
+    outRow(sh, d.name+": K", fmt(d.Kb,2)+" Pa\u00B7s per second of fall");
+    if(isFinite(d.tAvg)){
+      outRow(sh, "viscosity = K \u00D7 time", fmt(d.Kb,2)+" \u00D7 "+fmt(d.tAvg,2)+" s = "+fmt(d.mu,2)+" Pa\u00B7s = "+fmt(d.cP,0)+" cP", d.tRef?"ref":"");
+      var trust = d.cls.key==="invalid" ? "no, the formula does not apply (Re over 10); it reads high"
+                : d.cls.key==="marginal" ? "not really (Re 1 to 10); report it and say it reads high"
+                : d.cls.key==="valid2" ? "yes, within about 20 percent (Re under 1)"
+                : "yes (Re under 0.1)";
+      outRow(sh, "trust it?", trust, d.cls.tone==="ok" ? "" : "ref");
+      if(isFinite(d.ReInd) && d.indep)
+        outRow(sh, "check with "+d.indep.src, "Re = "+fmt(d.ReInd,1)+"  ["+d.clsInd.label+"]", d.clsInd.tone==="ok"?"":"ref");
+    } else {
+      outRow(sh, "viscosity = K \u00D7 time", "enter fall times", "na");
+    }
+    outRow(sh, "for a trustworthy result", "the ball must take longer than "+fmt(Math.sqrt(d.ReCoef),1)+" s (Re under 1)");
+  });
+
   // regime badge on the toolbar
   var b=$("fb-regime");
   if(isFinite(A.d.Re)){

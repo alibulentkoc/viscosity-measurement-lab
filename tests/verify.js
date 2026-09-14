@@ -233,9 +233,16 @@ ok("ISO grades are present for hydraulic oil",
 });
 ok("two fluids are flagged as laboratory fluids", FLUIDS.filter(f => f.lab).length === 2);
 ok("15W-40 carries the reference density", fluidById("15w40").rho === 868);
-ok("15W-40 carries the reference viscosity", fluidById("15w40").mu === 1.2826);
+ok("15W-40 carries a published reference viscosity, not the invalid Stokes result",
+   fluidById("15w40").mu === 0.261 && fluidById("15w40").refT === 20);
+ok("15W-40 carries grade-sheet temperature pairs for the D341 fit",
+   fluidById("15w40").tempPts && fluidById("15w40").tempPts.length >= 2);
 ok("15W-40 carries the class fall time", fluidById("15w40").t_measured === 1.89);
-ok("ATF carries its reference values", fluidById("dexron").rho === 844 && fluidById("dexron").mu === 0.5448);
+ok("ATF carries its reference values", fluidById("dexron").rho === 844 && fluidById("dexron").mu === 0.072);
+ok("ATF carries grade-sheet temperature pairs for the D341 fit",
+   fluidById("dexron").tempPts && fluidById("dexron").tempPts.length >= 2);
+ok("neither bench fluid uses its own Stokes result as a reference",
+   fluidById("15w40").mu !== 1.2826 && fluidById("dexron").mu !== 0.5448);
 ok("ATF carries the class fall time", fluidById("dexron").t_measured === 0.80);
 ok("every Newtonian fluid has a density, a viscosity, a colour and a category",
    FLUIDS.filter(f => !f.nonNewtonian).every(f => f.rho > 0 && f.mu > 0 && /^#/.test(f.color) && f.cat));

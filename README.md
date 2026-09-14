@@ -16,6 +16,8 @@ power systems and internal combustion engines.
 |---|---|---|
 | `lab/viscosity-lab.html` | students | Interactive laboratory: three instruments, fluid library comparison, unit conversion, temperature analysis, notebook and export |
 | `handouts/viscosity-lab-handout.html` | students | Handout, web version, prints to US Letter from any browser |
+| `handouts/viscosity-plain-language-guide.html` | students, non-engineering | The same lab with the math reduced to one multiplication per station, worked examples and a glossary |
+| `handouts/viscosity-engineering-reference.html` | instructors, engineering students | Derivations, validity limits, finite-Re and wall corrections, settling distance, uncertainty, design of a valid test |
 | `handouts/latex/viscosity-lab-handout.pdf` | students | The same handout typeset for print: A4, eight pages, page numbers |
 | `handouts/latex/viscosity-lab-handout.tex` | maintainers | LaTeX source for the A4 handout |
 | `handouts/viscosity-lab-answers.html` | instructors | Answer sheet with live calculation from the bench master values |
@@ -50,7 +52,21 @@ All three stations use the equations exactly as printed in the laboratory proced
     mu = 2 (rho_s - rho_f) g r^2 / (9 v)
 
 with `g = 9.81 m/s^2`. Validity is assessed with `Re = rho_f v (2r) / mu`, classified
-as VALID below 0.1, valid below 1, MARGINAL below 10, INVALID at or above 10.
+as VALID below 0.1, valid below 1 (usable, up to about 20 percent high), MARGINAL below 10,
+INVALID at or above 10.
+
+That Reynolds number is built from the Stokes viscosity, which is the quantity under test,
+so when the law fails the inflated `mu` understates `Re`. The station therefore also
+recomputes `Re` with an independent viscosity for the same fluid (a rotary reading near the
+same temperature, else the fitted temperature curve, else the published value) and labels
+both. With the bench fluids the Stokes-based `Re` of 4 for 15W-40 becomes about 20 with the
+published viscosity.
+
+The station also prints the bench shortcut. With sphere, marks and fluid density fixed,
+Stokes' law collapses to `mu = K t` with `K = 2 (rho_s - rho_f) g r^2 / (9 L)`, about
+0.68 Pa.s per second on this bench, and `Re = rho_f L (2r) / (K t^2)`, about `14 / t^2`.
+A plain-language card states the result, the trust verdict, and the fall time a valid
+measurement would need, so a non-engineering student can do the station in one step.
 
 **Saybolt.** For `32 < SUS < 100`, `cSt = 0.226 SUS - 195/SUS`. For `SUS > 100`,
 `cSt = 0.220 SUS - 135/SUS`. Both give 20.65 cSt at SUS = 100, so the pair is
@@ -178,8 +194,10 @@ down to 0.1x so short transits can still be watched.
 ## Optional wall correction
 
 The falling-ball station accepts a tube inner diameter. Entered, it applies the
-Ladenburg correction `v_inf = v / (1 - 2.104 b + 2.09 b^3)` with `b = d/D`, and
-reports both results. This is not part of the printed student procedure. It is
+Faxen correction `v_inf = v / (1 - 2.104 b + 2.09 b^3)` with `b = d/D` (the b^5 term
+is dropped; the simpler Ladenburg form `v (1 + 2.4 b)` agrees to first order), and
+reports both results. With the 12.70 mm bench sphere the correction is large: in a 50 mm
+bore it roughly doubles the result. This is not part of the printed student procedure. It is
 included because the tube wall retards the sphere, which makes an uncorrected
 result read high, and it accounts for part of the disagreement with the rotary
 viscometer. Left blank, nothing changes.
@@ -188,9 +206,15 @@ viscometer. Left blank, nothing changes.
 
 Default sphere and fluid values are the measured values from the physical bench:
 a 12.70 mm steel sphere of mass 8.3 g, a fall distance of 0.89 m, and class average
-fall times of 1.89 s in 15W-40 motor oil and 0.80 s in Dexron II ATF. Reference
-densities and viscosities for the other library fluids are published values used
-for comparison only. Every default is editable; nothing is hard-coded as immutable.
+fall times of 1.89 s in 15W-40 motor oil and 0.80 s in Dexron II ATF. The reference
+viscosities of the two bench fluids are typical published values (about 0.26 Pa.s for
+15W-40 and 0.07 Pa.s for ATF at 20 C, with grade-sheet kinematic viscosities at 40 and
+100 C for the temperature curve), not the falling-ball results. Earlier versions
+carried the Stokes results (1.28 and 0.54 Pa.s) as references; those are 4 to 8 times
+too high because they were obtained outside the valid range of the law, and using them
+ranked 15W-40 above castor oil and made the prediction panel agree with itself. Reference
+densities and viscosities for the other library fluids are published values used for
+comparison only. Every default is editable; nothing is hard-coded as immutable.
 
 The application distinguishes measured, calculated and reference values by colour
 throughout, and marks a value amber whenever a published figure is standing in for

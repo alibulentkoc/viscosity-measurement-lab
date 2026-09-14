@@ -444,8 +444,8 @@ ok("the working range of the orifice is identified",
    /Universal orifice between about/.test(txt("sb-chart-note")));
 ok("the curve is plotted", d.querySelectorAll("#sb-chart polyline").length >= 1);
 type("rv-fluid","something else");
-ok("without matching data the curve is withheld rather than guessed",
-   /HOW TO GENERATE THIS CURVE/.test(txt("sb-chart-note")));
+ok("without a matching sweep the curve falls back to published pairs and names the source",
+   /published values/.test(txt("sb-chart-note")), txt("sb-chart-note").slice(0,110));
 type("rv-fluid","15W-40 Motor Oil");
 
 console.log("\n--- Smoke 6e  fluid library ---");
@@ -511,6 +511,18 @@ click("btn-load");
 ok("loading restores the saved distance", d.getElementById("fb-L").value !== "1.23",
    "L is now " + d.getElementById("fb-L").value);
 ok("the reloaded lab still recomputes", /Pa\u00B7s/.test(txt("fb-outA")));
+
+console.log("\n--- Smoke 9b  plain-language card and honest Reynolds check ---");
+click("t-fb");
+ok("the bench shortcut constant is shown", /K0\.68 Pa/.test(txt("fb-simple-out")), txt("fb-simple-out").slice(0,80));
+ok("viscosity is stated as K times time", /viscosity = K/.test(txt("fb-simple-out")));
+ok("the trust verdict is stated in words", /trust it\?/.test(txt("fb-simple-out")));
+ok("Re is recomputed with an independent viscosity", /Re with independent/.test(txt("fb-outA")));
+ok("the independent Re for 15W-40 is INVALID", /Re with independent \u03BC1[0-9]\.[0-9]+  \[INVALID\]/.test(txt("fb-outA")), txt("fb-outA").slice(-200));
+ok("the honest-check flag explains the self-reference", /HONEST CHECK/.test(txt("fb-flagA")));
+ok("Re scaling is stated as the cube of diameter", /cube of its diameter/.test(txt("fb-flagA")));
+ok("the prediction no longer agrees with itself", /percent slower/.test(txt("fb-pred-flag")), txt("fb-pred-flag").slice(0,120));
+ok("no em dash entity anywhere in the simulator markup", !/&mdash;|\u2014/.test(html));
 
 console.log("\n--- Smoke 10  no runtime errors across the whole run ---");
 ok("no uncaught errors were raised at any point", errors.length === 0, errors.join(" | "));

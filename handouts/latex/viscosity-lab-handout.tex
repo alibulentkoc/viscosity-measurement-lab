@@ -163,7 +163,7 @@ number you compute in Section~5.6, not on which instrument looked most expensive
 
 \section{Safety}
 \begin{itemize}
-  \item Fluids heated to 50--60\,\textdegree C will burn skin. Use gloves and tongs on the
+  \item Fluids heated to 50 to 60\,\textdegree C will burn skin. Use gloves and tongs on the
         Saybolt cup and the rotary beaker.
   \item Wipe every spill at once. Oil on a hard floor is a fall hazard.
   \item Do not heat any fluid above the temperature stated in the procedure.
@@ -189,7 +189,7 @@ cSt $=$ cP\,/\,$\rho$\,[g/cm$^3$]\par}
 
 % =============================================================================
 \needspace{6\baselineskip}
-\section{Part I --- Falling Ball Viscometer}
+\section{Part I: Falling Ball Viscometer}
 One of the oldest ways of measuring the viscosity of a fluid is to measure how fast a sphere
 falls through it. A sphere released in a viscous fluid accelerates for a short distance and then
 settles at a constant \emph{terminal velocity}, where the drag force exactly balances the
@@ -214,8 +214,19 @@ $v$            & velocity of sphere, m/s \\
 Equation~(1) applies only to a sphere already at terminal velocity. If you release the sphere at
 the START mark it is still accelerating as it crosses it, your timed velocity is too low, and
 your viscosity comes out too high. Release it at the top of the tube and let it settle before it
-reaches the mark.
+reaches the mark. The bench sphere needs about 0.25\,m of travel to reach terminal velocity in a
+motor oil and about 0.5\,m in an ATF, so the START mark must be at least that far below the
+release point.
 \end{labcaution}
+
+\begin{labnote}
+\noteh{The whole station in one multiplication}
+Once the sphere, the marks and the fluid density are fixed, Equation~(1) collapses to
+$\mu = K\,t_\mathrm{avg}$ with $K = 2\,\Delta\rho\,g\,r^2/(9L)$. For the bench sphere and marks, $K$
+is about 0.68\,Pa$\cdot$s per second for both bench fluids. Compute $K$ once, then every fall time
+becomes a viscosity in one step. Section~5.6 reduces the same way:
+$\mathit{Re} = \rho_f L (2r)/(K\,t_\mathrm{avg}^2)$, about $14/t_\mathrm{avg}^2$ on this bench.
+\end{labnote}
 
 \subsection{Steel sphere}
 Measure the diameter of the sphere with a micrometer and its mass on the balance. Compute the
@@ -327,12 +338,21 @@ it to be much less than one.
 \end{equation}
 
 \noindent Fluid 1: $\mathit{Re} =$ \bl \quad Circle one:\quad
-valid ($\mathit{Re}<1$) \quad$\cdot$\quad marginal (1--10) \quad$\cdot$\quad
+valid ($\mathit{Re}<1$) \quad$\cdot$\quad marginal (1 to 10) \quad$\cdot$\quad
 invalid ($\mathit{Re}\geq10$) \par
 \smallskip
 \noindent Fluid 2: $\mathit{Re} =$ \bl \quad Circle one:\quad
-valid ($\mathit{Re}<1$) \quad$\cdot$\quad marginal (1--10) \quad$\cdot$\quad
+valid ($\mathit{Re}<1$) \quad$\cdot$\quad marginal (1 to 10) \quad$\cdot$\quad
 invalid ($\mathit{Re}\geq10$) \par
+
+\smallskip
+\noindent The Reynolds number above uses the viscosity you are testing, so when Stokes' law fails the
+inflated $\mu$ makes $\mathit{Re}$ look smaller than it is. Recompute it with the rotary reading for
+the same fluid at the same temperature (Part III). That is the honest check, and it is the value to
+use in Questions~5 and~10.
+
+\smallskip
+\noindent Fluid 1: $\mathit{Re}$ with rotary $\mu$ $=$ \bl \qquad Fluid 2: $\mathit{Re}$ with rotary $\mu$ $=$ \bl \par
 
 \begin{labnote}
 \noteh{Do not discard a number because the model failed}
@@ -343,7 +363,7 @@ than a result quietly deleted. Question~5 asks you to say which direction the er
 
 % =============================================================================
 \needspace{8\baselineskip}
-\section{Part II --- Saybolt Viscometer}
+\section{Part II: Saybolt Viscometer}
 The Saybolt viscometer measures fluid flow through a capillary of very small diameter. Before
 filling the vessel, secure the rubber stopper at the base. The container must be filled just to
 overflowing for accurate and consistent results, because the height of fluid above the orifice
@@ -394,8 +414,8 @@ say so rather than force a number out of Equation~(6).
 \end{labnote}
 
 % =============================================================================
-\section{Part III --- Rotary Viscometer}
-A rotary viscometer measures the absolute viscosity of a fluid directly. A rotor immersed in the
+\section{Part III: Rotary Viscometer}
+A rotary viscometer comes closest to reporting the absolute viscosity of a fluid directly. A rotor immersed in the
 sample is driven at a set speed, and the torque required to maintain that speed is proportional
 to the fluid's viscosity. Sensors inside the instrument measure that torque and the viscosity is
 displayed on the screen. The measurement is easier to perform and generally more accurate than

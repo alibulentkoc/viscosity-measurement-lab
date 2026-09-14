@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Measuring Viscosity: A Plain-Language Guide</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+  <style type="text/css">:root{--ink:#111418;--ink2:#3d444b;--ink3:#767d84;--rule:#b9bcc0;--note:#f4f2ec;
+--serif:"Latin Modern Roman","Computer Modern Serif","Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+--mono:ui-monospace,"Cascadia Mono",Consolas,"Liberation Mono",monospace}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e7e2;color:var(--ink);font-family:var(--serif);font-size:11.2pt;line-height:1.46}
+#page{max-width:7.0in;margin:0 auto;background:#fff;padding:0.75in 0.85in 1in;box-shadow:0 0 0 1px #d5d2cc}
+h1{font-size:17.5pt;font-weight:600;margin:0 0 6px;line-height:1.28}
+h2{font-size:12.5pt;font-weight:600;margin:22px 0 7px;border-bottom:.6pt solid var(--rule);padding-bottom:2px}
+h3{font-size:11.4pt;font-weight:600;margin:16px 0 5px;font-style:italic}
+p{margin:0 0 8px;text-align:justify;hyphens:auto}
+ul,ol{margin:0 0 9px;padding-left:1.35em} li{margin-bottom:3px}
+table{border-collapse:collapse;width:100%;margin:10px 0 14px;font-size:10.3pt}
+th,td{padding:4px 7px;text-align:left;vertical-align:top;border-bottom:.5pt solid var(--rule)}
+thead th{border-top:1pt solid var(--ink);border-bottom:.8pt solid var(--ink)}
+pre{background:var(--note);padding:8px 10px;font-family:var(--mono);font-size:9.8pt;overflow-x:auto;border-left:2pt solid var(--ink3)}
+code{font-family:var(--mono);font-size:9.8pt}
+math{font-size:11.5pt} .math.display{display:block;text-align:center;margin:10px 0}
+strong{font-weight:600}
+a{color:#1a3f7a}
+@media print{body{background:#fff}#page{box-shadow:none;max-width:none;padding:0}}
+</style>
+</head>
+<body><div id="page">
+<h1 id="measuring-viscosity-a-plain-language-guide">Measuring Viscosity:
+A Plain-Language Guide</h1>
+<p>Falling Ball, Saybolt, and Rotary Viscometers Companion to the
+Viscosity Measurement Laboratory, Clemson University (DOI
+10.5281/zenodo.22218165)</p>
+<p>This guide covers the same lab as the student handout, with the math
+cut down to what you need at the bench. The full derivations are in the
+separate engineering reference.</p>
+<h2 id="what-viscosity-is">1. What viscosity is</h2>
+<p>Viscosity is how much a liquid resists flowing. Water pours easily,
+so its viscosity is low. Honey pours slowly, so its viscosity is high.
+Motor oil and hydraulic oil sit in between.</p>
+<p>Why it matters on a farm or in a shop:</p>
+<ul>
+<li>A hydraulic pump has to pull oil into itself. Thick, cold oil does
+not arrive fast enough. The pump starves, cavitates, and wears out.</li>
+<li>An engine needs oil thin enough to reach every bearing at start-up
+and thick enough to keep a film between metal parts when hot.</li>
+<li>The grade printed on the container (15W-40, ISO 46) is a viscosity
+promise. This lab shows you how such a number is measured.</li>
+</ul>
+<h2 id="the-one-idea-that-trips-everyone-up-two-kinds-of-viscosity">2.
+The one idea that trips everyone up: two kinds of viscosity</h2>
+<p>There are two viscosity numbers, and they are not
+interchangeable.</p>
+<p><strong>Dynamic viscosity</strong> is how hard the liquid is to stir.
+Unit: centipoise (cP) or pascal-second (Pa.s). Water is about 1 cP. 1
+Pa.s = 1000 cP.</p>
+<p><strong>Kinematic viscosity</strong> is how fast the liquid flows
+under its own weight. Unit: centistokes (cSt). Water is about 1 cSt.</p>
+<p>The only thing connecting them is density:</p>
+<pre><code>dynamic (cP) = kinematic (cSt) x density (grams per mL)</code></pre>
+<p>Oils have a density near 0.87 g/mL, so for oil the cP number is about
+13 percent smaller than the cSt number. Water has a density of 1.0, so
+for water the two numbers are the same.</p>
+<p>Which one does each instrument give you?</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Instrument</th>
+<th>What it gives first</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Falling ball</td>
+<td>dynamic (Pa.s)</td>
+<td>the sphere is pushed by gravity but resisted by stirring drag</td>
+</tr>
+<tr class="even">
+<td>Saybolt cup</td>
+<td>kinematic (cSt)</td>
+<td>gravity pushes the liquid through the hole, and gravity works on
+density</td>
+</tr>
+<tr class="odd">
+<td>Rotary</td>
+<td>dynamic (mPa.s, same as cP)</td>
+<td>the motor stirs the liquid</td>
+</tr>
+</tbody>
+</table>
+<p>Grades: ISO 46 means 46 cSt (kinematic) at 40 C. SAE 15W-40 means the
+“40” is a kinematic band at 100 C and the “15W” is cold-cranking
+behaviour. The two labels cannot be compared with each other
+directly.</p>
+<h2 id="units-cheat-sheet">3. Units cheat sheet</h2>
+<pre><code>1 Pa.s   = 1000 cP  = 1000 mPa.s
+1 cP     = 1 mPa.s      (exactly the same thing)
+cSt      = cP / density (g/mL)
+water    = about 1 cP = about 1 cSt at room temperature</code></pre>
+<p>Everything in this lab can be done with those four lines.</p>
+<h2 id="three-ways-to-measure-one-sentence-each">4. Three ways to
+measure, one sentence each</h2>
+<ol type="1">
+<li><strong>Falling ball.</strong> Drop a steel ball through the liquid
+and time it. Slow fall means thick liquid.</li>
+<li><strong>Saybolt cup.</strong> Let a fixed amount of liquid drain
+through a small hole and time it. Slow drain means thick liquid.</li>
+<li><strong>Rotary.</strong> A motor spins a rotor in the liquid and the
+instrument reads how hard it has to push. It shows the viscosity on a
+screen.</li>
+</ol>
+<p>None of the three reads viscosity from nature directly. Each one
+measures a time or a force, then a formula turns that into viscosity.
+The formula has conditions. If the conditions are not met, the
+instrument still gives you a number, but the number is wrong. Part of
+this lab is learning to notice when that happens.</p>
+<h2 id="falling-ball-step-by-step">5. Falling ball, step by step</h2>
+<h3 id="what-you-measure">5.1 What you measure</h3>
+<ul>
+<li>Mass of the ball (balance) and its diameter (micrometer). On the
+bench these are 8.3 g and 12.70 mm.</li>
+<li>Density of the liquid: weigh 50 mL of it. Mass in grams divided by
+50 is the density in g/mL. Multiply by 1000 for kg/m3.</li>
+<li>Distance between the two marks on the tube. On the bench: 0.89
+m.</li>
+<li>Fall time between the marks. Do it four times and average, because a
+stopwatch thumb is about a tenth of a second slow or fast, and on a
+two-second fall that is 5 percent by itself.</li>
+</ul>
+<p>Release the ball at the top of the tube, not at the first mark. The
+ball needs a head start to reach its steady speed. Released at the mark,
+it is still speeding up while you time it, so it looks slower than it
+is, and your viscosity comes out too high.</p>
+<h3 id="the-bench-shortcut">5.2 The bench shortcut</h3>
+<p>The full formula has the ball’s radius, the density difference,
+gravity, and the fall distance in it. On this bench all of those are
+fixed, so they collapse into one number:</p>
+<pre><code>viscosity (Pa.s) = 0.68 x fall time (seconds)</code></pre>
+<p>Multiply by 1000 for cP. Divide the cP figure by the liquid density
+in g/mL for cSt.</p>
+<p>Worked example, 15W-40 oil, class average fall time 1.89 s:</p>
+<pre><code>0.68 x 1.89 = 1.28 Pa.s = 1280 cP
+1280 / 0.868 = 1480 cSt</code></pre>
+<p>Worked example, Dexron II ATF, class average fall time 0.80 s:</p>
+<pre><code>0.68 x 0.80 = 0.54 Pa.s = 540 cP
+540 / 0.844 = 645 cSt</code></pre>
+<p>(If you use a different ball, tube or liquid density, the 0.68
+changes. The engineering reference shows how to recompute it. It is 2 x
+(ball density - liquid density) x 9.81 x radius^2 / (9 x distance).)</p>
+<h3 id="the-honesty-check">5.3 The honesty check</h3>
+<p>The falling-ball formula was worked out for a ball that creeps
+through the liquid slowly, like a marble in honey. It stops being true
+when the ball moves fast enough to push the liquid aside instead of
+sliding through it. Engineers measure this with the Reynolds number, Re.
+For this bench it reduces to:</p>
+<pre><code>Re = 14 / (fall time in seconds)^2</code></pre>
+<p>and the rule is:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Fall time</th>
+<th>Re</th>
+<th>Trust the result?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>more than 12 s</td>
+<td>under 0.1</td>
+<td>yes, fully</td>
+</tr>
+<tr class="even">
+<td>4 to 12 s</td>
+<td>0.1 to 1</td>
+<td>yes, within about 20 percent</td>
+</tr>
+<tr class="odd">
+<td>1.2 to 4 s</td>
+<td>1 to 10</td>
+<td>no, but report it and say why</td>
+</tr>
+<tr class="even">
+<td>under 1.2 s</td>
+<td>over 10</td>
+<td>no, the formula does not apply</td>
+</tr>
+</tbody>
+</table>
+<p>Both bench fluids fail the check. 15W-40 at 1.89 s gives Re = 4; ATF
+at 0.80 s gives Re = 22. The formula still returned 1.28 and 0.54 Pa.s.
+Those numbers are too high. Real 15W-40 at room temperature is about 0.3
+Pa.s and real ATF is under 0.1 Pa.s.</p>
+<p>Two more things make the bench ball read high: the tube wall drags on
+a ball this large (in a 50 mm tube the effect roughly doubles the
+result), and the ball may not have finished speeding up.</p>
+<p>Do not throw the number away. Write it down, write down the Reynolds
+number next to it, and write “Stokes’ law does not apply, result reads
+high.” That is a better answer than a blank.</p>
+<p>Why does it read high and not low? Because the real drag at these
+speeds is bigger than the formula assumes. Bigger drag makes the ball
+fall slower. The formula sees a slow ball and concludes “thick
+liquid.”</p>
+<p>How to fix the setup: use a smaller ball. Halving the diameter cuts
+Re by eight. A 2.3 mm ball bearing instead of the 12.7 mm sphere cuts it
+by about 170. A thicker or colder liquid also helps.</p>
+<h2 id="saybolt-cup-step-by-step">6. Saybolt cup, step by step</h2>
+<h3 id="what-you-measure-1">6.1 What you measure</h3>
+<p>Heat 60 mL of the liquid to 50 C. Plug the bottom of the cup, fill it
+to overflowing (the height of liquid sets the push, so it must be the
+same every time), pull the plug, and time how long it takes 60 mL to
+collect in the flask below. The time in seconds is the reading, called
+Saybolt Universal Seconds (SUS).</p>
+<h3 id="the-conversion">6.2 The conversion</h3>
+<p>For readings longer than 100 s, which is where oils land:</p>
+<pre><code>kinematic (cSt) = 0.22 x seconds - 135 / seconds</code></pre>
+<p>For most readings the second term is under 1 cSt, so the mental
+version is “a bit less than 0.22 times the seconds.”</p>
+<p>For readings between 32 and 100 s (thin fluids):</p>
+<pre><code>kinematic (cSt) = 0.226 x seconds - 195 / seconds</code></pre>
+<p>Below 32 s the method does not work. Say so instead of forcing a
+number.</p>
+<p>Then, if you need dynamic viscosity:</p>
+<pre><code>dynamic (cP) = kinematic (cSt) x density (g/mL)</code></pre>
+<p>Worked example, a reading of 275 s on 15W-40 at 50 C:</p>
+<pre><code>0.22 x 275 = 60.5;  135 / 275 = 0.5;  60.5 - 0.5 = 60 cSt
+60 x 0.868 = 52 cP = 0.052 Pa.s</code></pre>
+<p>Compare that with the falling-ball figure of 1280 cP for the same
+oil. The difference is not a mistake in your arithmetic. It is the
+falling-ball formula being used outside its range, plus the temperature
+difference (the Saybolt sample is at 50 C, the ball was timed at room
+temperature, and warm oil is much thinner).</p>
+<p>Why 50 C? The cup works between about 32 and 1000 s. At room
+temperature these oils would take longer than 1000 s to drain. Heating
+them brings the drain time into the band the method covers.</p>
+<h2 id="rotary-viscometer-step-by-step">7. Rotary viscometer, step by
+step</h2>
+<h3 id="what-you-measure-2">7.1 What you measure</h3>
+<p>Fill a beaker with 500 mL, heat it to 60 C, lower the rotor in, and
+read the screen. Record the temperature and the reading every 5 C as the
+sample cools. The screen reads in mPa.s, which is the same thing as
+cP.</p>
+<pre><code>Pa.s = reading in mPa.s / 1000</code></pre>
+<h3 id="what-to-write-down-every-time">7.2 What to write down every
+time</h3>
+<p>The rotor (spindle) number and the speed in rev/min. The instrument
+converts the twisting force it feels into viscosity using a factor that
+depends on the rotor size, how deep it sits, how wide the beaker is, and
+the speed. A reading without the spindle and speed is just a number that
+nobody can check or repeat.</p>
+<p>If the screen shows a percent-of-scale figure, keep it between about
+10 and 100 percent. Under 10 percent the instrument is barely feeling
+anything; pick a bigger rotor or a faster speed. Over 100 percent it is
+overloaded; pick a smaller rotor or a slower speed.</p>
+<h3 id="temperature">7.3 Temperature</h3>
+<p>Plot viscosity against temperature. It is not a straight line. It
+drops steeply as the oil warms from 20 C and then flattens. For a
+typical motor oil the viscosity roughly halves for every 10 to 15 C of
+warming. That is why a viscosity number without a temperature next to it
+means nothing, and why grades are always stated at a fixed temperature
+(40 C for ISO, 100 C for the SAE hot number).</p>
+<p>Practical note: 500 mL of oil cools very slowly in air. Use a water
+bath and step it down, or stop the sweep at 35 C.</p>
+<h2 id="putting-the-three-together">8. Putting the three together</h2>
+<p>Fill in this table for one fluid at one temperature:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Viscosity (cP)</th>
+<th>Trust it?</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Falling ball</td>
+<td></td>
+<td></td>
+<td>Reynolds number from Section 5.3</td>
+</tr>
+<tr class="even">
+<td>Saybolt</td>
+<td></td>
+<td></td>
+<td>reading inside 32 to 1000 s?</td>
+</tr>
+<tr class="odd">
+<td>Rotary</td>
+<td></td>
+<td></td>
+<td>spindle and speed recorded, percent of scale in range?</td>
+</tr>
+</tbody>
+</table>
+<p>Expect the rotary and Saybolt figures to agree within about 10 to 20
+percent once you correct for temperature. Expect the falling ball to be
+far higher. Being able to say which number you trust, and why, is the
+point of the lab. “The rotary one, because it was the most expensive
+machine” is not a reason. “The rotary one, because the falling-ball
+Reynolds number was 4 and the Saybolt reading was at a different
+temperature” is.</p>
+<h2 id="cold-start-question-in-plain-terms">9. Cold-start question, in
+plain terms</h2>
+<p>A hydraulic system designed for oil at 40 C is started at 5 C. The
+oil is five to ten times thicker. The pump tries to pull that thick oil
+through the suction hose and cannot get enough. The pressure at the pump
+inlet drops until vapour bubbles form, and those bubbles collapse hard
+on the pressure side. That is cavitation. It sounds like gravel and it
+eats the pump. The cylinders on the other end merely move slowly. So the
+trouble is at the pump inlet, not at the actuator.</p>
+<h2 id="glossary">10. Glossary</h2>
+<ul>
+<li><strong>Viscosity</strong>: resistance to flow. Thick = high, thin =
+low.</li>
+<li><strong>Dynamic (absolute) viscosity</strong>: resistance to
+stirring. cP, mPa.s, Pa.s.</li>
+<li><strong>Kinematic viscosity</strong>: flow under its own weight.
+cSt.</li>
+<li><strong>Density</strong>: mass per volume. Oils about 0.87 g/mL,
+water 1.00.</li>
+<li><strong>Terminal velocity</strong>: the steady speed a falling ball
+settles at once drag balances weight.</li>
+<li><strong>Stokes’ law</strong>: the falling-ball formula. Valid only
+for slow, creeping motion.</li>
+<li><strong>Reynolds number (Re)</strong>: a check on whether the motion
+is slow enough for Stokes’ law. Small is good. Under 1 is required.</li>
+<li><strong>SUS</strong>: Saybolt Universal Seconds, the drain time in
+the Saybolt cup.</li>
+<li><strong>Spindle factor</strong>: the number a rotary viscometer
+multiplies its torque by. Different for every rotor and speed.</li>
+<li><strong>Newtonian fluid</strong>: a liquid whose viscosity does not
+change with how hard you stir it. Oils and water are. Cornstarch in
+water is not, and no formula in this lab works for it.</li>
+<li><strong>Cavitation</strong>: vapour bubbles forming in a pump
+because the oil cannot arrive fast enough, then collapsing and damaging
+metal.</li>
+</ul>
+<h2 id="common-mistakes">11. Common mistakes</h2>
+<ol type="1">
+<li>Quoting cSt where cP was asked, or the other way round. Check the
+unit every time.</li>
+<li>Forgetting the density when converting between them.</li>
+<li>Releasing the ball at the first mark instead of above it.</li>
+<li>Not recording the temperature. Every viscosity needs one.</li>
+<li>Not recording the rotor and speed on the rotary instrument.</li>
+<li>Deleting the falling-ball result because it disagrees with the
+rotary. Report it with its Reynolds number instead.</li>
+<li>Forcing a Saybolt reading under 32 s through the formula.</li>
+<li>Trusting the instrument that looked most impressive rather than the
+one whose conditions were met.</li>
+</ol>
+</div></body>
+</html>
